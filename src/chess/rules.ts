@@ -45,7 +45,8 @@ export function importPgn(text: string): Game {
   const history = c.history({verbose:true});
   if (history.length > 1000) throw new Error('PGN exceeds 1,000 half-moves.');
   const headers = c.getHeaders();
-  return {...newGame('import','w','import'),startFen:validFen(headers.FEN ?? START_FEN),moves:history.map(uciOf),san:history.map(m=>m.san),status:'finished',result:headers.Result ?? outcome(c)?.result ?? '*',reason:'Imported game',headers};
+  const terminal=outcome(c);const result=terminal?.result??headers.Result??'*';
+  return {...newGame('import','w','import'),startFen:validFen(headers.FEN ?? START_FEN),moves:history.map(uciOf),san:history.map(m=>m.san),status:'finished',result,reason:terminal?.reason??'Imported game',headers:{...headers,Result:result}};
 }
 export function exportPgn(game: Game, mode: 'inspired'|'pion' = 'pion', annotated = false): string {
   const c = new Chess(game.startFen);

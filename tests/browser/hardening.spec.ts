@@ -6,7 +6,7 @@ import type {Puzzle,Mistake} from '../../src/chess/types';
 
 async function route(page:Page,name:string){await page.goto(`/#${name}`);await expect(page.locator('main')).toBeVisible();}
 async function move(page:Page,uci:string){await page.getByLabel('Legal move').selectOption(uci);await page.getByRole('button',{name:'Play move',exact:true}).click();}
-async function clickSquare(page:Page,square:string){const box=await page.getByTestId('chessboard').boundingBox();if(!box)throw new Error('No board bounds');await page.mouse.click(box.x+(square.charCodeAt(0)-97+0.5)*box.width/8,box.y+(8-Number(square[1])+0.5)*box.height/8);}
+async function clickSquare(page:Page,square:string){const surface=page.getByTestId('chessboard').locator('cg-board');await surface.scrollIntoViewIfNeeded();const box=await surface.boundingBox();if(!box)throw new Error('No board bounds');await page.mouse.click(box.x+(square.charCodeAt(0)-97+0.5)*box.width/8,box.y+(8-Number(square[1])+0.5)*box.height/8);}
 
 test('pointer promotion chooser supports underpromotion and FEN export',async({page})=>{
   await route(page,'analysis');await page.getByLabel('FEN input').fill('8/P6k/8/8/8/8/8/4K3 w - - 0 1');await page.getByRole('button',{name:'Load FEN',exact:true}).click();await expect(page.getByLabel('Legal move')).toBeVisible();await clickSquare(page,'a7');await clickSquare(page,'a8');await expect(page.getByRole('dialog',{name:'Choose promotion'})).toBeVisible();await page.getByRole('button',{name:'Knight',exact:true}).click();await expect(page.getByLabel('FEN input')).toHaveValue(/^N7\/7k/);const download=page.waitForEvent('download');await page.getByRole('button',{name:'Export FEN'}).click();expect((await download).suggestedFilename()).toBe('pion-position.fen');

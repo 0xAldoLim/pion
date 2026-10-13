@@ -21,6 +21,7 @@ export class PionDatabase extends Dexie {
     });
     this.version(3).stores({preferences:'id'}).upgrade(async tx=>{await tx.table('preferences').toCollection().modify((p:Preferences)=>{p.botPace??='standard';});});
     this.version(4).stores({ratings:'id'}).upgrade(async tx=>{await tx.table('preferences').toCollection().modify((p:Preferences)=>{p.colorMode??='light';p.showEval=true;});});
+    this.version(5).stores({preferences:'id'}).upgrade(async tx=>{await tx.table('preferences').toCollection().modify((p:Preferences)=>{p.premoves??=true;});});
   }
 }
 export const db=new PionDatabase();

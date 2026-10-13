@@ -1,8 +1,8 @@
 import {Chess,type Color} from 'chess.js';
 import type {Game} from './types';
-export function settleClock(game:Game,turn:Color,elapsed:number):Game['clocks'] {
+export function settleClock(game:Game,turn:Color,elapsed:number,minimum=0):Game['clocks'] {
   if(!game.initialSeconds)return {...game.clocks};
-  return {...game.clocks,[turn]:Math.max(0,game.clocks[turn]-Math.max(0,elapsed))};
+  return {...game.clocks,[turn]:Math.max(0,game.clocks[turn]-Math.max(0,minimum,elapsed))};
 }
 export function clockOutcome(fen:string,flagged:Color):Pick<Game,'result'|'reason'> {
   const c=new Chess(fen);const winner=flagged==='w'?'b':'w';

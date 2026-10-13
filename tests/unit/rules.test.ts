@@ -14,6 +14,7 @@ describe('chess rules and imports',()=>{
     const c=new Chess();for(let i=0;i<2;i++)for(const move of ['g1f3','g8f6','f3g1','f6g8'])playUci(c,move);expect(outcome(c)?.reason).toBe('Threefold repetition');
   });
   it('preserves repetition history when resuming',()=>{const g=newGame();g.moves=['g1f3','g8f6','f3g1','f6g8','g1f3','g8f6','f3g1','f6g8'];expect(replay(g).isThreefoldRepetition()).toBe(true);});
+  it('shows a terminal imported result even when the PGN omits its result token',()=>{const mate=importPgn('1. f3 e5 2. g4 Qh4#');expect(mate).toMatchObject({result:'0-1',reason:'Checkmate',headers:{Result:'0-1'}});expect(exportPgn(mate)).toContain('0-1');expect(importPgn('1. e4 *').result).toBe('*');expect(importPgn('1. e4 1-0').result).toBe('1-0');});
   it('round trips PGN and FEN with nonstandard initial position',()=>{const g=importPgn('[SetUp "1"]\n[FEN "8/P6k/8/8/8/8/8/4K3 w - - 0 1"]\n\n1. a8=Q');const restored=importPgn(exportPgn(g));expect(restored.startFen).toBe(g.startFen);expect(restored.moves).toEqual(g.moves);});
   it('rejects malformed or illegal FEN and oversized PGN',()=>{expect(validFen(START_FEN)).toBe(START_FEN);expect(()=>validFen('nonsense')).toThrow();expect(()=>validFen('4k3/4Q3/8/8/8/8/8/4K3 w - - 0 1')).toThrow();expect(()=>importPgn('x'.repeat(1_000_001))).toThrow();});
 });

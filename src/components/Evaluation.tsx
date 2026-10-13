@@ -1,6 +1,6 @@
 import type {ReviewMove,Score} from '../chess/types';
 import {formatScore,winPercent} from '../chess/scoring';
-export function EvalBar({score}: {score?:Score}) {return <div className="eval-bar" aria-label={`White evaluation ${formatScore(score)}`}><div style={{height:`${score?100-winPercent(score):50}%`}}/><span>{formatScore(score)}</span></div>;}
+export function EvalBar({score,orientation='white'}: {score?:Score;orientation?:'white'|'black'}) {return <div className={`eval-bar${orientation==='black'?' reversed':''}`} aria-label={`White evaluation ${formatScore(score)}`}><div style={{height:`${score?100-winPercent(score):50}%`}}/><span>{formatScore(score)}</span></div>;}
 export function EvalGraph({rows,current,onSelect}: {rows:ReviewMove[];current:number;onSelect:(ply:number)=>void}) {
   if(!rows.length)return <p className="muted">Run a review to see the evaluation timeline.</p>;
   const points=rows.map((r,i)=>`${i/Math.max(1,rows.length-1)*600},${100-winPercent(r.after.candidates[0]!.score)}`).join(' ');
