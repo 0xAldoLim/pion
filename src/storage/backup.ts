@@ -4,6 +4,7 @@ import {engineSchema,MAX_BACKUP_BYTES,UCI,validatePuzzle} from './validation';
 import {positionIdentity,replay,validFen} from '../chess/rules';
 import {SCORING_VERSION} from '../chess/scoring';
 import type {Game} from '../chess/types';
+import {validateReview} from './review-validation';
 
 const timestamp=z.number().finite().nonnegative();
 const id=z.string().min(1).max(150);
@@ -20,8 +21,8 @@ export async function restoreBackup(text:string,database:PionDatabase=db):Promis
   const data=schema.parse(JSON.parse(text));
   const games:Game[]=data.games.map(g=>{
     validFen(g.startFen);const c=replay(g);if(c.history().join('|')!==g.san.join('|'))throw new Error(`Game ${g.id} has inconsistent move history.`);
-    // Review evidence is derived cache: untrusted backups must not inject engine claims.
-    return {...g,review:undefined} as Game;
+    const restored={...g,review:undefined} as Game;
+    return {...restored,review:validateReview(g.review,restored)};
   });
   for(const m of data.mistakes){validFen(m.fen);replay({startFen:m.fen,moves:m.line});replay({startFen:m.fen,moves:[m.move]});}
   for(const r of data.repertoire)replay({startFen:newGameFen,moves:r.moves});
