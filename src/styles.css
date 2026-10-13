@@ -62,3 +62,4 @@ html{scroll-padding-top:84px}.chessboard{scroll-margin-top:84px}
 .chessboard cg-board{overflow:hidden}
 .chessboard coords{font-size:clamp(10px,1vw,12px)}
 @media(min-width:1001px){.game-layout:has(.board-footer){grid-template-columns:minmax(0,min(60%,max(320px,calc(100dvh - 290px)))) minmax(0,1fr)}}
+html[data-mode] button{transition:transform .15s}

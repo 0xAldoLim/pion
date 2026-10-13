@@ -51,12 +51,14 @@ export function Board({fen,orientation='white',enabled=false,onMove,arrows=[],la
     api.current=Chessground(host.current!,{fen,coordinates:true,orientation,turnColor:chess.turn()==='w'?'white':'black',
       movable:{free:false,color:undefined,rookCastle:false,events:{after:(from,to)=>submit(from,to,false)}},
       premovable:{enabled:false,events:{set:(from,to)=>submit(from,to,true)}},drawable:{enabled:true},animation:{enabled:animation,duration:180}});
-    let redraw=0;
+    let redraw=0,observedContainer:HTMLElement|null=null;
     function refresh(){
+      const inner=api.current?.state.dom.elements.container;
+      if(inner&&inner!==observedContainer){if(observedContainer)observer.unobserve(observedContainer);observedContainer=inner;observer.observe(inner);}
       cancelAnimationFrame(redraw);
       redraw=requestAnimationFrame(()=>{
         const board=api.current?.state.dom.elements.board.getBoundingClientRect(),stage=frame.current?.getBoundingClientRect();
-        if(board&&stage){const inset=(stage.width-board.width)/2;container.current?.style.setProperty('--board-inset',`${inset}px`);frame.current?.style.setProperty('--board-inset',`${inset}px`);}
+        if(board&&stage){const inset=Math.max(0,(stage.width-board.width)/2);container.current?.style.setProperty('--board-inset',`${inset}px`);frame.current?.style.setProperty('--board-inset',`${inset}px`);}
       });
     }
     const observer=new ResizeObserver(refresh);observer.observe(host.current!);refresh();

@@ -8,10 +8,11 @@ Observed defects and changes:
 - Tablet content was squeezed by the desktop sidebar. Switch to a dismissible drawer at 900 px, trap its keyboard focus, restore the invoking control, and keep the background inert.
 - Native file inputs and lesson demos overflowed narrow cards. Use full-width constrained inputs, a single-column lesson layout, and equal demo actions.
 - Chessground measured a bordered host and rounded its playing dimensions for equal physical square sizes. Move the frame outside that host and center its rounded container. Use one thin frame for every board.
-- Evaluation height included move controls. Share a grid row with the playing area alone, and derive its inset from the rendered squares. Player rows follow the same board column and swap correctly when flipped. Coordinate labels stay inside the board with alternating square colors.
+- Evaluation height included move controls. Share a grid row with the playing area alone, and derive its inset from the rendered squares. Observe both the host and Chessground's rounded inner container so later resize measurements stay aligned. Player rows follow the same board column and swap correctly when flipped. Coordinate labels stay inside the board with alternating square colors.
 - Rebuilding the board DOM on scroll could detach a pointer target. Use Chessground’s existing scroll-bound invalidation and resize handling; our observer only measures the frame inset.
 - Piece animation could momentarily extend the mobile layout during resize. Contain pieces within the rendered board, and constrain desktop play width using the viewport height so both player rows remain visible on a 720 px tall screen.
 - Compact promotion/restore dialogs needed bounded dimensions and consistent keyboard focus. Keep promotion within its board, allow vertical scrolling, and support Escape.
+- Appearance changes briefly combined the new text color with the old fading button background. Change the palette together and preserve the button press transform animation.
 
 Reference: inspected the public [Chess.com computer board](https://www.chess.com/play/computer) for its flush square frame, internal coordinates, and adjacent player rows. Pion’s artwork and styling remain original.
 

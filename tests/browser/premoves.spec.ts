@@ -35,6 +35,6 @@ test('illegal conditional capture is canceled; premove promotion retains the cho
   const game={...newGame('pebble','w','bot',300),startFen:'8/P6k/8/8/8/8/8/4K3 b - - 0 1'};
   await page.evaluate(record=>new Promise<void>((resolve,reject)=>{const request=indexedDB.open('pion');request.onsuccess=()=>{const db=request.result,tx=db.transaction('games','readwrite');tx.objectStore('games').put(record);tx.oncomplete=()=>{db.close();resolve();};tx.onerror=()=>reject(tx.error);};}),game);
   await route(page,`play/${game.id}`);await queue(page,'a7','a8');await expect(page.getByRole('dialog',{name:'Choose promotion'})).toBeVisible();await page.getByRole('button',{name:'Knight',exact:true}).click();await expect(page.locator('.premove-status')).toContainText('a7 → a8 = N');
-  for(const appearance of ['dark','light']){await page.getByRole('button',{name:`Switch to ${appearance} mode`}).click();expect((await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze()).violations).toEqual([]);}
+  for(const appearance of ['dark','light']){await page.getByRole('button',{name:`Switch to ${appearance} mode`}).click();await expect(page.locator('html')).toHaveAttribute('data-mode',appearance);expect((await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze()).violations).toEqual([]);}
   await expect(page.getByLabel('Move history')).toContainText('a8=N',{timeout:30_000});
 });
