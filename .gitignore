@@ -1,0 +1,13 @@
+node_modules/
+dist/
+test-results/
+playwright-report/
+.env*
+!.env.example
+*.log
+public/engines/*.js
+public/engines/*.wasm
+public/engines/deep/
+work/
+.DS_Store
+.rea/

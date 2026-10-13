@@ -1,0 +1,30 @@
+[
+  {
+    "pack": "lite",
+    "sha256": "ccb130d7ff29408531c47d859a49f91d59d4f482d05a53eb1a3231a4f624c91a",
+    "size": 28230,
+    "url": "https://github.com/nmrugg/stockfish.js/releases/download/v19.0.1/stockfish-19-lite-single.js",
+    "name": "stockfish-19-lite-single.js"
+  },
+  {
+    "pack": "lite",
+    "sha256": "ee4f115bdb2d32cadf96cada104a05b5ec257d7ad6f57582190b49bc71f096de",
+    "size": 1845971,
+    "url": "https://github.com/nmrugg/stockfish.js/releases/download/v19.0.1/stockfish-19-lite-single.wasm",
+    "name": "stockfish-19-lite-single.wasm"
+  },
+  {
+    "pack": "deep",
+    "sha256": "8071dee87312f74805a859de933e1a1ef465579ab1a51fbd597388cdce9d444d",
+    "size": 28130,
+    "url": "https://github.com/nmrugg/stockfish.js/releases/download/v19.0.1/stockfish-19-single.js",
+    "name": "stockfish-19-single.js"
+  },
+  {
+    "pack": "deep",
+    "sha256": "991bede2f253ebb08ff01fcc48270f4b9c8e66b12d5bd5f8d6f52eb3e3b3a740",
+    "size": 99169054,
+    "url": "https://github.com/nmrugg/stockfish.js/releases/download/v19.0.1/stockfish-19-single.wasm",
+    "name": "stockfish-19-single.wasm"
+  }
+]
