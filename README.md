@@ -3,7 +3,7 @@
 An open-source, browser-local chess training application. React + TypeScript + Vite, Chessground, chess.js, Stockfish WASM, and IndexedDB. No account, server database, telemetry, paid API, or LLM.
 
 - Seven reference-inspired cartoon characters: Ponke, Lonke, Gonke, Konke, Bonke, Zonke, and Donke; twelve selectable practice difficulties.
-- Play Now matches an estimated opponent within ±20 of your separate local Blitz / Rapid ratings. Both start at 600 and use K=32 Elo. Practice bots leave these ratings unchanged.
+- Play now opens a duration picker and immediately matches an estimated opponent within ±20 of the selected Blitz / Rapid rating. Choose 1, 3 or 5 minutes for Blitz; 10, 15 or 30 minutes for Rapid. Both start at 600 and use K=32 Elo. Practice bots leave these ratings unchanged.
 - Bots take 2.8–4.8 seconds by default, even when a move is cached. Quick and Thoughtful pacing are available in Settings.
 - Light/dark navbar toggle, larger type, seven board themes, four original SVG piece sets, and animated live evaluation.
 - On-piece review badges, progressive position-specific hints, explicit side-to-move prompts, captioned lesson loops, and curated SSS–C opening learning tiers with sourced player examples.

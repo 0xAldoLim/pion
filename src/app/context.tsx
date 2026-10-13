@@ -3,7 +3,7 @@ import {useLiveQuery} from 'dexie-react-hooks';
 import {db} from '../storage/db';
 import {DEFAULT_PREFS,type Preferences} from '../chess/types';
 export type Page='home'|'play'|'review'|'analysis'|'puzzles'|'openings'|'learn'|'progress'|'settings';
-export interface AppContextValue {preferences:Preferences;setPreferences:(patch:Partial<Preferences>)=>Promise<void>;navigate:(page:Page,id?:string)=>void;notify:(text:string)=>void;selectedId:string|undefined;page:Page}
+export interface AppContextValue {preferences:Preferences;setPreferences:(patch:Partial<Preferences>)=>Promise<void>;navigate:(page:Page,id?:string)=>void;openRatedPlay:()=>void;notify:(text:string)=>void;selectedId:string|undefined;page:Page}
 export const AppContext=createContext<AppContextValue|null>(null);
 export function useApp(){const value=useContext(AppContext);if(!value)throw new Error('Missing app provider');return value;}
 export function usePreferences(){
