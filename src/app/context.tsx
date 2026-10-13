@@ -10,11 +10,12 @@ export function usePreferences(){
   const stored=useLiveQuery(()=>db.preferences.get('main'));
   const [preferences,setLocal]=useState(DEFAULT_PREFS);
   const pending=useRef(0);
-  useEffect(()=>{void db.preferences.get('main').then(p=>{if(!p)return db.preferences.put(DEFAULT_PREFS);});},[]);
+  useEffect(()=>{void db.transaction('rw',db.preferences,async()=>{if(!await db.preferences.get('main'))await db.preferences.put(DEFAULT_PREFS);});},[]);
   useEffect(()=>{if(stored&&pending.current===0)setLocal(stored);},[stored]);
   const setPreferences=useCallback(async(patch:Partial<Preferences>)=>{
     pending.current++;
-    setLocal(current=>({...current,...patch,id:'main'}));
+    // Native controlled inputs need immediate state; appearance waits for durable storage.
+    if(!('colorMode' in patch))setLocal(current=>({...current,...patch,id:'main'}));
     try {
       await db.transaction('rw',db.preferences,async()=>{
         const current=await db.preferences.get('main')??DEFAULT_PREFS;

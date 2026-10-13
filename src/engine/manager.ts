@@ -61,7 +61,7 @@ export class EngineManager {
       const parsed=parseInfo(line,new Chess(job.fen).turn());
       if (parsed && !job.aborted) {
         this.candidates.set(parsed.rank,parsed.candidate);
-        job.options.onProgress?.([...this.candidates.values()]);
+        job.options.onProgress?.([...this.candidates.entries()].sort(([a],[b])=>a-b).map(([,candidate])=>candidate));
       }
       if (line.startsWith('bestmove ')) {
         const bestMove=line.split(' ')[1] ?? '';

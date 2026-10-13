@@ -1,5 +1,7 @@
 import type {Repetition} from '../chess/types';
 export function schedule(record:Repetition,success:boolean,hints=0,now=Date.now()):Repetition {
+  // An early repeat is practice, not evidence of spaced retrieval.
+  if(success&&hints===0&&now<record.due)return {...record};
   const recalled=success&&hints===0;
   const ease=Math.max(1.3,Math.min(3,record.ease+(recalled?0.1:-0.2)));
   const interval=recalled?(record.successes===0?1:record.successes===1?3:Math.max(1,Math.round(record.interval*ease))):1;

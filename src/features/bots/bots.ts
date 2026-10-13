@@ -2,6 +2,7 @@ import {Chess, type Move} from 'chess.js';
 import type {Evaluation} from '../../chess/types';
 import {playUci} from '../../chess/rules';
 import {winPercent} from '../../chess/scoring';
+import {MONKEY_NAMES} from '../../components/Character';
 export interface Bot {id:string;name:string;band:string;rating:number;tagline:string;color:string;shape:number;skill:number;depth:number;timeMs:number;errorRate:number;lossBudget:number;style:'casual'|'cautious'|'attack'|'positional'|'technical';opening:string[];lines:{hello:string;capture:string;end:string}}
 const specs:[string,number,string,string,string,number,number,number,number,Bot['style'],string][]=[
   ['Pebble',150,'First steps','One square at a time.','#dda588',0,4,0.65,32,'casual','e4 e5'],
@@ -17,8 +18,13 @@ const specs:[string,number,string,string,string,number,number,number,number,Bot[
   ['Crown',2200,'Master style','Every tempo matters.','#d1bd78',19,20,0.01,1,'positional','d4 Nf6 c4 g6'],
   ['Monarch',2800,'Full engine strength','Let’s find the truth on the board.','#92968f',20,24,0,0,'technical',''],
 ];
-export const BOTS:Bot[]=specs.map(([name,rating,band,tagline,color,skill,depth,errorRate,lossBudget,style,opening],shape)=>({id:name.toLowerCase(),name,rating,band,tagline,color,shape,skill,depth,errorRate,lossBudget,style,opening:opening.split(' ').filter(Boolean),timeMs:150+shape*100,lines:{hello:tagline,capture:style==='attack'?'A forcing move. What comes next?':style==='cautious'?'Let’s check the exchanges carefully.':'The material balance is changing.',end:style==='technical'?'A useful position to review.':'Every game gives us something to practice.'}}));
+export const BOTS:Bot[]=specs.map(([name,rating,band,tagline,_color,skill,depth,errorRate,lossBudget,style,opening],index)=>({id:name.toLowerCase(),name:MONKEY_NAMES[index%7]!,rating,band,tagline,color:['#de941b','#19899b','#246fd0','#ba3866','#9c54ce','#d55c20','#9a6b35'][index%7]!,shape:index%7,skill,depth,errorRate,lossBudget,style,opening:opening.split(' ').filter(Boolean),timeMs:150+index*100,lines:{hello:tagline,capture:style==='attack'?'A forcing move. What comes next?':style==='cautious'?'Let’s check the exchanges carefully.':'The material balance is changing.',end:style==='technical'?'A useful position to review.':'Every game gives us something to practice.'}}));
 export const botById=(id:string)=>BOTS.find(b=>b.id===id)??BOTS[0]!;
+/** Continuous local matching policy; displayed ratings are training estimates. */
+export function matchedBot(id:string,rating:number):Bot {
+  const avatar=botById(id);const strength=Math.max(0,Math.min(1,(rating-100)/2700));
+  return {...avatar,rating,band:'Matched opponent',skill:Math.round(strength*20),depth:Math.round(4+strength*20),timeMs:Math.round(200+strength*1000),errorRate:0.65*(1-strength),lossBudget:32*(1-strength),opening:[]};
+}
 function personality(move:Move,style:Bot['style']):number {
   const center=['d4','e4','d5','e5'].includes(move.to)?0.6:0;
   if(style==='attack')return (move.san.includes('+')?1.6:0)+(move.captured?1.2:0)+center;
@@ -30,7 +36,7 @@ function personality(move:Move,style:Bot['style']):number {
 /** Candidate loss budgets, errors, preferred openings and positional bias vary by bot. */
 export function chooseBotMove(bot:Bot,fen:string,evaluation:Evaluation,historySan:string[],rng=Math.random):string {
   const c=new Chess(fen);
-  if(bot.id==='monarch') {playUci(new Chess(fen),evaluation.bestMove);return evaluation.bestMove;}
+  if(bot.skill===20&&bot.errorRate===0) {playUci(new Chess(fen),evaluation.bestMove);return evaluation.bestMove;}
   if(historySan.length<bot.opening.length&&historySan.every((m,i)=>m===bot.opening[i])) {
     try {return c.move(bot.opening[historySan.length]!).from+c.history({verbose:true}).at(-1)!.to;}catch{/* Leave repertoire when opponent deviates. */}
   }

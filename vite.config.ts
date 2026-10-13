@@ -23,7 +23,7 @@ export default defineConfig({
       cleanupOutdatedCaches: true,
       clientsClaim: true,
       navigateFallback: 'index.html',
-      runtimeCaching: [{urlPattern: /\/engines\/deep\//, handler: 'CacheFirst', options: {cacheName: 'pion-deep-v1'}}],
+      runtimeCaching: [{urlPattern: ({url})=>url.pathname.includes('/engines/deep/')&&!url.searchParams.has('pion-download'),handler:'CacheOnly',options:{cacheName:'pion-deep-v1'}}],
     },
   })],
   test: {include: ['tests/unit/**/*.test.ts'], environment: 'node'},

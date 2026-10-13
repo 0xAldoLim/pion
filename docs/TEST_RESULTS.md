@@ -1,21 +1,19 @@
 # Validation evidence
 
-Observed locally on 2026-10-13, Node 24.19 / Windows. Initial implementation checkpoint, not a stable-release claim.
+Observed locally on 2026-10-13, Node 24.19 / Windows. Results describe the tested implementation and do not establish measured bot Elo.
 
-- Strict TypeScript and ESLint: pass.
-- Vitest: 8 files / 44 checks pass. Chess rules, UCI normalization, scoring boundaries, worker lifecycle/preemption/crash recovery, facts, all 4,070 puzzle and 3,865 opening legal sequences, IndexedDB backup validation/review restoration, review orchestration and repetition.
-- Production Vite build: pass; PWA precache ~4.8 MiB including default engine. Optional ~95 MB pack excluded from automatic caching.
-- Playwright Chromium 8/8 and Pixel 7 Chromium emulation 8/8 pass. Complete hotseat mate/reload/review, real WASM UCI/MultiPV/mate, bot/undo/resign, puzzles/masters, repertoire/endgame, settings/backup, offline reload/bot/review/puzzles.
-- Axe WCAG A/AA dashboard passes desktop/mobile; wider screen audit pending.
-- Firefox: 8 local launch failures, incorrect mozglue side-by-side configuration on this Windows host. GitHub Ubuntu CI passed all steps and 24 browser scenarios including Firefox at foundation commit 56b5257: https://github.com/0xAldoLim/pion/actions/runs/38331588037.
-- Default/full official engine assets: published SHA-256 integrity checks pass.
+- Strict TypeScript, ESLint and production Vite build: pass.
+- Vitest: 11 files / 63 checks pass. Covers chess rules, UCI normalization, review scoring and legal evidence, worker lifecycle/preemption/crash recovery, grounded motifs/hints, all 4,070 puzzle and 3,865 opening legal sequences, all nine lesson demos, repetition, migration and transactional backup, clock outcomes, abortable bot pacing, separate ratings and duplicate/stale settlement protection.
+- Playwright: 19/19 desktop Chromium and 19/19 Pixel 7 Chromium emulation scenarios pass (38 total). Includes complete hotseat mate/reload/review/backup; real WASM UCI, MultiPV and mate; Black-side bot play, undo/resignation; promotion; deterministic pause/increment/timeout; puzzles/Morphy/repetition; full mistake-line replay; repertoire/endgames; CSV installation; settings; entirely offline production play; full-engine integrity rejection/install/offline execution; both appearance modes; seven characters/boards and four piece sets; minimum response pacing; streamed evaluation; local Blitz/Rapid matching/settlement; lesson loops; opening tiers; destination-piece review badges and comparison arrows.
+- Axe: all nine main views in both light and dark modes pass WCAG 2 A/AA and 2.1 AA scans (18 scans, zero violations). Desktop/mobile dashboard scans also pass within the browser suite. These scans do not cover every possible active-game or dialog state.
+- Production PWA: 71 precache entries, approximately 4,999.53 KiB including the default engine. Optional approximately 95 MB full engine is excluded from automatic caching. Main application chunk is approximately 606.20 KB gzip; Vite reports its size warning.
+- Default/full official engine assets: published size and SHA-256 checks pass. A deliberately corrupted full-pack download is rejected before installation; verified installation runs the real worker offline.
 - License inventory: 464 installed packages, no unknown declarations. See DEPENDENCY_LICENSES.json.
-- pnpm advisory audit: 0 known vulnerabilities at all severities. Registry snapshot, not proof of absence.
+- pnpm advisory audit: zero known vulnerabilities at every severity in this registry snapshot; this is not proof that no vulnerabilities exist.
+- Local Firefox cannot launch because of this Windows host's mozglue side-by-side configuration. The earlier Ubuntu workflow passed all 24 then-existing browser scenarios at c22a4ae: https://github.com/0xAldoLim/pion/actions/runs/38333445572. Expanded Ubuntu/Firefox acceptance will be recorded after the current feature commit is pushed.
 
-Commands: pnpm typecheck, lint, test, build, test:e2e, assets:deep, audit:licenses, audit --json. Production preview http://127.0.0.1:4173. Offline checks disable networking after precache/controller readiness and assert no external requests.
+Commands: pnpm typecheck, pnpm lint, pnpm test, pnpm build, pnpm exec playwright test --project=chromium --project=mobile --workers=2, pnpm assets:deep, pnpm audit:licenses, pnpm audit --json. The production preview is http://127.0.0.1:4173. Offline checks disable networking after precache/controller readiness and assert no external requests.
 
-An initial offline regression exposed duplicate icon entries with conflicting revisions. Manifest generation was corrected. Settings now update immediately while writes remain transactional.
+Regression checks now guard the previously observed duplicate precache revisions, restored review identities/PVs, initial preference-write race, game-launch URL/save race, elapsed time before increment, minimum bot response on cached book moves, rating settlement on reload, and early repetition credit. Historical master metadata remains explicit where the exact date is unknown.
 
-Review checkpoint adds full bounded review restoration, recomputed scores, identity/legal PV rejection before mutation. Both relevant real-browser backup/review scenarios pass after the change. Imported records cannot cryptographically prove original search provenance; search version/settings/depth remain visible.
-
-Bot/coach checkpoint: 55 checks pass before the additional version-one migration fixture; focused real Chromium hotseat/review/backup, bot and offline regressions pass 3/3. New motif fixtures cover skewer, discovered attack, fork/double attack, passed pawn exclusions and legal evidence sequences. Clock accounting settles the outgoing player's elapsed time before granting increment. A 48-game real WASM reference run produced 8 actual results and 40 unresolved cutoffs; see BOT_CALIBRATION.md. No measured Elo claim.
+A separate 48-game real WASM reference run produced eight actual results and forty unresolved cutoffs; see BOT_CALIBRATION.md. Opponent strengths and locally matched Elo remain estimates, and the simulation does not establish a calibrated rating scale.

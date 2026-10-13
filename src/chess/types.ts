@@ -17,7 +17,8 @@ export interface ReviewMove {
 }
 export interface Game {
   id: string; createdAt: number; updatedAt: number; startFen: string; moves: string[]; san: string[];
-  mode: 'bot'|'hotseat'|'import'; botId: string; playerColor: Color;
+  mode: 'bot'|'hotseat'|'import'|'rated'; botId: string; playerColor: Color;
+  rated?: {category: RatingCategory; opponent: number; before: number; delta?: number; after?: number};
   status: 'active'|'finished'; result: string; reason: string;
   initialSeconds: number; increment: number; clocks: {w: number; b: number};
   review?: {moves: ReviewMove[]; completed: boolean; settings: EngineSettings; version: string; positionId: string};
@@ -34,8 +35,10 @@ export interface Repetition {interval: number; ease: number; due: number; succes
 export interface Mistake extends Repetition {id: string; gameId: string; ply: number; fen: string; move: string; line: string[]; tags: string[]; source: string; license: string}
 export interface Repertoire extends Repetition {id: string; openingId: string; name: string; moves: string[]; color: Color}
 export interface TrainingEvent {id: string; at: number; kind: 'lesson'|'opening'|'endgame'; target: string; success: boolean; hints: number}
+export type RatingCategory = 'blitz'|'rapid';
+export interface Rating {id: RatingCategory; value: number; games: number; wins: number; losses: number; draws: number; updatedAt: number}
 export interface Preferences {
-  id: 'main'; theme: 'forest'|'slate'|'sand'; pieces: 'classic'|'outline'; sound: boolean;
+  id: 'main'; colorMode: 'light'|'dark'; theme: 'forest'|'slate'|'sand'|'ocean'|'walnut'|'violet'|'tournament'; pieces: 'classic'|'outline'|'neo'|'wood'; sound: boolean;
   animation: boolean; reducedMotion: boolean; largeText: boolean; contrast: boolean;
   coach: 'off'|'important'|'every'|'training'; explanation: 'quick'|'educational'|'deep'; voice: boolean;
   highlights: boolean; showEval: boolean; engine: EngineSettings; puzzleRating: number;
@@ -47,4 +50,4 @@ export const PROFILES: Record<'fast'|'balanced'|'deep', EngineSettings> = {
   balanced: {profile:'balanced',depth:18,timeMs:1200,multiPv:3,hashMb:64,threads:1,pack:'lite'},
   deep: {profile:'deep',depth:24,timeMs:5000,multiPv:4,hashMb:128,threads:1,pack:'lite'},
 };
-export const DEFAULT_PREFS: Preferences = {id:'main',theme:'forest',pieces:'classic',sound:true,animation:true,reducedMotion:false,largeText:false,contrast:false,coach:'important',explanation:'educational',voice:false,highlights:true,showEval:false,engine:PROFILES.balanced,puzzleRating:600,training:{tactics:40,games:25,mistakes:20,openings:10,endgames:5},botPace:'standard'};
+export const DEFAULT_PREFS: Preferences = {id:'main',colorMode:'light',theme:'forest',pieces:'classic',sound:true,animation:true,reducedMotion:false,largeText:false,contrast:true,coach:'important',explanation:'educational',voice:false,highlights:true,showEval:true,engine:PROFILES.balanced,puzzleRating:600,training:{tactics:40,games:25,mistakes:20,openings:10,endgames:5},botPace:'standard'};
