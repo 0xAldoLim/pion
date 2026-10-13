@@ -13,6 +13,8 @@ Observed defects and changes:
 - Piece animation could momentarily extend the mobile layout during resize. Contain pieces within the rendered board, and constrain desktop play width using the viewport height so both player rows remain visible on a 720 px tall screen.
 - Compact promotion/restore dialogs needed bounded dimensions and consistent keyboard focus. Keep promotion within its board, allow vertical scrolling, and support Escape.
 - Appearance changes briefly combined the new text color with the old fading button background. Change the palette together and preserve the button press transform animation.
+- Rank labels inherited right-edge square colors while being positioned on the left, making them disappear into the board. Configure left-edge ranks explicitly, keep them inside the frame, and give every coordinate an equal share of its row or column. Check the labels after flipping and resizing.
+- The app-update banner used a fixed pale background with inherited dark-mode text. Use the active palette's accent background and ink together, increase its text to 14 px, and let its action wrap on narrow screens.
 
 Reference: inspected the public [Chess.com computer board](https://www.chess.com/play/computer) for its flush square frame, internal coordinates, and adjacent player rows. Pion’s artwork and styling remain original.
 

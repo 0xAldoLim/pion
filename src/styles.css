@@ -63,3 +63,5 @@ html{scroll-padding-top:84px}.chessboard{scroll-margin-top:84px}
 .chessboard coords{font-size:clamp(10px,1vw,12px)}
 @media(min-width:1001px){.game-layout:has(.board-footer){grid-template-columns:minmax(0,min(60%,max(320px,calc(100dvh - 290px)))) minmax(0,1fr)}}
 html[data-mode] button{transition:transform .15s}
+.chessboard coords.ranks.left{left:3px;align-items:flex-start}.chessboard coords coord{flex:1 1 0;min-width:0;min-height:0}
+.update-banner{background:var(--accent);color:var(--ink);font-size:14px;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--border)}

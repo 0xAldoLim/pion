@@ -6,10 +6,19 @@ async function fits(page:Page){
     const containers=[...document.querySelectorAll('main,header,.card,.coach-card,.filters,.library-card,.board-controls,.move-list,.app-dialog,.page-intro')];
     const overflow=containers.filter(el=>{const r=el.getBoundingClientRect();return r.width>0&&el.scrollWidth>el.clientWidth+2;}).map(el=>({className:el.className,width:el.clientWidth,scroll:el.scrollWidth}));
     const boards=[...document.querySelectorAll('.chessboard')].map(el=>{const frame=el.getBoundingClientRect(),stage=el.closest('.board-stage')!.getBoundingClientRect();const board=el.querySelector('cg-board')!.getBoundingClientRect(),bar=el.closest('.board-container')?.querySelector('.eval-bar')?.getBoundingClientRect();return {frame:{width:frame.width,height:frame.height},contained:board.left>=frame.left&&board.right<=frame.right+1&&board.top>=frame.top&&board.bottom<=frame.bottom+1,borderDifference:Math.max(Math.abs((board.left-stage.left)-(stage.right-board.right)),Math.abs((board.top-stage.top)-(stage.bottom-board.bottom))),barAligned:!bar||(Math.abs(bar.top-board.top)<1.5&&Math.abs(bar.bottom-board.bottom)<1.5)};});
-    return {width:document.documentElement.scrollWidth,viewport:innerWidth,overflow,boards};
+    const coordinates=[...document.querySelectorAll('.chessboard')].flatMap(el=>{
+      const ranks=el.querySelector('coords.ranks'),files=el.querySelector('coords.files'),board=el.querySelector('cg-board')!.getBoundingClientRect();
+      if(!ranks||!files||!ranks.getBoundingClientRect().width)return [];
+      const rankLabels=[...ranks.children].sort((a,b)=>a.getBoundingClientRect().top-b.getBoundingClientRect().top),fileLabels=[...files.children].sort((a,b)=>a.getBoundingClientRect().left-b.getBoundingClientRect().left);
+      const top=rankLabels[0],left=fileLabels[0];
+      const labels=[...rankLabels,...fileLabels].map(label=>{const r=label.getBoundingClientRect();return r.left>=board.left&&r.right<=board.right+1&&r.top>=board.top&&r.bottom<=board.bottom+1;});
+      return [{contained:labels.every(Boolean),oppositeCornerColors:!!top&&!!left&&getComputedStyle(top).color!==getComputedStyle(left).color,equalSpacing:rankLabels.length===8&&fileLabels.length===8&&rankLabels.every(label=>Math.abs(label.getBoundingClientRect().height-board.height/8)<1)&&fileLabels.every(label=>Math.abs(label.getBoundingClientRect().width-board.width/8)<1)}];
+    });
+    return {width:document.documentElement.scrollWidth,viewport:innerWidth,overflow,boards,coordinates};
   });
   expect(result.width).toBeLessThanOrEqual(result.viewport+2);expect(result.overflow).toEqual([]);
   for(const board of result.boards){expect(board.contained).toBe(true);expect(board.borderDifference).toBeLessThanOrEqual(1);expect(board.barAligned).toBe(true);expect(Math.abs(board.frame.width-board.frame.height)).toBeLessThanOrEqual(1);expect(board.frame.width).toBeGreaterThan(70);}
+  for(const coordinates of result.coordinates){expect(coordinates.contained).toBe(true);expect(coordinates.oppositeCornerColors).toBe(true);expect(coordinates.equalSpacing).toBe(true);}
 }
 
 test('all main screens and lesson exercises stay within six viewport widths',async({page})=>{

@@ -48,7 +48,7 @@ export function Board({fen,orientation='white',enabled=false,onMove,arrows=[],la
       else if(isPremove)current.premove?.onQueue(from+to);else current.onMove?.(from+to);
       if(isPremove)api.current?.cancelPremove();
     }
-    api.current=Chessground(host.current!,{fen,coordinates:true,orientation,turnColor:chess.turn()==='w'?'white':'black',
+    api.current=Chessground(host.current!,{fen,coordinates:true,ranksPosition:'left',orientation,turnColor:chess.turn()==='w'?'white':'black',
       movable:{free:false,color:undefined,rookCastle:false,events:{after:(from,to)=>submit(from,to,false)}},
       premovable:{enabled:false,events:{set:(from,to)=>submit(from,to,true)}},drawable:{enabled:true},animation:{enabled:animation,duration:180}});
     let redraw=0,observedContainer:HTMLElement|null=null;
