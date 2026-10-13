@@ -1,0 +1,21 @@
+import {chromium} from '@playwright/test';
+const browser=await chromium.launch();
+const context=await browser.newContext();
+context.on('console',m=>console.log('context console:',m.text()));
+context.on('weberror',e=>console.log('context error:',e.error().message));
+const page=await context.newPage();
+const cdp=await context.newCDPSession(page);
+await cdp.send('ServiceWorker.enable');
+cdp.on('ServiceWorker.workerErrorReported',e=>console.log('SW error:',e));
+page.on('console',m=>console.log('console:',m.text()));
+page.on('requestfailed',r=>console.log('request failed:',r.url(),r.failure()));
+context.on('serviceworker',worker=>worker.on('console',m=>console.log('sw:',m.text())));
+await page.goto('http://127.0.0.1:4173/');
+await page.evaluate(()=>navigator.serviceWorker.ready);
+await page.reload();
+for(const worker of context.serviceWorkers())console.log('Worker state:',await worker.evaluate(async()=>({keys:await caches.keys(),registration:self.registration.scope,define:String(self.define),listeners:typeof self.onfetch})));
+console.log('Index fetch:',await page.evaluate(async()=>{const r=await fetch('index.html');return {status:r.status,text:(await r.text()).slice(0,120)};}));
+console.log(await page.evaluate(async()=>({controller:navigator.serviceWorker.controller?.scriptURL,keys:await caches.keys(),cached:await Promise.all((await caches.keys()).map(async key=>({key,urls:(await (await caches.open(key)).keys()).map(r=>r.url)})))})));
+await context.setOffline(true);
+try{await page.reload();console.log('Reload success:',await page.title());}catch(e){console.log('Reload failed:',e.message);}
+await browser.close();

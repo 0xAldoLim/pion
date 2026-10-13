@@ -14,14 +14,14 @@ pnpm typecheck
 pnpm lint
 pnpm test
 pnpm build
-pnpm exec playwright install chromium
+pnpm exec playwright install chromium firefox
 pnpm test:e2e
 pnpm preview
 ```
 
 Open the preview's local address. Installation and service-worker offline behavior require the production build, HTTPS or localhost. Keep the page open until the offline installation confirmation appears. Export backups regularly: browser storage can be cleared.
 
-Run `pnpm assets:deep` before building to offer the optional full single-thread engine pack. This increases deployment size substantially. The default lite single-thread engine works without cross-origin isolation. Engine binaries are reproduced from the exact locked Stockfish npm package; generated files are intentionally excluded from Git. The asset script generates SHA-256 integrity metadata.
+Run `pnpm assets:deep` before building to offer the optional full single-thread engine pack (~95 MB). The default lite single-thread engine (~1.8 MB WASM) works without cross-origin isolation. Engine binaries come from the official pinned Stockfish.js v19.0.1 release; generated files are intentionally excluded from Git. The asset script verifies published SHA-256 digests and generates integrity metadata.
 
 Source and assets must be served from the same origin. Deploy `dist/` to a static host with SPA fallback; no backend is required. An update is applied only after explicit user action so an ongoing game can be saved first.
 

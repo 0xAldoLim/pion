@@ -18,4 +18,10 @@ Pure chess.js facts and data are portable. Transport, engine processes, DB acces
 
 ## Unknowns and limits
 
-Patzer's live server/LLM setup was not executed. No protected commercial code was inspected. Native-analysis providers are unnecessary for this source audit. Pion runtime behavior must be established separately by real WASM/browser/offline tests. Record subsequent source/DOM/screenshot evidence below when it actually runs.
+Patzer's live server/LLM setup was not executed. No protected commercial code was inspected. Native-analysis providers are unnecessary for this source audit. Static graph semantic expansion was incomplete due to its result budget; source inspection supplied the remaining module findings.
+
+## Pion browser observation
+
+REA passively inspected the built Pion dashboard in a dedicated headless Chrome profile via loopback CDP. DOM/accessibility evidence: ev_c062e5201a45f28417d583c5fdb6fa0d6266f1d5a0ff52026a7b096410cb98d0. Screenshot evidence: ev_5bb5781da54922560867bfa3edfa9749d6758529757e204eab86b1e33711e355. Raw JSON is retained outside source under work/rea-pion-*.json.
+
+Observed: dashboard headings/navigation and original SVG board are present. The capture covers the visible viewport only; its network window starts at attachment. Storage values/script sources/console text were deliberately excluded, resources with unsupported URLs filtered, workers outside target scope excluded. No values truncated, but policy-filtered and attach-limited sections prevent a claim of comprehensive runtime coverage. Playwright independently establishes transitions, legality, persistence and offline behavior.

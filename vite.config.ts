@@ -7,7 +7,6 @@ export default defineConfig({
   base: './',
   plugins: [react(), tailwindcss(), VitePWA({
     registerType: 'prompt',
-    includeAssets: ['assets/*.svg', 'engines/manifest.json'],
     manifest: {
       name: 'Pion • Your chess journey', short_name: 'Pion',
       description: 'Private, offline chess training with local Stockfish.',
@@ -17,9 +16,12 @@ export default defineConfig({
     },
     workbox: {
       globPatterns: ['**/*.{js,css,html,svg,png,json,wasm}'],
-      globIgnores: ['engines/deep/**'],
+      // Manifest icons are added by the PWA plugin with revisions. Exclude them
+      // here to avoid duplicate URL entries with conflicting revision policies.
+      globIgnores: ['engines/deep/**','assets/icon.svg','assets/icon-192.png','assets/icon-512.png'],
       maximumFileSizeToCacheInBytes: 32 * 1024 * 1024,
       cleanupOutdatedCaches: true,
+      clientsClaim: true,
       navigateFallback: 'index.html',
       runtimeCaching: [{urlPattern: /\/engines\/deep\//, handler: 'CacheFirst', options: {cacheName: 'pion-deep-v1'}}],
     },
