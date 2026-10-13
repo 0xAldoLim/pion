@@ -40,10 +40,11 @@ export interface Preferences {
   coach: 'off'|'important'|'every'|'training'; explanation: 'quick'|'educational'|'deep'; voice: boolean;
   highlights: boolean; showEval: boolean; engine: EngineSettings; puzzleRating: number;
   training: {tactics: number; games: number; mistakes: number; openings: number; endgames: number};
+  botPace: 'quick'|'standard'|'thoughtful';
 }
 export const PROFILES: Record<'fast'|'balanced'|'deep', EngineSettings> = {
   fast: {profile:'fast',depth:12,timeMs:350,multiPv:3,hashMb:32,threads:1,pack:'lite'},
   balanced: {profile:'balanced',depth:18,timeMs:1200,multiPv:3,hashMb:64,threads:1,pack:'lite'},
   deep: {profile:'deep',depth:24,timeMs:5000,multiPv:4,hashMb:128,threads:1,pack:'lite'},
 };
-export const DEFAULT_PREFS: Preferences = {id:'main',theme:'forest',pieces:'classic',sound:true,animation:true,reducedMotion:false,largeText:false,contrast:false,coach:'important',explanation:'educational',voice:false,highlights:true,showEval:false,engine:PROFILES.balanced,puzzleRating:600,training:{tactics:40,games:25,mistakes:20,openings:10,endgames:5}};
+export const DEFAULT_PREFS: Preferences = {id:'main',theme:'forest',pieces:'classic',sound:true,animation:true,reducedMotion:false,largeText:false,contrast:false,coach:'important',explanation:'educational',voice:false,highlights:true,showEval:false,engine:PROFILES.balanced,puzzleRating:600,training:{tactics:40,games:25,mistakes:20,openings:10,endgames:5},botPace:'standard'};

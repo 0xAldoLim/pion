@@ -1,10 +1,11 @@
 // Static-exchange concept adapted from Patzer (MIT). See THIRD_PARTY_NOTICES.md.
-import { Chess, type Color, type PieceSymbol, type Square } from 'chess.js';
+import { Chess, type Color, type Square } from 'chess.js';
 import { other, playUci, uciOf } from '../chess/rules';
 import type { TacticalEvidence } from '../chess/types';
+import {lineMotifs,positionFeatures} from './features';
+import {NAMES,VALUES} from './material';
+export {NAMES,VALUES} from './material';
 
-export const VALUES:Record<PieceSymbol,number>={p:1,n:3,b:3,r:5,q:9,k:0};
-export const NAMES:Record<PieceSymbol,string>={p:'pawn',n:'knight',b:'bishop',r:'rook',q:'queen',k:'king'};
 /** Bounded legal capture exchange. Pinned attackers are excluded by chess.js. */
 export function staticExchange(fen:string,square:Square,remaining=16):number {
   if(!remaining)return 0;
@@ -49,7 +50,9 @@ export function moveFacts(fen:string,uci:string):TacticalEvidence[] {
     const without=new Chess(c.fen());without.remove(piece.square);
     if(!c.isAttacked(enemyKing.square,move.color)&&without.isAttacked(enemyKing.square,move.color))add('pin',`The ${NAMES[piece.type]} on ${piece.square} shields its king: moving off that line would expose check.`,[piece.square,enemyKing.square]);
   }
-  return facts.slice(0,8);
+  for(const motif of lineMotifs(fen,c.fen(),move.from,move.to,move.color))facts.push({...motif,line:[uci]});
+  for(const feature of positionFeatures(c.fen()).filter(f=>['passedPawn','backRank'].includes(f.kind)))facts.push({...feature,position:fen,line:[uci]});
+  return facts.slice(0,12);
 }
 export function phase(fen:string):'opening'|'middlegame'|'endgame' {
   const c=new Chess(fen);const nonPawn=c.board().flat().reduce((sum,p)=>sum+(p&&p.type!=='p'?VALUES[p.type]:0),0);
@@ -63,5 +66,7 @@ export function positionAdvice(fen:string):string {
   const mate=c.moves().find(m=>m.endsWith('#'));if(mate)return 'There is a mate in one. Look for forcing checks.';
   const capture=c.moves({verbose:true}).find(m=>m.captured&&staticExchange(fen,m.to)>0);
   if(capture)return `An opponent's piece on ${capture.to} is vulnerable to a legal capture. Calculate the replies before committing.`;
+  const feature=positionFeatures(fen).find(f=>f.kind==='passedPawn')??positionFeatures(fen).find(f=>f.kind==='center'||f.kind==='endgame');
+  if(feature)return feature.text;
   return phase(fen)==='opening'?'Develop your minor pieces, contest the center, and check your king’s safety.':'Start with checks, captures, and threats for both sides. Then compare your candidate moves.';
 }

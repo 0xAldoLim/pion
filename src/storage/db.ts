@@ -17,6 +17,7 @@ export class PionDatabase extends Dexie {
     this.version(2).stores({games:'id,updatedAt,status,botId,createdAt'}).upgrade(async tx=>{
       await tx.table('games').toCollection().modify((g:Game)=>{g.clocks??={w:g.initialSeconds??0,b:g.initialSeconds??0};g.increment??=0;});
     });
+    this.version(3).stores({preferences:'id'}).upgrade(async tx=>{await tx.table('preferences').toCollection().modify((p:Preferences)=>{p.botPace??='standard';});});
   }
 }
 export const db=new PionDatabase();

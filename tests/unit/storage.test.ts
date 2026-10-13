@@ -9,9 +9,16 @@ import {Chess} from 'chess.js';
 import {positionIdentity,playUci} from '../../src/chess/rules';
 import {SCORING_VERSION} from '../../src/chess/scoring';
 import type {Evaluation,ReviewMove} from '../../src/chess/types';
+import Dexie from 'dexie';
 const databases:PionDatabase[]=[];function createDb(){const db=new PionDatabase(`test-${crypto.randomUUID()}`);databases.push(db);return db;}
 afterEach(async()=>{for(const db of databases)await db.delete();databases.length=0;});
 describe('persistence and backups',()=>{
+  it('migrates version-one clocks and coach preferences without losing a game',async()=>{
+    const name=`legacy-${crypto.randomUUID()}`,legacy=new Dexie(name);
+    legacy.version(1).stores({games:'id,updatedAt,status,botId',preferences:'id',attempts:'id,puzzleId,at,solved',mistakes:'id,gameId,due,*tags',repertoire:'id,openingId,due',training:'id,at,kind',puzzles:'id,rating,*themes',packs:'id'});
+    const game=importPgn('1. e4');await legacy.table('games').put({...game,clocks:undefined,increment:undefined});await legacy.table('preferences').put({...DEFAULT_PREFS,botPace:undefined});legacy.close();
+    const migrated=new PionDatabase(name);databases.push(migrated);await migrated.open();expect((await migrated.games.get(game.id))!.moves).toEqual(['e2e4']);expect((await migrated.games.get(game.id))!.clocks).toEqual({w:0,b:0});expect((await migrated.preferences.get('main'))!.botPace).toBe('standard');
+  });
   it('round trips preferences, games and progress transactionally',async()=>{const source=createDb();const game=importPgn('1. e4 e5 2. Nf3 Nc6');await source.games.add(game);await source.preferences.add(DEFAULT_PREFS);await source.training.add({id:'lesson1',at:10,kind:'lesson',target:'board-vision',success:true,hints:0});const target=createDb();await restoreBackup(await createBackup(source),target);expect((await target.games.get(game.id))?.moves).toEqual(game.moves);expect(await target.preferences.get('main')).toEqual(DEFAULT_PREFS);expect(await target.training.count()).toBe(1);});
   it('rejects malformed or inconsistent backups before mutation',async()=>{const db=createDb();const game=importPgn('1. e4 e5');await db.games.add(game);const original=await createBackup(db);const bad=JSON.parse(original) as {games:{moves:string[]}[]};bad.games[0]!.moves=['e2e5'];await expect(restoreBackup(JSON.stringify(bad),db)).rejects.toThrow();expect(await createBackup(db)).toContain(game.id);await expect(restoreBackup('{broken',db)).rejects.toThrow();expect(await db.games.count()).toBe(1);});
   it('preserves bounded legal review evidence and reconstructs current scoring',async()=>{

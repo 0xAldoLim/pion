@@ -17,3 +17,5 @@ Commands: pnpm typecheck, lint, test, build, test:e2e, assets:deep, audit:licens
 An initial offline regression exposed duplicate icon entries with conflicting revisions. Manifest generation was corrected. Settings now update immediately while writes remain transactional.
 
 Review checkpoint adds full bounded review restoration, recomputed scores, identity/legal PV rejection before mutation. Both relevant real-browser backup/review scenarios pass after the change. Imported records cannot cryptographically prove original search provenance; search version/settings/depth remain visible.
+
+Bot/coach checkpoint: 55 checks pass before the additional version-one migration fixture; focused real Chromium hotseat/review/backup, bot and offline regressions pass 3/3. New motif fixtures cover skewer, discovered attack, fork/double attack, passed pawn exclusions and legal evidence sequences. Clock accounting settles the outgoing player's elapsed time before granting increment. A 48-game real WASM reference run produced 8 actual results and 40 unresolved cutoffs; see BOT_CALIBRATION.md. No measured Elo claim.
