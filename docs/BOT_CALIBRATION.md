@@ -1,5 +1,7 @@
 # Bot calibration checkpoint
 
+Historical checkpoint: this run predates the 2026-10-14 correction that respects Stockfish's skill-limited move on ordinary turns. See [BOT_STRENGTH_AUDIT.md](BOT_STRENGTH_AUDIT.md) for that defect, its bounded real-engine evidence and the limits of what it proves.
+
 Run `pnpm calibrate --rounds 1 --max-plies 60 --time-scale 0.2 --seed 20261013` on 2026-10-13. The browser harness imports the production bot policies and executes the real bundled WASM engine. Full SAN transcripts, settings and outcomes are in BOT_CALIBRATION.json.
 
 48 games: each of 12 bots played both colors against skill-5/depth-10 and skill-15/depth-14 reference profiles. 8 ended under chess rules; 40 reached the 60-ply cutoff. Pebble and Sprout lost their completed games; Monarch won its two completed games. Other profiles have insufficient completed results. Cutoffs remain unresolved rather than manufactured draws or evaluation adjudications.

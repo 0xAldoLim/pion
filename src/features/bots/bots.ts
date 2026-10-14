@@ -41,15 +41,18 @@ export function chooseBotMove(bot:Bot,fen:string,evaluation:Evaluation,historySa
     try {return c.move(bot.opening[historySan.length]!).from+c.history({verbose:true}).at(-1)!.to;}catch{/* Leave repertoire when opponent deviates. */}
   }
   const best=evaluation.candidates[0];if(!best)throw new Error('No bot candidates.');
-  const side=c.turn();const bestWin=winPercent(best.score,side);
   const error=rng()<bot.errorRate;
+  // Stockfish's bestmove already incorporates Skill Level. Re-ranking its top
+  // analysis lines here would silently undo that deliberate weaker choice.
+  if(!error){playUci(new Chess(fen),evaluation.bestMove);return evaluation.bestMove;}
+  const side=c.turn();const bestWin=winPercent(best.score,side);
   const candidates=evaluation.candidates.map(candidate=>{
     const move=playUci(new Chess(fen),candidate.move);
     const loss=Math.max(0,bestWin-winPercent(candidate.score,side));
     return {candidate,loss,bias:personality(move,bot.style)};
-  }).filter(p=>p.loss<=(error?bot.lossBudget:Math.min(1.5,bot.lossBudget)));
+  }).filter(p=>p.loss<=bot.lossBudget);
   if(!candidates.length)return best.move;
-  const weights=candidates.map(p=>Math.exp((p.bias+(error?p.loss*0.07:-p.loss))/(error?1.8:0.8)));
+  const weights=candidates.map(p=>Math.exp((p.bias+p.loss*0.07)/1.8));
   let pick=rng()*weights.reduce((a,b)=>a+b,0);
   for(const [i,item]of candidates.entries()){pick-=weights[i]!;if(pick<=0)return item.candidate.move;}
   return candidates.at(-1)!.candidate.move;

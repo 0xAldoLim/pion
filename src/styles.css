@@ -63,7 +63,10 @@ html{scroll-padding-top:84px}.chessboard{scroll-margin-top:84px}
 .chessboard coord.coord-light{color:var(--board-dark);text-shadow:none}.chessboard coord.coord-dark{color:var(--board-light);text-shadow:none}
 .chessboard cg-board{overflow:hidden}
 .chessboard coords{font-size:clamp(10px,1vw,12px)}
-@media(min-width:1001px){.game-layout:has(.board-footer){grid-template-columns:minmax(0,min(60%,max(320px,calc(100dvh - 290px)))) minmax(0,1fr)}}
+@media(min-width:1001px){.game-layout:has(.board-footer){grid-template-columns:minmax(0,min(60%,max(320px,calc(100dvh - 350px)))) minmax(0,1fr)}}
 html[data-mode] button{transition:transform .15s}
 .chessboard coords.ranks.left{left:3px;align-items:flex-start}.chessboard coords coord{flex:1 1 0;min-width:0;min-height:0}
 .update-banner{background:var(--accent);color:var(--ink);font-size:14px;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--border)}
+
+/* Captures sit below their capturer; stacked groups stay readable on narrow boards. */
+.captured-pieces{display:flex;align-items:center;flex-wrap:wrap;gap:3px 7px;min-height:26px;max-width:100%;line-height:1}.captured-group{display:block;position:relative;flex-shrink:0;max-width:100%;height:26px}.captured-piece{display:block;position:absolute;top:0;width:26px;height:26px;object-fit:contain}.captured-pieces .material-advantage{font-size:14px;line-height:26px;font-weight:700;white-space:nowrap;color:var(--ink);font-variant-numeric:tabular-nums}.player-strip .captured-pieces{gap:3px 7px}.player-strip strong{line-height:1.25}.player-strip .character{flex-shrink:0}

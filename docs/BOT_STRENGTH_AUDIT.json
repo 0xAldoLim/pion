@@ -1,0 +1,1345 @@
+{
+  "after": {
+    "rows": [
+      {
+        "policy": "Casual explorer",
+        "position": "Open game",
+        "trial": 0,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "d1e2",
+        "firstCandidate": "h2h3",
+        "engineBelowFirst": true,
+        "decisions": [
+          "d1e2",
+          "d1e2",
+          "d1e2"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": 0
+      },
+      {
+        "policy": "Casual explorer",
+        "position": "Open game",
+        "trial": 1,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "d1e2",
+        "firstCandidate": "h2h3",
+        "engineBelowFirst": true,
+        "decisions": [
+          "d1e2",
+          "d1e2",
+          "d1e2"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": 0
+      },
+      {
+        "policy": "Casual explorer",
+        "position": "Open game",
+        "trial": 2,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "b3c2",
+        "firstCandidate": "h2h3",
+        "engineBelowFirst": true,
+        "decisions": [
+          "b3c2",
+          "b3c2",
+          "b3c2"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": 0
+      },
+      {
+        "policy": "Casual explorer",
+        "position": "Queen pawn",
+        "trial": 0,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "d3c4",
+        "firstCandidate": "d3c4",
+        "engineBelowFirst": false,
+        "decisions": [
+          "d3c4",
+          "d3c4",
+          "d3c4"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": 0
+      },
+      {
+        "policy": "Casual explorer",
+        "position": "Queen pawn",
+        "trial": 1,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "d3c4",
+        "firstCandidate": "d3c4",
+        "engineBelowFirst": false,
+        "decisions": [
+          "d3c4",
+          "d3c4",
+          "d3c4"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": 0
+      },
+      {
+        "policy": "Casual explorer",
+        "position": "Queen pawn",
+        "trial": 2,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "g5f6",
+        "firstCandidate": "d3c4",
+        "engineBelowFirst": true,
+        "decisions": [
+          "g5f6",
+          "g5f6",
+          "g5f6"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": 0
+      },
+      {
+        "policy": "Casual explorer",
+        "position": "Sicilian",
+        "trial": 0,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "f1e1",
+        "firstCandidate": "f2f4",
+        "engineBelowFirst": true,
+        "decisions": [
+          "f1e1",
+          "f1e1",
+          "f1e1"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": 0
+      },
+      {
+        "policy": "Casual explorer",
+        "position": "Sicilian",
+        "trial": 1,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "c1e3",
+        "firstCandidate": "f2f4",
+        "engineBelowFirst": true,
+        "decisions": [
+          "c1e3",
+          "c1e3",
+          "c1e3"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": 0
+      },
+      {
+        "policy": "Casual explorer",
+        "position": "Sicilian",
+        "trial": 2,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "c1e3",
+        "firstCandidate": "f2f4",
+        "engineBelowFirst": true,
+        "decisions": [
+          "c1e3",
+          "c1e3",
+          "c1e3"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": 0
+      },
+      {
+        "policy": "Casual explorer",
+        "position": "King side",
+        "trial": 0,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "c4c5",
+        "firstCandidate": "c1e3",
+        "engineBelowFirst": true,
+        "decisions": [
+          "c4c5",
+          "c4c5",
+          "c4c5"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": null
+      },
+      {
+        "policy": "Casual explorer",
+        "position": "King side",
+        "trial": 1,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "c4c5",
+        "firstCandidate": "c1e3",
+        "engineBelowFirst": true,
+        "decisions": [
+          "c4c5",
+          "c4c5",
+          "c4c5"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": null
+      },
+      {
+        "policy": "Casual explorer",
+        "position": "King side",
+        "trial": 2,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "c1e3",
+        "firstCandidate": "c1e3",
+        "engineBelowFirst": false,
+        "decisions": [
+          "c1e3",
+          "c1e3",
+          "c1e3"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": 0
+      },
+      {
+        "policy": "Casual explorer",
+        "position": "Tactical",
+        "trial": 0,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "h4g3",
+        "firstCandidate": "f3g5",
+        "engineBelowFirst": true,
+        "decisions": [
+          "h4g3",
+          "h4g3",
+          "h4g3"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": 0
+      },
+      {
+        "policy": "Casual explorer",
+        "position": "Tactical",
+        "trial": 1,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "f3g5",
+        "firstCandidate": "f3g5",
+        "engineBelowFirst": false,
+        "decisions": [
+          "f3g5",
+          "f3g5",
+          "f3g5"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": 0
+      },
+      {
+        "policy": "Casual explorer",
+        "position": "Tactical",
+        "trial": 2,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "f3g5",
+        "firstCandidate": "f3g5",
+        "engineBelowFirst": false,
+        "decisions": [
+          "f3g5",
+          "f3g5",
+          "f3g5"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": 0
+      },
+      {
+        "policy": "Casual explorer",
+        "position": "Exchange",
+        "trial": 0,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "g8e7",
+        "firstCandidate": "c8f5",
+        "engineBelowFirst": true,
+        "decisions": [
+          "g8e7",
+          "g8e7",
+          "g8e7"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": 0
+      },
+      {
+        "policy": "Casual explorer",
+        "position": "Exchange",
+        "trial": 1,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "c8f5",
+        "firstCandidate": "c8f5",
+        "engineBelowFirst": false,
+        "decisions": [
+          "c8f5",
+          "c8f5",
+          "c8f5"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": 0
+      },
+      {
+        "policy": "Casual explorer",
+        "position": "Exchange",
+        "trial": 2,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "f8d6",
+        "firstCandidate": "c8f5",
+        "engineBelowFirst": true,
+        "decisions": [
+          "f8d6",
+          "f8d6",
+          "f8d6"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": 0
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "Open game",
+        "trial": 0,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "b3c2",
+        "firstCandidate": "h2h3",
+        "engineBelowFirst": true,
+        "decisions": [
+          "b3c2",
+          "b3c2",
+          "b3c2"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": 0
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "Open game",
+        "trial": 1,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "a2a4",
+        "firstCandidate": "h2h3",
+        "engineBelowFirst": true,
+        "decisions": [
+          "a2a4",
+          "a2a4",
+          "a2a4"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": 0
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "Open game",
+        "trial": 2,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "d2d4",
+        "firstCandidate": "h2h3",
+        "engineBelowFirst": true,
+        "decisions": [
+          "d2d4",
+          "d2d4",
+          "d2d4"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": 0
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "Queen pawn",
+        "trial": 0,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "d3b1",
+        "firstCandidate": "d3c4",
+        "engineBelowFirst": true,
+        "decisions": [
+          "d3b1",
+          "d3b1",
+          "d3b1"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": 0
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "Queen pawn",
+        "trial": 1,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "d3c2",
+        "firstCandidate": "d3c4",
+        "engineBelowFirst": true,
+        "decisions": [
+          "d3c2",
+          "d3c2",
+          "d3c2"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": 0
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "Queen pawn",
+        "trial": 2,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "d3c4",
+        "firstCandidate": "d3c4",
+        "engineBelowFirst": false,
+        "decisions": [
+          "d3c4",
+          "d3c4",
+          "d3c4"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": 0
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "Sicilian",
+        "trial": 0,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "d1d3",
+        "firstCandidate": "f2f4",
+        "engineBelowFirst": true,
+        "decisions": [
+          "d1d3",
+          "d1d3",
+          "d1d3"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": 0
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "Sicilian",
+        "trial": 1,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "d1e1",
+        "firstCandidate": "f2f4",
+        "engineBelowFirst": true,
+        "decisions": [
+          "d1e1",
+          "d1e1",
+          "d1e1"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": null
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "Sicilian",
+        "trial": 2,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "a2a4",
+        "firstCandidate": "f2f4",
+        "engineBelowFirst": true,
+        "decisions": [
+          "a2a4",
+          "a2a4",
+          "a2a4"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": 0
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "King side",
+        "trial": 0,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "c1e3",
+        "firstCandidate": "c1e3",
+        "engineBelowFirst": false,
+        "decisions": [
+          "c1e3",
+          "c1e3",
+          "c1e3"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": 0
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "King side",
+        "trial": 1,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "c4c5",
+        "firstCandidate": "c1e3",
+        "engineBelowFirst": true,
+        "decisions": [
+          "c4c5",
+          "c4c5",
+          "c4c5"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": null
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "King side",
+        "trial": 2,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "a2a4",
+        "firstCandidate": "c1e3",
+        "engineBelowFirst": true,
+        "decisions": [
+          "a2a4",
+          "a2a4",
+          "a2a4"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": null
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "Tactical",
+        "trial": 0,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "h4g3",
+        "firstCandidate": "f3g5",
+        "engineBelowFirst": true,
+        "decisions": [
+          "h4g3",
+          "h4g3",
+          "h4g3"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": 0
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "Tactical",
+        "trial": 1,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "f3g5",
+        "firstCandidate": "f3g5",
+        "engineBelowFirst": false,
+        "decisions": [
+          "f3g5",
+          "f3g5",
+          "f3g5"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": 0
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "Tactical",
+        "trial": 2,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "h4g3",
+        "firstCandidate": "f3g5",
+        "engineBelowFirst": true,
+        "decisions": [
+          "h4g3",
+          "h4g3",
+          "h4g3"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": 0
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "Exchange",
+        "trial": 0,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "h7h5",
+        "firstCandidate": "c8f5",
+        "engineBelowFirst": true,
+        "decisions": [
+          "h7h5",
+          "h7h5",
+          "h7h5"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": 0
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "Exchange",
+        "trial": 1,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "c8g4",
+        "firstCandidate": "c8f5",
+        "engineBelowFirst": true,
+        "decisions": [
+          "c8g4",
+          "c8g4",
+          "c8g4"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": 0
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "Exchange",
+        "trial": 2,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "c6c5",
+        "firstCandidate": "c8f5",
+        "engineBelowFirst": true,
+        "decisions": [
+          "c6c5",
+          "c6c5",
+          "c6c5"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": 0
+      }
+    ],
+    "summary": [
+      {
+        "policy": "Casual explorer",
+        "searches": 18,
+        "limitedChoiceDifferent": 12,
+        "nonErrorSelections": 54,
+        "overrides": 0,
+        "strongerSelections": 0
+      },
+      {
+        "policy": "Matched opponent",
+        "searches": 18,
+        "limitedChoiceDifferent": 15,
+        "nonErrorSelections": 54,
+        "overrides": 0,
+        "strongerSelections": 0
+      }
+    ]
+  },
+  "method": "Six legal positions, three uncached searches per policy, three non-error selections per search. Original depth/time budgets and skill settings. Independent before/after searches; no human Elo calibration.",
+  "date": "2026-10-14",
+  "before": {
+    "rows": [
+      {
+        "policy": "Casual explorer",
+        "position": "Open game",
+        "trial": 0,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "d2d4",
+        "firstCandidate": "h2h3",
+        "engineBelowFirst": true,
+        "decisions": [
+          "h2h3",
+          "h2h3",
+          "d2d3"
+        ],
+        "overrides": 3,
+        "improvesOverLimitedChoice": 2
+      },
+      {
+        "policy": "Casual explorer",
+        "position": "Open game",
+        "trial": 1,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "d1e2",
+        "firstCandidate": "h2h3",
+        "engineBelowFirst": true,
+        "decisions": [
+          "h2h3",
+          "h2h3",
+          "d2d3"
+        ],
+        "overrides": 3,
+        "improvesOverLimitedChoice": 3
+      },
+      {
+        "policy": "Casual explorer",
+        "position": "Open game",
+        "trial": 2,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "b1a3",
+        "firstCandidate": "h2h3",
+        "engineBelowFirst": true,
+        "decisions": [
+          "h2h3",
+          "h2h3",
+          "d2d3"
+        ],
+        "overrides": 3,
+        "improvesOverLimitedChoice": null
+      },
+      {
+        "policy": "Casual explorer",
+        "position": "Queen pawn",
+        "trial": 0,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "g5f6",
+        "firstCandidate": "d3c4",
+        "engineBelowFirst": true,
+        "decisions": [
+          "d3c4",
+          "d3c4",
+          "d3c4"
+        ],
+        "overrides": 3,
+        "improvesOverLimitedChoice": 3
+      },
+      {
+        "policy": "Casual explorer",
+        "position": "Queen pawn",
+        "trial": 1,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "d3e2",
+        "firstCandidate": "d3c4",
+        "engineBelowFirst": true,
+        "decisions": [
+          "d3c4",
+          "d3c4",
+          "d3c4"
+        ],
+        "overrides": 3,
+        "improvesOverLimitedChoice": 3
+      },
+      {
+        "policy": "Casual explorer",
+        "position": "Queen pawn",
+        "trial": 2,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "d3e2",
+        "firstCandidate": "d3c4",
+        "engineBelowFirst": true,
+        "decisions": [
+          "d3c4",
+          "d3c4",
+          "d3c4"
+        ],
+        "overrides": 3,
+        "improvesOverLimitedChoice": 3
+      },
+      {
+        "policy": "Casual explorer",
+        "position": "Sicilian",
+        "trial": 0,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "f1e1",
+        "firstCandidate": "f2f4",
+        "engineBelowFirst": true,
+        "decisions": [
+          "f2f4",
+          "f2f4",
+          "f2f4"
+        ],
+        "overrides": 3,
+        "improvesOverLimitedChoice": 3
+      },
+      {
+        "policy": "Casual explorer",
+        "position": "Sicilian",
+        "trial": 1,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "b3d2",
+        "firstCandidate": "f2f4",
+        "engineBelowFirst": true,
+        "decisions": [
+          "f2f4",
+          "f2f4",
+          "f2f4"
+        ],
+        "overrides": 3,
+        "improvesOverLimitedChoice": null
+      },
+      {
+        "policy": "Casual explorer",
+        "position": "Sicilian",
+        "trial": 2,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "c1e3",
+        "firstCandidate": "f2f4",
+        "engineBelowFirst": true,
+        "decisions": [
+          "f2f4",
+          "f2f4",
+          "f2f4"
+        ],
+        "overrides": 3,
+        "improvesOverLimitedChoice": 3
+      },
+      {
+        "policy": "Casual explorer",
+        "position": "King side",
+        "trial": 0,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "a1b1",
+        "firstCandidate": "c1e3",
+        "engineBelowFirst": true,
+        "decisions": [
+          "c1e3",
+          "d1c2",
+          "a1b1"
+        ],
+        "overrides": 2,
+        "improvesOverLimitedChoice": 2
+      },
+      {
+        "policy": "Casual explorer",
+        "position": "King side",
+        "trial": 1,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "a1b1",
+        "firstCandidate": "c1e3",
+        "engineBelowFirst": true,
+        "decisions": [
+          "c1e3",
+          "d1c2",
+          "a1b1"
+        ],
+        "overrides": 2,
+        "improvesOverLimitedChoice": 2
+      },
+      {
+        "policy": "Casual explorer",
+        "position": "King side",
+        "trial": 2,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "c4c5",
+        "firstCandidate": "c1e3",
+        "engineBelowFirst": true,
+        "decisions": [
+          "c1e3",
+          "d1c2",
+          "a1b1"
+        ],
+        "overrides": 3,
+        "improvesOverLimitedChoice": null
+      },
+      {
+        "policy": "Casual explorer",
+        "position": "Tactical",
+        "trial": 0,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "f3g5",
+        "firstCandidate": "f3g5",
+        "engineBelowFirst": false,
+        "decisions": [
+          "f3g5",
+          "f3g5",
+          "f3g5"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": 0
+      },
+      {
+        "policy": "Casual explorer",
+        "position": "Tactical",
+        "trial": 1,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "h4g3",
+        "firstCandidate": "f3g5",
+        "engineBelowFirst": true,
+        "decisions": [
+          "f3g5",
+          "f3g5",
+          "f3g5"
+        ],
+        "overrides": 3,
+        "improvesOverLimitedChoice": 3
+      },
+      {
+        "policy": "Casual explorer",
+        "position": "Tactical",
+        "trial": 2,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "d1c1",
+        "firstCandidate": "f3g5",
+        "engineBelowFirst": true,
+        "decisions": [
+          "f3g5",
+          "f3g5",
+          "f3g5"
+        ],
+        "overrides": 3,
+        "improvesOverLimitedChoice": 3
+      },
+      {
+        "policy": "Casual explorer",
+        "position": "Exchange",
+        "trial": 0,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "c8d7",
+        "firstCandidate": "c8f5",
+        "engineBelowFirst": true,
+        "decisions": [
+          "c8f5",
+          "g8e7",
+          "c8g4"
+        ],
+        "overrides": 3,
+        "improvesOverLimitedChoice": 2
+      },
+      {
+        "policy": "Casual explorer",
+        "position": "Exchange",
+        "trial": 1,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "c8g4",
+        "firstCandidate": "c8f5",
+        "engineBelowFirst": true,
+        "decisions": [
+          "c8f5",
+          "g8e7",
+          "c8g4"
+        ],
+        "overrides": 2,
+        "improvesOverLimitedChoice": 2
+      },
+      {
+        "policy": "Casual explorer",
+        "position": "Exchange",
+        "trial": 2,
+        "skill": 3,
+        "depth": 8,
+        "timeMs": 350,
+        "engineMove": "g8e7",
+        "firstCandidate": "c8f5",
+        "engineBelowFirst": true,
+        "decisions": [
+          "c8f5",
+          "g8e7",
+          "c8g4"
+        ],
+        "overrides": 2,
+        "improvesOverLimitedChoice": 1
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "Open game",
+        "trial": 0,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "d2d4",
+        "firstCandidate": "h2h3",
+        "engineBelowFirst": true,
+        "decisions": [
+          "h2h3",
+          "h2h3",
+          "d2d3"
+        ],
+        "overrides": 3,
+        "improvesOverLimitedChoice": 2
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "Open game",
+        "trial": 1,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "d2d4",
+        "firstCandidate": "h2h3",
+        "engineBelowFirst": true,
+        "decisions": [
+          "h2h3",
+          "h2h3",
+          "d2d3"
+        ],
+        "overrides": 3,
+        "improvesOverLimitedChoice": 2
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "Open game",
+        "trial": 2,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "d2d3",
+        "firstCandidate": "h2h3",
+        "engineBelowFirst": true,
+        "decisions": [
+          "h2h3",
+          "h2h3",
+          "d2d3"
+        ],
+        "overrides": 2,
+        "improvesOverLimitedChoice": 2
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "Queen pawn",
+        "trial": 0,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "d3b1",
+        "firstCandidate": "d3c4",
+        "engineBelowFirst": true,
+        "decisions": [
+          "d3c4",
+          "d3c4",
+          "d3c4"
+        ],
+        "overrides": 3,
+        "improvesOverLimitedChoice": 3
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "Queen pawn",
+        "trial": 1,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "g5f6",
+        "firstCandidate": "d3c4",
+        "engineBelowFirst": true,
+        "decisions": [
+          "d3c4",
+          "d3c4",
+          "d3c4"
+        ],
+        "overrides": 3,
+        "improvesOverLimitedChoice": 3
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "Queen pawn",
+        "trial": 2,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "d3b1",
+        "firstCandidate": "d3c4",
+        "engineBelowFirst": true,
+        "decisions": [
+          "d3c4",
+          "d3c4",
+          "d3c4"
+        ],
+        "overrides": 3,
+        "improvesOverLimitedChoice": 3
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "Sicilian",
+        "trial": 0,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "c1e3",
+        "firstCandidate": "f2f4",
+        "engineBelowFirst": true,
+        "decisions": [
+          "f2f4",
+          "f2f4",
+          "f2f4"
+        ],
+        "overrides": 3,
+        "improvesOverLimitedChoice": 3
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "Sicilian",
+        "trial": 1,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "c1e3",
+        "firstCandidate": "f2f4",
+        "engineBelowFirst": true,
+        "decisions": [
+          "f2f4",
+          "f2f4",
+          "f2f4"
+        ],
+        "overrides": 3,
+        "improvesOverLimitedChoice": 3
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "Sicilian",
+        "trial": 2,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "f2f4",
+        "firstCandidate": "f2f4",
+        "engineBelowFirst": false,
+        "decisions": [
+          "f2f4",
+          "f2f4",
+          "f2f4"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": 0
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "King side",
+        "trial": 0,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "h2h3",
+        "firstCandidate": "c1e3",
+        "engineBelowFirst": true,
+        "decisions": [
+          "c1e3",
+          "d1c2",
+          "a1b1"
+        ],
+        "overrides": 3,
+        "improvesOverLimitedChoice": 1
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "King side",
+        "trial": 1,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "a1b1",
+        "firstCandidate": "c1e3",
+        "engineBelowFirst": true,
+        "decisions": [
+          "c1e3",
+          "d1c2",
+          "a1b1"
+        ],
+        "overrides": 2,
+        "improvesOverLimitedChoice": 2
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "King side",
+        "trial": 2,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "a2a4",
+        "firstCandidate": "c1e3",
+        "engineBelowFirst": true,
+        "decisions": [
+          "c1e3",
+          "d1c2",
+          "a1b1"
+        ],
+        "overrides": 3,
+        "improvesOverLimitedChoice": null
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "Tactical",
+        "trial": 0,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "f3g5",
+        "firstCandidate": "f3g5",
+        "engineBelowFirst": false,
+        "decisions": [
+          "f3g5",
+          "f3g5",
+          "f3g5"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": 0
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "Tactical",
+        "trial": 1,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "f3g5",
+        "firstCandidate": "f3g5",
+        "engineBelowFirst": false,
+        "decisions": [
+          "f3g5",
+          "f3g5",
+          "f3g5"
+        ],
+        "overrides": 0,
+        "improvesOverLimitedChoice": 0
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "Tactical",
+        "trial": 2,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "d1d2",
+        "firstCandidate": "f3g5",
+        "engineBelowFirst": true,
+        "decisions": [
+          "f3g5",
+          "f3g5",
+          "f3g5"
+        ],
+        "overrides": 3,
+        "improvesOverLimitedChoice": 3
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "Exchange",
+        "trial": 0,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "c8g4",
+        "firstCandidate": "c8f5",
+        "engineBelowFirst": true,
+        "decisions": [
+          "c8f5",
+          "g8e7",
+          "c8g4"
+        ],
+        "overrides": 2,
+        "improvesOverLimitedChoice": 2
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "Exchange",
+        "trial": 1,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "g8e7",
+        "firstCandidate": "c8f5",
+        "engineBelowFirst": true,
+        "decisions": [
+          "c8f5",
+          "g8e7",
+          "c8g4"
+        ],
+        "overrides": 2,
+        "improvesOverLimitedChoice": 1
+      },
+      {
+        "policy": "Matched opponent",
+        "position": "Exchange",
+        "trial": 2,
+        "skill": 4,
+        "depth": 8,
+        "timeMs": 385,
+        "engineMove": "c8g4",
+        "firstCandidate": "c8f5",
+        "engineBelowFirst": true,
+        "decisions": [
+          "c8f5",
+          "g8e7",
+          "c8g4"
+        ],
+        "overrides": 2,
+        "improvesOverLimitedChoice": 2
+      }
+    ],
+    "summary": [
+      {
+        "policy": "Casual explorer",
+        "searches": 18,
+        "limitedChoiceDifferent": 17,
+        "nonErrorSelections": 54,
+        "overrides": 47,
+        "strongerSelections": 35
+      },
+      {
+        "policy": "Matched opponent",
+        "searches": 18,
+        "limitedChoiceDifferent": 15,
+        "nonErrorSelections": 54,
+        "overrides": 40,
+        "strongerSelections": 32
+      }
+    ]
+  },
+  "engine": "Stockfish.js 19.0.1 lite single"
+}

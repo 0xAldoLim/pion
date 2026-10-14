@@ -6,9 +6,12 @@ An open-source, browser-local chess training application. React + TypeScript + V
 - Play now opens a duration picker and immediately matches an estimated opponent within ±20 of the selected Blitz / Rapid rating. Choose 1, 3 or 5 minutes for Blitz; 10, 15 or 30 minutes for Rapid. Both start at 600 and use K=32 Elo. Practice bots leave these ratings unchanged.
 - Bots take 2.8–4.8 seconds by default, even when a move is cached. Quick and Thoughtful pacing are available in Settings.
 - Light/dark navbar toggle, larger type, seven board themes, four original SVG piece sets, and animated live evaluation.
+- Captured SVG pieces sit beneath their capturer, grouped by type, with material advantage points only on the leading side. Promotion, en passant, undo and board flipping are handled correctly.
 - On-piece review badges, progressive position-specific hints, explicit side-to-move prompts, captioned lesson loops, and curated SSS–C opening learning tiers with sourced player examples.
 
 Clock category uses initial seconds + 40 increments: below 600 seconds is Blitz, otherwise Rapid. Rated games require a clock; hints, undo and pause remain practice tools. Local ratings measure progress within Pion; opponent strength remains an estimate rather than a measured online rating.
+
+Limited-strength bots honor Stockfish's skill-adjusted move on ordinary turns, with the existing deliberate-error policy applied separately. A real-engine [skill-policy audit](docs/BOT_STRENGTH_AUDIT.md) identified and corrected a move-selection override; it does not establish calibrated human Elo.
 
 ## Development
 
