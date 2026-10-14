@@ -7,6 +7,10 @@ test('capture racks show the capturer, correct color and material, and follow un
   await page.goto('/#play');await page.getByLabel('Mode',{exact:true}).selectOption('hotseat');await page.getByRole('button',{name:'Start game',exact:true}).click();
   const white=page.locator('.captured-pieces[data-capturer="w"]'),black=page.locator('.captured-pieces[data-capturer="b"]');
   await expect(white.locator('img')).toHaveCount(0);await expect(black.locator('.material-advantage')).toHaveCount(0);
+  for(const rack of [white,black]){
+    const emptyStyle=await rack.evaluate(el=>{const style=getComputedStyle(el);return {height:el.getBoundingClientRect().height,padding:parseFloat(style.paddingTop)+parseFloat(style.paddingBottom),border:parseFloat(style.borderTopWidth)+parseFloat(style.borderBottomWidth)};});
+    expect(emptyStyle.height).toBeLessThanOrEqual(30);expect(emptyStyle.padding).toBe(0);expect(emptyStyle.border).toBe(0);
+  }
   for(const uci of ['e2e4','e7e5','g1f3','b8c6','d2d4','e5d4','f3d4','c6d4'])await move(page,uci);
   await expect(white).toHaveAttribute('aria-label',/Captured by White: 1 black pawn/);await expect(black).toHaveAttribute('aria-label',/1 white pawn, 1 white knight.*ahead by 3 material points/);
   await expect(white.locator('img')).toHaveAttribute('src',/classic-bp\.svg$/);await expect(black.locator('.material-advantage')).toHaveText('+3');await expect(white.locator('.material-advantage')).toHaveCount(0);
