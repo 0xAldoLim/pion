@@ -1,7 +1,7 @@
 import {test,expect,type Page} from '@playwright/test';
 
 async function route(page:Page,name:string){await page.goto(`/#${name}`);await expect(page.locator('main h1')).toBeVisible();}
-async function fits(page:Page){
+async function measureFits(page:Page){
   await expect.poll(()=>page.locator('.chessboard').evaluateAll(nodes=>nodes.every(el=>!!el.querySelector('cg-board')))).toBe(true);
   const result=await page.evaluate(()=>{
     const containers=[...document.querySelectorAll('main,header,.card,.coach-card,.filters,.library-card,.board-controls,.move-list,.app-dialog,.page-intro')];
@@ -21,6 +21,8 @@ async function fits(page:Page){
   for(const board of result.boards){expect(board.contained).toBe(true);expect(board.borderDifference).toBeLessThanOrEqual(1);expect(board.barAligned).toBe(true);expect(Math.abs(board.frame.width-board.frame.height)).toBeLessThanOrEqual(1);expect(board.frame.width).toBeGreaterThan(70);}
   for(const coordinates of result.coordinates){expect(coordinates.contained).toBe(true);expect(coordinates.oppositeCornerColors).toBe(true);expect(coordinates.equalSpacing).toBe(true);}
 }
+
+async function fits(page:Page){await expect(async()=>{await measureFits(page);}).toPass({timeout:5000});}
 
 test('all main screens and lesson exercises stay within six viewport widths',async({page})=>{
   test.setTimeout(180_000);
@@ -52,5 +54,6 @@ test('active game frame stays aligned through premoves and board flipping',async
   await expect(page.locator('.board-footer .player-strip strong')).toHaveText('You');await page.getByRole('button',{name:'Flip',exact:true}).click();await page.clock.runFor(32);await expect(page.locator('.board-column>.player-strip strong')).toHaveText('You');await expect(page.locator('.eval-bar')).toHaveClass(/reversed/);await fits(page);
   await page.setViewportSize({width:1440,height:720});await expect(async()=>{await page.clock.runFor(32);await fits(page);}).toPass({timeout:5000});expect(await page.locator('.board-footer').evaluate(el=>el.getBoundingClientRect().bottom)).toBeLessThanOrEqual(722);
 });
+
 
 

@@ -17,12 +17,14 @@ import {explain} from '../../coach/commentary';
 import {downloadFile,validCachedReview} from '../../storage/backup';
 import {identifyOpening} from '../../data/openings';
 import {botById} from '../bots/bots';
+import {OpeningReview} from '../openings/OpeningReview';
 
 export default function Review(){
   const {selectedId,navigate,preferences,notify}=useApp();const library=useLiveQuery(()=>db.games.orderBy('updatedAt').reverse().toArray(),[],[]);
+  const [importColor,setImportColor]=useState<'w'|'b'>('w');
   const [compare,setCompare]=useState(false);const [game,setGame]=useState<Game>();const [rows,setRows]=useState<ReviewMove[]>([]);const [current,setCurrent]=useState(0);const [mode,setMode]=useState<ScoringMode>('pion');const [running,setRunning]=useState(false);const [error,setError]=useState('');const [pgn,setPgn]=useState('');const [flipped,setFlipped]=useState(false);const controller=useRef<AbortController|null>(null);
   useEffect(()=>{let alive=true;if(selectedId)void db.games.get(selectedId).then(g=>{if(alive&&g){setGame(g);setRows(validCachedReview(g)?g.review!.moves:[]);setCurrent(g.moves.length);}});return()=>{alive=false;controller.current?.abort();};},[selectedId]);
-  async function importGame(){try{const g=importPgn(pgn);await saveGame(g);navigate('review',g.id);}catch(e){setError(String(e));}}
+  async function importGame(){try{const g={...importPgn(pgn),playerColor:importColor};await saveGame(g);navigate('review',g.id);}catch(e){setError(String(e));}}
   async function run(){if(!game||!game.moves.length)return;controller.current?.abort();const abort=new AbortController();controller.current=abort;setRunning(true);setRows([]);setError('');
     const settings={...preferences.engine,multiPv:Math.max(3,preferences.engine.multiPv)};const identity=positionIdentity(game);
     try{const analyzed=await analyzeGame(game,settings,abort.signal,async partial=>{
@@ -36,7 +38,7 @@ export default function Review(){
   if(!selectedId||!game)return <>
     <div className="page-intro"><div><span className="eyebrow">UNDERSTAND YOUR GAME</span><h1>Every game has a lesson.</h1><p>Review a saved game or bring a PGN. Analysis stays on your device.</p></div></div>
     {error&&<div className="error" role="alert">{error}</div>}
-    <section className="card" style={{marginBottom:24}}><h2>Bring a game</h2><p>Paste one PGN (up to 1 MB), including optional FEN headers.</p><label style={{margin:'15px 0'}}>PGN<textarea aria-label="PGN import" value={pgn} onChange={e=>setPgn(e.target.value)} placeholder={'[White "You"]\n[Black "Opponent"]\n\n1. e4 e5 2. Nf3 Nc6'}/></label><div className="settings-actions"><button className="primary" onClick={()=>void importGame()} disabled={!pgn.trim()}><Upload size={15}/> Import PGN</button><label className="file-label">Or choose a .pgn file<input type="file" accept=".pgn,text/plain" onChange={e=>{const file=e.target.files?.[0];if(file){if(file.size>1_000_000){setError('PGN exceeds 1 MB.');return;}void file.text().then(setPgn);}}}/></label></div></section>
+    <section className="card" style={{marginBottom:24}}><h2>Bring a game</h2><p>Paste one PGN (up to 1 MB), including optional FEN headers.</p><label style={{margin:'15px 0'}}>PGN<textarea aria-label="PGN import" value={pgn} onChange={e=>setPgn(e.target.value)} placeholder={'[White "You"]\n[Black "Opponent"]\n\n1. e4 e5 2. Nf3 Nc6'}/></label><label>Your side in this game<select aria-label="Import perspective" value={importColor} onChange={e=>setImportColor(e.target.value as "w"|"b")}><option value="w">White</option><option value="b">Black</option></select></label><div className="settings-actions"><button className="primary" onClick={()=>void importGame()} disabled={!pgn.trim()}><Upload size={15}/> Import PGN</button><label className="file-label">Or choose a .pgn file<input type="file" accept=".pgn,text/plain" onChange={e=>{const file=e.target.files?.[0];if(file){if(file.size>1_000_000){setError('PGN exceeds 1 MB.');return;}void file.text().then(setPgn);}}}/></label></div></section>
     <h2 style={{marginBottom:16}}>Your game library</h2>{library.length?<div className="game-table">{library.map(g=><button key={g.id} onClick={()=>navigate('review',g.id)}><span className="game-icon">♜</span><span><strong>{g.headers?.White??'You'} vs {g.headers?.Black??botById(g.botId).name}</strong><small>{g.moves.length} half-moves · {new Date(g.updatedAt).toLocaleDateString()}</small></span><span className="mini-tag">{g.review?.completed?'Reviewed':g.result}</span><ArrowRight size={16}/></button>)}</div>:<div className="empty-inline">Play a game to start your library, or import a PGN above.</div>}
   </>;
   const row=rows[current-1];const fen=replay(game,current).fen();const score=current?row?.after.candidates[0]?.score:rows[0]?.before.candidates[0]?.score;const white=gameAccuracy(rows,'w',mode);const black=gameAccuracy(rows,'b',mode);
@@ -53,6 +55,8 @@ export default function Review(){
     <Coach text={row?explain(row,preferences.explanation,mode):'Choose an analyzed move to see its verified explanation.'} preferences={preferences} thinking={false} mood={row?.scores[mode].classification==='brilliant'?'surprised':row?.scores[mode].loss&&row.scores[mode].loss>=0.1?'sad':'idle'}/>
     {row&&<section className="card"><span className="eyebrow">ENGINE LINES · {formatScore(row.before.candidates[0]?.score)}</span><div className="review-lines">{row.before.candidates.map((candidate,i)=><p key={i}>{formatScore(candidate.score)} · {lineSan(row.fenBefore,candidate.pv.slice(0,8)).join(' ')} <small>(d{candidate.depth})</small></p>)}</div>{row.bestMove!==row.uci&&<button className="primary" style={{marginTop:16}} onClick={()=>void retryMistake(row)}>Retry this position</button>}</section>}
     </aside></div>
+    <OpeningReview game={game} current={current} onSelect={setCurrent}/>
     {!!rows.length&&<section className="card" style={{marginTop:25}}><h2>What to remember</h2><div className="library-grid" style={{marginTop:20}}>{(['opening','middlegame','endgame']as const).map(phase=><div key={phase}><h3 style={{textTransform:'capitalize',marginBottom:10}}>{phase}</h3><p>{rows.filter(r=>r.phase===phase).length} analyzed half-moves; {rows.filter(r=>r.phase===phase&&r.scores[mode].loss>=0.1).length} mistakes or missed opportunities.</p></div>)}</div><div className="branch-list">{[...rows].sort((a,b)=>b.scores[mode].loss-a.scores[mode].loss).slice(0,5).map(r=><button key={r.ply} onClick={()=>setCurrent(r.ply)}>Move {r.ply}: {r.san} <span className={`classification ${r.scores[mode].classification}`}>{r.scores[mode].classification}</span></button>)}</div></section>}
   </>;
 }
+
