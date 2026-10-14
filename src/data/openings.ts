@@ -10,6 +10,9 @@ for(const opening of OPENINGS) {
   const key=epd(opening.fen);const previous=positions.get(key);if(!previous||previous.moves.length>opening.moves.length)positions.set(key,opening);
 }
 export const isBookMove=(fen:string,uci:string)=>bookMoves.get(epd(fen))?.has(uci)??false;
+/** Position lookup: all indexed continuations, including transposed move orders. */
+export const bookMovesAt=(fen:string)=>[...(bookMoves.get(epd(new Chess(fen).fen()))??[])];
+export const indexedBookPositions=bookMoves.size;
 export const identifyOpening=(fen:string)=>positions.get(epd(fen));
 export function openingBranches(prefix:string[]):{move:string;san:string;count:number}[] {
   const matches=OPENINGS.filter(o=>prefix.every((m,i)=>o.moves[i]===m));const counts=new Map<string,number>();

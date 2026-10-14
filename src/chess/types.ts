@@ -33,7 +33,7 @@ export interface Puzzle {
 export interface Attempt {id: string; puzzleId: string; at: number; solved: boolean; hints: number; firstSeen: boolean; rating: number; themes: string[]; duration: number; mode: 'practice'|'rush'|'mistake'|'master'}
 export interface Repetition {interval: number; ease: number; due: number; successes: number; failures: number}
 export interface Mistake extends Repetition {id: string; gameId: string; ply: number; fen: string; move: string; line: string[]; tags: string[]; source: string; license: string}
-export interface Repertoire extends Repetition {id: string; openingId: string; name: string; moves: string[]; color: Color}
+export interface Repertoire extends Repetition {id: string; openingId: string; name: string; moves: string[]; color: Color;startFen?:string}
 export interface TrainingEvent {id: string; at: number; kind: 'lesson'|'opening'|'endgame'; target: string; success: boolean; hints: number}
 export type RatingCategory = 'blitz'|'rapid';
 export interface Rating {id: RatingCategory; value: number; games: number; wins: number; losses: number; draws: number; updatedAt: number}

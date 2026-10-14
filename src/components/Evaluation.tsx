@@ -1,6 +1,8 @@
-import type {ReviewMove,Score} from '../chess/types';
+import type {ReviewMove,Score,Evaluation} from '../chess/types';
+import {lineSan} from '../chess/rules';
 import {formatScore,winPercent} from '../chess/scoring';
 export function EvalBar({score,orientation='white'}: {score?:Score;orientation?:'white'|'black'}) {return <div className={`eval-bar${orientation==='black'?' reversed':''}`} aria-label={`White evaluation ${formatScore(score)}`}><div style={{height:`${score?100-winPercent(score):50}%`}}/><span>{formatScore(score)}</span></div>;}
+export function CandidateLines({evaluation,onMove}:{evaluation:Evaluation;onMove:(move:string)=>void}){return <div className="review-lines">{evaluation.candidates.map(line=><div key={line.move}><p>{formatScore(line.score)} · {lineSan(evaluation.fen,line.pv.slice(0,10)).join(' ')} · depth {line.depth}</p><button onClick={()=>onMove(line.move)}>Play engine candidate</button></div>)}</div>;}
 export function EvalGraph({rows,current,onSelect}: {rows:ReviewMove[];current:number;onSelect:(ply:number)=>void}) {
   if(!rows.length)return <p className="muted">Run a review to see the evaluation timeline.</p>;
   const points=rows.map((r,i)=>`${i/Math.max(1,rows.length-1)*600},${100-winPercent(r.after.candidates[0]!.score)}`).join(' ');

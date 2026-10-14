@@ -7,3 +7,9 @@ Annotations are keyed by the first four fields of the exact legal FEN and UCI mo
 Every family has a rule-verified caution diagram derived from a legal continuation: a piece moved to a square with a profitable legal capture. These illustrate the common error pattern of overlooking an attack. They are not claimed to be a popular error, book recommendation, or engine-best response. The material gain is explicitly a bounded exchange estimate. The learner tries a legal recovery capture on the same board.
 
 Opening text is original Pion content under GPL-3.0-or-later. Named sequences come from the existing attributed lichess-org/chess-openings data. Historical associations retain the earlier source links. No popularity, win rate or frequency is inferred from named-line counts.
+
+## Position graph
+
+The explorer queries indexed book edges by canonical legal position; it never scans all move-history prefixes per move. The key retains side to move, castling rights and usable en passant while discarding move counters. Repertoire edges are separately indexed, including custom starting FENs. Candidate badges distinguish ECO, curated text, saved lines and requested Stockfish results. Uninstalled game-frequency statistics are explicitly unavailable.
+
+Exploration retains sibling branches and recognizes equivalent positions reached by different move orders. FEN search validates the complete state. Named opening identification requires an exact installed position. A local tree can be saved to repertoire without replacing a previous schedule. Engine searches are requested, abort when the position changes and use the existing priority queue. PGN/backup and recall now preserve custom starting FENs.
