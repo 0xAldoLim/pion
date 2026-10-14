@@ -19,7 +19,7 @@ export function LessonPlayer({lesson,onExit}:{lesson:InteractiveLesson;onExit:()
   const [result,setResult]=useState(''),[played,setPlayed]=useState(''),[reset,setReset]=useState(0),[busy,setBusy]=useState(false);
   const [demoPly,setDemoPly]=useState(0),[running,setRunning]=useState(false);const saving=useRef(Promise.resolve());
   useEffect(()=>{let alive=true;void db.lessonProgress.get(lesson.id).then(p=>{if(alive){const current=p??freshLesson(lesson);latest.current=current;setProgress(current);}});return()=>{alive=false;};},[lesson]);
-  function persist(next:LessonProgress){latest.current=next;setProgress(next);saving.current=saving.current.then(()=>db.lessonProgress.put(next)).then(()=>undefined).catch(e=>notify(`Lesson save failed: ${String(e)}`));}
+  function persist(next:LessonProgress){latest.current=next;saving.current=saving.current.then(()=>db.lessonProgress.put(next)).then(()=>{if(latest.current===next)setProgress(next);}).catch(e=>notify(`Lesson save failed: ${String(e)}`));}
   const index=progress?Math.max(0,lesson.steps.findIndex(s=>s.id===progress.currentStep)):0,step=lesson.steps[index]!;
   useEffect(()=>{if(!progress||progress.viewedSteps.includes(step.id))return;persist({...progress,viewedSteps:[...progress.viewedSteps,step.id],lastVisited:Date.now()});},[progress,step.id]);
   useEffect(()=>{setResult('');setPlayed('');setDemoPly(0);setRunning(false);setReset(n=>n+1);},[step.id]);
@@ -41,7 +41,7 @@ export function LessonPlayer({lesson,onExit}:{lesson:InteractiveLesson;onExit:()
       if(!success){persist({...p,stepErrors:{...p.stepErrors,[step.id]:errors}});return;}
       setPlayed(move);
       const positionId=step.fen.split(' ').slice(0,4).join(' '),old=await db.learningEvidence.where('positionId').equals(positionId).toArray();
-      const independent=interactive&&step.independent,kind=independent?(old.length?'recall':'transfer'):'guided';
+      const independent=interactive&&step.independent,kind=independent?(step.id==='recall'||old.length?'recall':'transfer'):'guided';
       const evidence:LearningEvidence[]=lesson.skills.map(skill=>({version:1,id:crypto.randomUUID(),lessonId:lesson.id,stepId:step.id,positionId,skill,at:Date.now(),success,hints,errors,kind,firstSeen:!old.length}));
       const independentIds=evidence.filter(e=>e.kind==='transfer'&&e.firstSeen&&e.hints===0&&e.errors===0).map(e=>e.id);
       const next={...p,completedExercises:[...new Set([...p.completedExercises,step.id])],masteryEvidence:[...p.masteryEvidence,...independentIds],...(independent?schedule(p,hints===0&&errors===0,hints):{}),lastVisited:Date.now()};
@@ -58,9 +58,10 @@ export function LessonPlayer({lesson,onExit}:{lesson:InteractiveLesson;onExit:()
     {step.type==='question'&&<div className="answer-options">{[...step.choices].sort((a,b)=>a.id==='0'?1:b.id==='0'?-1:0).map(choice=><button key={choice.id} disabled={busy||completed} onClick={()=>void assess(choice.correct,choice.feedback)}>{choice.text}</button>)}</div>}
     <Coach text={result||(hintLevel?step.hints[hintLevel-1]!:step.explanation)} preferences={preferences} mood={completed?'happy':'idle'} onHint={interactive&&!completed?hint:undefined}/><p role="status" className="study-feedback">{result|| (completed?'This exercise is recorded. Continue or revisit the position.':'')}</p>
     {interactive&&hintLevel>0&&<p className="save-note">Hint {hintLevel}/3 · An assisted answer records practice, not independent evidence.</p>}
-    <div className="study-actions"><button disabled={index===0||busy} onClick={()=>go(index-1)}>Back</button>{interactive&&<button onClick={()=>{setResult('Position restored for another look. Earlier hints and errors remain recorded.');setPlayed('');setReset(n=>n+1);const p=latest.current!;persist({...p,completedExercises:p.completedExercises.filter(id=>id!==step.id)});}} disabled={busy}>Retry exercise</button>}{index<lesson.steps.length-1?<button className="primary" disabled={interactive&&!completed||busy} onClick={()=>go(index+1)}>Continue</button>:<button className="primary" onClick={onExit}>Return to path</button>}</div>
+    <div className="study-actions"><button disabled={index===0||busy} onClick={()=>go(index-1)}>Back</button>{interactive&&<button onClick={()=>{setResult('Position restored for another look. Earlier hints and errors remain recorded.');setPlayed('');setReset(n=>n+1);const p=latest.current!;persist({...p,completedExercises:p.completedExercises.filter(id=>id!==step.id)});}} disabled={busy}>Retry exercise</button>}{index<lesson.steps.length-1&&step.type!=='summary'?<button className="primary" disabled={interactive&&!completed||busy} onClick={()=>go(index+1)}>Continue</button>:<button className="primary" onClick={onExit}>Return to path</button>}{step.type==='summary'&&<button onClick={()=>{const p=latest.current!;persist({...p,completedExercises:p.completedExercises.filter(id=>id!=='recall'),stepErrors:{...p.stepErrors,recall:0},stepHints:{...p.stepHints,recall:0},currentStep:'recall'});}}>Practice recall</button>}</div>
     {interactive&&!completed&&<button className="text-button" onClick={()=>go(index+1)}>Skip this step · no completion credit</button>}
     <Glossary/><details><summary>Related practice</summary><div className="study-actions">{lesson.related.map(id=><button key={id} onClick={()=>navigate('learn',id)}>{id.replaceAll('-',' ')}</button>)}<button onClick={()=>navigate(lesson.stage===3?'openings':'puzzles')}>Put it into practice</button><button onClick={()=>navigate('play')}>Try a bot game</button></div></details>
     </section></div></>;
 }
+
 

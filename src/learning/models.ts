@@ -1,7 +1,7 @@
 import type {Repetition} from '../chess/types';
 
 export type Skill='board-vision'|'threat-recognition'|'calculation'|'opening-fundamentals'|'opening-recall'|'king-safety'|'planning'|'endgames'|'defense';
-export type Goal = {kind:'mate'|'castle'|'promotion'|'fork'|'pin'|'check'|'preventMate'|'safeCapture'|'developAttack';target?:string;piece?:string;minimum?:number} | {kind:'curated';moves:string[];reason:string};
+export type Goal = {kind:'mate'|'castle'|'promotion'|'fork'|'pin'|'check'|'preventMate'|'safeCapture'|'developAttack'|'defend'|'enPassant'|'escapeCheck';target?:string;piece?:string;minimum?:number} | {kind:'curated';moves:string[];reason:string};
 interface StepBase {id:string;objective:string;fen:string;explanation:string;hints:[string,string,string];arrows?:{orig:string;dest:string;brush:string}[]}
 export interface TextStep extends StepBase {type:'explanation'|'summary'}
 export interface DemoStep extends StepBase {type:'demonstration';moves:string[];captions:string[]}
