@@ -46,14 +46,15 @@ test('tablet navigation and compact dialogs contain focus and close with Escape'
 
 test('active game frame stays aligned through premoves and board flipping',async({page})=>{
   await page.clock.install();await page.clock.pauseAt(new Date());await route(page,'play');await page.getByRole('button',{name:'Start game',exact:true}).click();
-  for(const width of [320,390,641,768,1024,1440]){await page.setViewportSize({width,height:900});await expect(async()=>{await page.clock.runFor(32);await fits(page);}).toPass({timeout:5000});}
+  for(const width of [320,390,641,768,1024,1440]){await page.setViewportSize({width,height:900});await expect(async()=>{await page.clock.runFor(32);await measureFits(page);}).toPass({timeout:5000});}
   const surface=page.getByTestId('chessboard').locator('cg-board'),before=await surface.boundingBox();
   await page.getByLabel('Legal move').selectOption('e2e4');await page.getByRole('button',{name:'Play move',exact:true}).click();await page.clock.runFor(32);await expect(page.getByLabel('Premove from')).toBeVisible();
   const after=await surface.boundingBox();expect(after!.width).toBeCloseTo(before!.width,0);expect(after!.height).toBeCloseTo(before!.height,0);
-  for(const width of [1440,1024,768,641,390,320]){await page.setViewportSize({width,height:900});await expect(async()=>{await page.clock.runFor(32);await fits(page);}).toPass({timeout:5000});}
-  await expect(page.locator('.board-footer .player-strip strong')).toHaveText('You');await page.getByRole('button',{name:'Flip',exact:true}).click();await page.clock.runFor(32);await expect(page.locator('.board-column>.player-strip strong')).toHaveText('You');await expect(page.locator('.eval-bar')).toHaveClass(/reversed/);await fits(page);
-  await page.setViewportSize({width:1440,height:720});await expect(async()=>{await page.clock.runFor(32);await fits(page);}).toPass({timeout:5000});expect(await page.locator('.board-footer').evaluate(el=>el.getBoundingClientRect().bottom)).toBeLessThanOrEqual(722);
+  for(const width of [1440,1024,768,641,390,320]){await page.setViewportSize({width,height:900});await expect(async()=>{await page.clock.runFor(32);await measureFits(page);}).toPass({timeout:5000});}
+  await expect(page.locator('.board-footer .player-strip strong')).toHaveText('You');await page.getByRole('button',{name:'Flip',exact:true}).click();await page.clock.runFor(32);await expect(page.locator('.board-column>.player-strip strong')).toHaveText('You');await expect(page.locator('.eval-bar')).toHaveClass(/reversed/);await measureFits(page);
+  await page.setViewportSize({width:1440,height:720});await expect(async()=>{await page.clock.runFor(32);await measureFits(page);}).toPass({timeout:5000});expect(await page.locator('.board-footer').evaluate(el=>el.getBoundingClientRect().bottom)).toBeLessThanOrEqual(722);
 });
+
 
 
 

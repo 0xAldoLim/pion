@@ -7,3 +7,9 @@ test('board awareness teaches, corrects, resumes and separates guided practice f
 });
 
 
+
+test('real repeated opening losses recommend a lesson and track later independent practice',async({page})=>{
+  await page.goto('/#settings');await page.getByLabel('Analysis profile').selectOption('fast');
+  for(let i=0;i<2;i++){await page.goto('/#review');await page.getByLabel('PGN import').fill('1. f3 e5 2. g4 Qh4#');await page.getByRole('button',{name:'Import PGN',exact:true}).click();await page.getByRole('button',{name:'Run review',exact:true}).click();await expect(page.getByText('Review complete.',{exact:false})).toBeVisible();}
+  await page.goto('/#home');await expect(page.locator('.learning-focus')).toContainText('recurs across games');await expect(page.locator('.learning-focus')).toContainText('2 recent completed reviews');await page.locator('.learning-focus').getByRole('button',{name:'Study this lesson',exact:true}).click();await expect(page.locator('main h1')).toHaveText('Check your opponent’s forcing replies');await page.getByRole('button',{name:'Continue',exact:true}).click();await page.getByRole('button',{name:'Continue',exact:true}).click();await move(page,'g2g3');await page.getByRole('button',{name:'Continue',exact:true}).click();await page.getByRole('button',{name:'Qh4 is checkmate on the opened diagonal.',exact:true}).click();await page.getByRole('button',{name:'Continue',exact:true}).click();await move(page,'g7g6');await expect(page.locator('.learning-progress')).toContainText('Independent evidence recorded');await page.goto('/#home');await expect(page.locator('.learning-focus')).toContainText('1 independent transfer example');await page.locator('.learning-focus').getByRole('button',{name:'Related puzzles',exact:true}).click();await expect(page.getByLabel('Puzzle theme')).toHaveValue('mateIn1');
+});
