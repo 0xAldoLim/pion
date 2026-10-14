@@ -26,7 +26,7 @@ test('all main screens and lesson exercises stay within six viewport widths',asy
   for(const width of [320,390,641,768,1024,1440]){
     await page.setViewportSize({width,height:844});
     for(const name of ['home','play/match','review','analysis','puzzles','openings','learn','progress','settings']){await route(page,name);await fits(page);}
-    await route(page,'learn');await page.locator('.library-card').last().click();await fits(page);
+    await route(page,'learn');await page.getByRole('button',{name:'Lesson library',exact:true}).click();await page.locator('.library-card').last().click();await fits(page);
     await route(page,'openings');await page.locator('.opening-library button').first().click();await fits(page);
   }
 });
@@ -51,3 +51,4 @@ test('active game frame stays aligned through premoves and board flipping',async
   await expect(page.locator('.board-footer .player-strip strong')).toHaveText('You');await page.getByRole('button',{name:'Flip',exact:true}).click();await page.clock.runFor(32);await expect(page.locator('.board-column>.player-strip strong')).toHaveText('You');await expect(page.locator('.eval-bar')).toHaveClass(/reversed/);await fits(page);
   await page.setViewportSize({width:1440,height:720});await expect(async()=>{await page.clock.runFor(32);await fits(page);}).toPass({timeout:5000});expect(await page.locator('.board-footer').evaluate(el=>el.getBoundingClientRect().bottom)).toBeLessThanOrEqual(722);
 });
+

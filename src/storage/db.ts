@@ -1,6 +1,7 @@
 import Dexie, {type Table} from 'dexie';
 import type {Attempt, Game, Mistake, Preferences, Puzzle, Repertoire, TrainingEvent,Rating} from '../chess/types';
 import {freshRating,ratingChange} from '../chess/ratings';
+import type {LessonProgress,LearningEvidence,OpeningStudyProgress} from '../learning/models';
 export interface PackRecord {id:string; installedAt:number; version:string; bytes:number}
 export class PionDatabase extends Dexie {
   games!:Table<Game,string>;
@@ -12,6 +13,9 @@ export class PionDatabase extends Dexie {
   puzzles!:Table<Puzzle,string>;
   packs!:Table<PackRecord,string>;
   ratings!:Table<Rating,string>;
+  lessonProgress!:Table<LessonProgress,string>;
+  learningEvidence!:Table<LearningEvidence,string>;
+  openingStudy!:Table<OpeningStudyProgress,string>;
   constructor(name='pion') {
     super(name);
     this.version(1).stores({games:'id,updatedAt,status,botId',preferences:'id',attempts:'id,puzzleId,at,solved',mistakes:'id,gameId,due,*tags',repertoire:'id,openingId,due',training:'id,at,kind',puzzles:'id,rating,*themes',packs:'id'});
@@ -22,6 +26,8 @@ export class PionDatabase extends Dexie {
     this.version(3).stores({preferences:'id'}).upgrade(async tx=>{await tx.table('preferences').toCollection().modify((p:Preferences)=>{p.botPace??='standard';});});
     this.version(4).stores({ratings:'id'}).upgrade(async tx=>{await tx.table('preferences').toCollection().modify((p:Preferences)=>{p.colorMode??='light';p.showEval=true;});});
     this.version(5).stores({preferences:'id'}).upgrade(async tx=>{await tx.table('preferences').toCollection().modify((p:Preferences)=>{p.premoves??=true;});});
+    // Additive: legacy participation remains participation; no inferred mastery.
+    this.version(6).stores({lessonProgress:'lessonId,lastVisited,due',learningEvidence:'id,lessonId,positionId,skill,at',openingStudy:'id,openingId,positionId,due'});
   }
 }
 export const db=new PionDatabase();
