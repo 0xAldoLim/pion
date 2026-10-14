@@ -2,6 +2,7 @@ import {test,expect,type Page} from '@playwright/test';
 
 async function route(page:Page,name:string){await page.goto(`/#${name}`);await expect(page.locator('main h1')).toBeVisible();}
 async function fits(page:Page){
+  await expect.poll(()=>page.locator('.chessboard').evaluateAll(nodes=>nodes.every(el=>!!el.querySelector('cg-board')))).toBe(true);
   const result=await page.evaluate(()=>{
     const containers=[...document.querySelectorAll('main,header,.card,.coach-card,.filters,.library-card,.board-controls,.move-list,.app-dialog,.page-intro')];
     const overflow=containers.filter(el=>{const r=el.getBoundingClientRect();return r.width>0&&el.scrollWidth>el.clientWidth+2;}).map(el=>({className:el.className,width:el.clientWidth,scroll:el.scrollWidth}));
@@ -51,4 +52,5 @@ test('active game frame stays aligned through premoves and board flipping',async
   await expect(page.locator('.board-footer .player-strip strong')).toHaveText('You');await page.getByRole('button',{name:'Flip',exact:true}).click();await page.clock.runFor(32);await expect(page.locator('.board-column>.player-strip strong')).toHaveText('You');await expect(page.locator('.eval-bar')).toHaveClass(/reversed/);await fits(page);
   await page.setViewportSize({width:1440,height:720});await expect(async()=>{await page.clock.runFor(32);await fits(page);}).toPass({timeout:5000});expect(await page.locator('.board-footer').evaluate(el=>el.getBoundingClientRect().bottom)).toBeLessThanOrEqual(722);
 });
+
 

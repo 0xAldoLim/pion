@@ -19,7 +19,7 @@ export function satisfies(fen:string,uci:string,goal:Goal):boolean {
     case 'fork':return moveFacts(fen,uci).some(f=>f.kind==='fork'&&f.squares[0]===move.to);
     case 'pin':return ['b','r','q'].includes(move.piece)&&moveFacts(fen,uci).some(f=>f.kind==='pin');
     case 'preventMate':return !board.isStalemate()&&!board.moves().some(m=>m.endsWith('#'));
-    case 'safeCapture':return !!move.captured&&staticExchange(fen,move.to)>=(goal.minimum??1)&&VALUES[move.captured]>=1;
+    case 'safeCapture':return !!move.captured&&VALUES[move.captured]+(move.promotion?VALUES[move.promotion]-1:0)-staticExchange(board.fen(),move.to)>=(goal.minimum??1);
     case 'developAttack':return ['n','b'].includes(move.piece)&&move.from[1]===(move.color==='w'?'1':'8')&&!!goal.target&&board.attackers(goal.target as Square,move.color).includes(move.to);
   }
 }
