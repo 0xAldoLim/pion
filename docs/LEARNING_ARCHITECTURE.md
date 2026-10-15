@@ -10,6 +10,14 @@ Backup version four includes the new tables, accepts versions one through three 
 
 Content is original Pion writing, licensed with the project (GPL-3.0-or-later). Rule-derived predicates use chess.js. The existing bounded legal static-exchange implementation retains its documented MIT attribution. No runtime LLM or network service is used.
 
+Version seven adds only practice-hint/undo/feedback defaults; older backups receive the same defaults. `chess/assistance.ts` centralizes rated restrictions. Practice classifications reuse the full-strength review pipeline on the actual move root and show observed depth/provisional status; they do not use the bot's weakened search or award learning evidence. Active rated review is gated until completion.
+
+Coach context actions explain legal board facts, threats and candidate previews. Independent lesson/recall tasks do not expose untracked contextual assistance before completion. Hints remain explicit and counted. Historical master-study predictions are exploration and never independent mastery or rated puzzles.
+
+Routes and large datasets load as separate chunks. The lightweight repertoire position index avoids pulling ECO data into Home recommendations. Every essential emitted chunk is precached; Chessground base CSS stays in the entry point before Pion overrides so lazy routes cannot reverse coordinate/frame styling.
+
+Fourteen master-study records are a separately licensed CC BY-SA 4.0 data adaptation with verified official broadcast scores, metadata, source URLs/export checksums and original Pion annotations. See THIRD_PARTY_NOTICES.md. Historical moves, curated ideas and live engine comparisons are kept distinct.
+
 ## Recommendations and evidence
 
 The daily focus uses completed, current-version, history-matching local reviews. Assisted opening segments are excluded from recurring game-error claims. Counts name actual reviewed moves and distinct games; one game is explicitly a starting observation, not a recurring pattern. Early queen recommendations require losses in multiple opening reviews. Outside stored repertoire is distinguished from an error; recurring unfamiliar positions require actual reviewed losses.

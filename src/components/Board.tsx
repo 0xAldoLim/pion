@@ -9,7 +9,6 @@ import type {Classification,Score} from '../chess/types';
 import {MoveBadge} from './MoveBadge';
 import {EvalBar} from './Evaluation';
 import {useFocusDialog} from './useFocusDialog';
-import '@lichess-org/chessground/assets/chessground.base.css';
 
 interface PremoveInput {color:Color;queue:string[];onQueue:(move:string)=>void;onCancel:()=>void}
 interface BoardProps {

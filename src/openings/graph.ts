@@ -2,14 +2,11 @@ import {Chess,type Color} from 'chess.js';
 import {bookMovesAt,identifyOpening,isBookMove} from '../data/openings';
 import {CURATED_ANNOTATIONS} from '../data/opening-courses';
 import {positionKey} from './teaching';
-import {playUci,START_FEN} from '../chess/rules';
-import type {Repertoire,Evaluation} from '../chess/types';
-export type RepertoireIndex=Map<string,Map<string,string[]>>;
-export function repertoireIndex(lines:Repertoire[]):RepertoireIndex{
-  const index:RepertoireIndex=new Map();
-  for(const line of lines){const board=new Chess(line.startFen??START_FEN);for(const move of line.moves){const key=positionKey(board.fen()),moves=index.get(key)??new Map<string,string[]>();moves.set(move,[...(moves.get(move)??[]),line.id]);index.set(key,moves);playUci(board,move);}}
-  return index;
-}
+import {playUci} from '../chess/rules';
+import type {Evaluation} from '../chess/types';
+import {repertoireIndex,type RepertoireIndex} from './position-index';
+export {repertoireIndex};
+export type {RepertoireIndex};
 export function graphPosition(fen:string,saved:RepertoireIndex=new Map(),evaluation?:Evaluation){
   const board=new Chess(fen),key=positionKey(fen),user=saved.get(key)??new Map<string,string[]>();
   const engine=evaluation?.fen===fen?evaluation.candidates:[];

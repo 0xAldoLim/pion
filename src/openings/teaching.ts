@@ -2,7 +2,8 @@ import {Chess} from 'chess.js';
 import {playUci,uciOf} from '../chess/rules';
 import {moveFacts,staticExchange,VALUES} from '../coach/facts';
 import {CURATED_ANNOTATIONS,type OpeningCourse} from '../data/opening-courses';
-export const positionKey=(fen:string)=>new Chess(fen).fen().split(' ').slice(0,4).join(' ');
+import {positionKey} from './position-index';
+export {positionKey};
 export function openingExplanation(fen:string,move:string){return CURATED_ANNOTATIONS.get(`${positionKey(fen)}|${move}`)?.explanation??moveFacts(fen,move).find(f=>['mate','check','capture','fork','pin','castling','promotion'].includes(f.kind))?.text??`${playUci(new Chess(fen),move).san} is legal here. No specific strategic annotation is installed for this move; compare the opponent’s checks and captures.`;}
 export interface OpeningMistake {before:string;fen:string;mistake:string;recovery:string;gain:number;explanation:string}
 const mistakes=new Map<string,OpeningMistake>();

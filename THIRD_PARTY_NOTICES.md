@@ -23,3 +23,9 @@ Chessground: GPL-3.0-or-later, https://github.com/lichess-org/chessground. Stock
 Lichess puzzles and chess-openings: CC0, https://database.lichess.org/ and https://github.com/lichess-org/chess-openings. Puzzle IDs/source URLs remain with every record.
 
 React/React DOM (MIT); chess.js (BSD-2-Clause); Dexie (Apache-2.0 — verify resolved package before release); Lucide (ISC); Zod (MIT). Build/test tooling licenses are recorded by the license inventory. Original Pion SVG characters and teaching text are GPL-3.0-or-later.
+
+## Master-game study data
+
+`src/data/master-studies.json` contains fourteen selected games from the Lichess official Tata Steel Masters 2024 broadcasts (rounds 1 and 10). The broadcast dataset uses **CC BY-SA 4.0**, separately from the CC0 puzzles/opening dataset. Source: https://database.lichess.org/#broadcasts. Each record retains original game/player/event/date/round attribution, its individual broadcast URL, export URL and SHA-256 of the downloaded round export.
+
+Changes: selected games; normalized PGN; omitted clocks and imported evaluation/commentary; added original instructional objectives and annotations. This data adaptation and its Pion annotations are distributed under **CC BY-SA 4.0**: https://creativecommons.org/licenses/by-sa/4.0/. Full license: `public/licenses/CC-BY-SA-4.0.txt`, also precached offline. The application source retains its GPL license. There is no claim of endorsement by Lichess, the event, or the players. Historical choices are distinguished from engine recommendations and unique-best-move puzzles.

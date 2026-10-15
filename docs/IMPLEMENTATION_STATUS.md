@@ -1,18 +1,23 @@
 # Implementation status
 
-Updated 2026-10-14. This ledger records verified scope and remaining limits.
+Updated 2026-10-15. This supersedes the earlier nine-lesson / single-line opening milestone.
 
-| Milestone | Status |
+| Milestone | Delivered behavior |
 |---|---|
-| 0 Audit/tooling | Verified: Patzer source audit, REA investigation/registration, exact dependency lock, official engine hashes and license inventory |
-| 1 Offline gameplay | Verified: real WASM, legal hotseat/bot play, clocks, promotion, reload recovery, offline games; durable per-game URLs, five legal-validated premoves with clock charging and promotion |
-| 2 Review/scoring | Verified: real complete reviews, independent scoring modes, ten classifications, destination-piece icons, graph/navigation, comparison arrows, legal evidence restoration |
-| 3 Bots/coach | Verified: twelve policies across seven supplied-reference characters, cancellable minimum response pacing, grounded hints/feedback, three explanation depths and animated live evaluation; a real-WASM audit identified a skill-choice override, now corrected without changing strength parameters; estimates remain provisional |
-| 4 Puzzles/masters | Verified core: 4,070 legal puzzles, two Morphy positions, adaptive/rush/mistake workflows, explicit student color, full mistake-line replay, imports and early-repeat protection |
-| 5 Openings/learning | Verified core: 3,865 legal opening lines, wider library, curated SSS–C learning tiers and sourced player notes, repertoire recall, nine captioned legal lesson demos and endgame exercises |
-| 6 Progress/UX | Verified: real activity/skill records, separate local Blitz/Rapid Elo, direct Play now duration prompt, ±20 matching, atomic settlement and backup, light/dark navbar toggle, larger type, seven boards/four SVG sets; consistent responsive board/player/evaluation frames and focus-managed dialogs; 23 main/active accessibility scans, eight duration-dialog scans and 168 responsive states pass |
-| 7 Hardening/release | Verified rated-launch release: all 81 Ubuntu browser scenarios passed across Chromium, mobile and Firefox. Captures/skill-policy update: strict build/lint, 78 unit checks, 14 affected desktop/mobile scenarios and before/after real-WASM policy audits pass; expanded Ubuntu CI runs 84 scenarios. Optional full-engine tamper rejection/offline execution and license/advisory audit remain verified; current remote workflow evidence is available in GitHub Actions |
+| M0 Audit | Latest remote baseline checked; working chess foundation preserved; gaps and migration requirements recorded. |
+| M1 Interactive player | Stable steps, demonstrations, board objectives, explanation questions, progressive hints, grounded correction, exact-step resume, keyboard moves and shared Ponke coach. |
+| M2 Curriculum | 31 complete short lessons across six unrestricted stages; path/library/glossary; separate viewed, practiced, independent transfer and spaced recall evidence. |
+| M3 Opening education | Twelve families, 36 annotated variations, both-side plans, tradeoffs, mistake recovery and novice-length practice. Legacy tiers/player notes remain optional detail. |
+| M4 Explorer | Position graph with turn/castling/en-passant state, manual exploration, sibling branches, transpositions, ECO identity, source badges, FEN and local analysis. |
+| M5 Practice/repertoire | Guided/recall/practical bot modes; both colors; multiple replies; studied/book/engine-compared alternatives; position schedules, folders, favorites, notes, PGN, undoable removal and review-derived branches. |
+| M6 Adaptive learning | Daily focus and nine skills from actual review/exercise evidence; matching activities and non-overlapping review trends. Commit 0bd177f passed full Ubuntu CI. |
+| M7 Chess quality | Rated assistance suppression/review gate; configurable practice hints/undo/provisional classifications; structured local coach actions; real-engine classification checks; fourteen licensed modern game studies; calibration harness improvements; route splitting. |
+| M8 Release | Expanded migration, offline, accessibility and layout checks implemented. Final regression/Firefox result and visuals are recorded in LEARNING_VALIDATION.md. |
 
-Remote was empty at initialization. Required SSH origin is retained; authentication uses an HTTPS push URL for the same authorized repository. Verify each push against its advertised SHA; never reset or force-push existing history.
+Preserved: board/frame, promotion, premoves, clocks, capture racks, seven original monkey characters, seven board themes, four piece sets, 4,070 tactical puzzles plus two Morphy exercises, 3,865 ECO entries, scoring modes, separate local Blitz/Rapid ratings, saved games/reviews, engine installation and backups. No bot difficulty parameters were retuned in this milestone.
 
-Resume by reading recent commits, this file, TEST_RESULTS.md and KNOWN_ISSUES.md, then inspecting actual workspace status. Run assets preparation after installing dependencies; engine binaries and browser evidence are intentionally ignored.
+Dexie v6 adds learning tables; v7 fills three practice-assistance defaults. Backup v4 accepts v1–v4 with validated defaults. Reading never migrates into mastery. Existing IDs and schedules remain valid.
+
+All essential chunks/data/lessons/studies/lite Stockfish are precached after offline readiness. Full Stockfish stays optional. Main JS is about 76.83 KB gzip; puzzle/ECO data remain larger separate chunks. See KNOWN_ISSUES.md.
+
+Preserve SSH origin and use authenticated HTTPS pushes to the same Pion repository. No force push/reset. Generated engines, dist and browser artifacts stay ignored. Resume from actual Git status and validation evidence.

@@ -15,7 +15,7 @@ export default defineConfig({
       icons: [{src: 'assets/icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any'}, {src: 'assets/icon-192.png', sizes: '192x192', type: 'image/png'}, {src: 'assets/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable'}],
     },
     workbox: {
-      globPatterns: ['**/*.{js,css,html,svg,png,json,wasm}'],
+      globPatterns: ['**/*.{js,css,html,svg,png,json,wasm,txt}'],
       // Manifest icons are added by the PWA plugin with revisions. Exclude them
       // here to avoid duplicate URL entries with conflicting revision policies.
       globIgnores: ['engines/deep/**','assets/icon.svg','assets/icon-192.png','assets/icon-512.png'],

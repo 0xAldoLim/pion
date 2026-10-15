@@ -1,12 +1,12 @@
+import {lazy,Suspense} from 'react';
 import {useLiveQuery} from 'dexie-react-hooks';
 import {ArrowRight,BookOpen,ChevronRight,Clock,Flame,Play,Target,TrendingUp} from 'lucide-react';
 import {useApp} from '../../app/context';
 import {db,saveGame} from '../../storage/db';
 import {newGame} from '../../chess/rules';
 import {Character} from '../../components/Character';
-import {Board} from '../../components/Board';
 import {BOTS,botById} from '../bots/bots';
-import {dailyPuzzle,puzzleStart} from '../../data/puzzles';
+const DailyChallenge=lazy(()=>import('./DailyChallenge'));
 import {stats} from './stats';
 import {LearningFocus} from '../learn/LearningFocus';
 
@@ -14,13 +14,13 @@ export default function Home(){
   const ratings=useLiveQuery(()=>db.ratings.toArray(),[],[]);
   const {navigate,openRatedPlay,preferences,notify}=useApp();
   const games=useLiveQuery(()=>db.games.orderBy('updatedAt').reverse().toArray(),[],[]);const attempts=useLiveQuery(()=>db.attempts.toArray(),[],[]);const mistakes=useLiveQuery(()=>db.mistakes.toArray(),[],[]);const training=useLiveQuery(()=>db.training.toArray(),[],[]);
-  const summary=stats(games,attempts,mistakes,training);const active=games.find(g=>g.status==='active');const daily=dailyPuzzle();const today=new Date().toDateString();
+  const summary=stats(games,attempts,mistakes,training);const active=games.find(g=>g.status==='active');const today=new Date().toDateString();
   const activity=attempts.filter(a=>new Date(a.at).toDateString()===today).length+training.filter(a=>new Date(a.at).toDateString()===today).length;
   async function quickPlay(botId:string){try{const game=newGame(botId);game.headers={White:"You",Black:botById(botId).name};await saveGame(game);navigate('play',game.id);}catch(e){notify(String(e));}}
   return <>
     <div className="page-intro"><div><span className="eyebrow">MAKE ROOM FOR A GOOD MOVE</span><h1>Welcome to your chess journey.</h1><p>A quiet place to play, understand, and get a little better.</p></div><span className="streak"><Flame size={17}/>{summary.days} active day{summary.days===1?'':'s'}</span></div>
     <div className="home-ratings card"><div><span className="eyebrow">YOUR LOCAL RATINGS</span><h2>A challenge at your level.</h2></div><div className="rating-pair">{(["blitz","rapid"] as const).map(category=><div key={category}><span>{category}</span><strong>{ratings.find(r=>r.id===category)?.value??600}</strong><small>{ratings.find(r=>r.id===category)?.games??0} rated games</small></div>)}</div><button className="primary" onClick={openRatedPlay}>Play now <ArrowRight size={18}/></button></div><div className="home-top"><section className="hero"><div className="hero-copy"><span className="mini-tag">YOUR NEXT CHAPTER</span><h2>A little better.<br/><em>Every move.</em></h2><p>Find your rhythm against a friendly opponent. Ponke will be in your corner.</p><button className="primary light" onClick={openRatedPlay}>Play now <ArrowRight size={18}/></button><span className="hero-foot"><span className="dot"/> Local engine. Limitless learning.</span></div><div className="hero-art"><div className="hero-board" aria-hidden="true">{Array.from({length:25},(_,i)=><span className={(i+Math.floor(i/5))%2?'dark':''} key={i}>{i===6?'♞':i===13?'♙':i===17?'♝':i===23?'♜':''}</span>)}</div><Character seed={0} color="#d5e5b5" mood="happy" size={160}/><span className="art-star one">✦</span><span className="art-star two">✧</span></div></section>
-    <section className="daily card"><div className="card-heading"><span className="eyebrow">A SMALL DAILY CHALLENGE</span><Target size={19}/></div><h2>The daily puzzle</h2><p>One position. A fresh perspective.</p><div className="daily-board"><Board fen={puzzleStart(daily).fen} animation={false}/></div><button className="text-button" onClick={()=>navigate('puzzles',daily.id)}>Find the best move <ArrowRight size={17}/></button></section></div>
+    <Suspense fallback={<section className="daily card" role="status">Loading your daily position…</section>}><DailyChallenge/></Suspense></div>
     <LearningFocus/>
     <div className="home-middle"><section className="card"><div className="card-heading"><div><span className="eyebrow">BUILD A HABIT</span><h2>Today’s training</h2></div><span className="mini-tag">{activity} activities today</span></div><p className="muted">A balanced routine, with room to follow your curiosity.</p><div className="training-list">{([{page:'puzzles',name:'Sharpen your board vision',detail:`${preferences.training.tactics}% · tactics & awareness`,icon:Target},{page:'play',name:'Put it into practice',detail:`${preferences.training.games}% · a thoughtful game`,icon:Play},{page:'puzzles',name:'Remember your turning points',detail:`${preferences.training.mistakes}% · ${mistakes.filter(m=>m.due<=Date.now()).length} mistakes due`,icon:TrendingUp},{page:'openings',name:'Know your first moves',detail:`${preferences.training.openings}% · opening practice`,icon:BookOpen}]as const).map(item=><button key={item.name} onClick={()=>navigate(item.page,item.name.includes('turning')?'mistakes':undefined)}><span className="training-icon"><item.icon size={19}/></span><span><strong>{item.name}</strong><small>{item.detail}</small></span><ChevronRight size={18}/></button>)}</div></section>
     <section className="card quick-play"><div className="card-heading"><div><span className="eyebrow">MEET YOUR MATCH</span><h2>A friendly challenge</h2></div><button className="text-button" onClick={()=>navigate('play')}>All opponents <ArrowRight size={16}/></button></div>{BOTS.slice(0,3).map(bot=><button className="opponent-row" key={bot.id} onClick={()=>void quickPlay(bot.id)}><Character seed={bot.shape} color={bot.color} size={62}/><span><strong>{bot.name}</strong><small>{bot.band} · ≈ {bot.rating}</small></span><span className="play-circle"><Play size={15}/></span></button>)}{active&&<button className="resume-button" onClick={()=>navigate('play',active.id)}><Clock size={17}/> Continue your saved game <ArrowRight size={16}/></button>}</section></div>

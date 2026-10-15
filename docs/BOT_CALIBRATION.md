@@ -1,5 +1,15 @@
 # Bot calibration checkpoint
 
+## Current harness — 2026-10-15
+
+The harness now accepts `--bots` and `--references` for bounded diagnostics, pairs both colors, clears the result cache between games, records production skill/depth/time settings, separates losses/draws/wins from unresolved cutoffs, and writes a new version-2 report instead of overwriting this historical checkpoint. Default output is `docs/BOT_CALIBRATION_CURRENT.json`; `--output docs/NAME.json` chooses another report. The default cutoff is 200 plies. Completed-only scores are explicitly subject to cutoff bias. Seeds control policy randomness; engine limited-skill randomness and machine-dependent search depth are not fully deterministic.
+
+Real-WASM smoke command: `pnpm calibrate --bots pebble,monarch --references 5 --rounds 1 --max-plies 160 --time-scale 0.1 --seed 20261015 --output docs/BOT_CALIBRATION_SMOKE.json`. All four games ended under chess rules: Pebble lost both colors; Monarch won both colors. There were no adjudications or cutoffs. This verifies the harness and the deployed policy at scaled search budgets. It does **not** calibrate intermediate profiles, establish human Elo, prove adjacent ordering, or justify changing difficulty. No bot parameters were retuned in this milestone. Full transcripts and actual termination reasons are in the smoke report.
+
+Human-comparable calibration still needs many games at normal budgets against independently calibrated opposition. Keep all current numbers labeled estimates until that evidence exists.
+
+## Historical checkpoint
+
 Historical checkpoint: this run predates the 2026-10-14 correction that respects Stockfish's skill-limited move on ordinary turns. See [BOT_STRENGTH_AUDIT.md](BOT_STRENGTH_AUDIT.md) for that defect, its bounded real-engine evidence and the limits of what it proves.
 
 Run `pnpm calibrate --rounds 1 --max-plies 60 --time-scale 0.2 --seed 20261013` on 2026-10-13. The browser harness imports the production bot policies and executes the real bundled WASM engine. Full SAN transcripts, settings and outcomes are in BOT_CALIBRATION.json.

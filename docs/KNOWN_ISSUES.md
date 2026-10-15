@@ -1,9 +1,12 @@
-# Known issues
+# Known limits — 2026-10-15
 
-- SSH authentication to GitHub fails with `Permission denied (publickey)`. Authenticated HTTPS push transport to the same authorized repository works.
-- Bot strength and per-game performance are estimates; the 48-game diagnostic has too many unresolved cutoffs to establish measured Elo. Separate local Blitz/Rapid player standings are implemented and do not imply equivalence to an online service.
-- Firefox's downloaded executable cannot start on this Windows host: incorrect side-by-side configuration (missing mozglue assembly; Playwright reports spawn UNKNOWN). The full Firefox suite passes on GitHub Ubuntu CI, alongside Chromium desktop/mobile.
-- Imported reviews are user-provided analysis records. Their shapes, history identity, numerical bounds and every PV/evidence sequence are validated and scores reconstructed; this cannot authenticate the original engine search cryptographically.
-- Default JS bundle includes offline datasets (~609 KB gzip); route/data splitting remains a performance improvement. Default offline precache is approximately 4.9 MiB; the optional full engine is roughly 95 MB and requires explicit installation.
-- Master exercises currently cover two verified positions from one historical game. Unverified or uncertain game continuations are excluded.
-- Opening tiers cover curated families and reflect learning fit; uncurated entries have no invented tier or GM specialist.
+- Opponent strengths are estimates. The corrected skill-choice policy, historical 48-game checkpoint and four-game current smoke check do not establish human Elo or adjacent-profile ordering. No difficulty retuning is justified by this sample. Blitz/Rapid are local player standings.
+- The 31 short lessons introduce six stages rather than exhaustively teaching every advanced topic in the brief. Some transfer diagrams use reflected geometry and provide limited evidence. More structurally distinct transfer problems and deeper advanced sequences remain content expansion work.
+- Teaching currently uses explanation/summary, demonstration, objective-based moves and explanation choices. Square-marking, drag-to-classify and arbitrary multi-branch calculation editors are not separate step types; installed concepts use moves, questions, demonstrations and the explorer.
+- Book sources name installed ECO lines, not population frequencies. No cloud master database or reliable popularity statistics are installed. Explorer percentages/win rates are intentionally absent.
+- Practice feedback uses short full-strength searches and may change in deeper analysis. Conservative Brilliant verification can omit a deserved label when depth/evidence is insufficient. Engine agreement alone is not a verified strategic explanation.
+- Fourteen modern studies come from two verified Tata Steel 2024 rounds under CC BY-SA 4.0. These are prediction/comparison exercises, not fourteen new forced-solution puzzles. The two proven Morphy puzzles remain. More events/eras and additional verified forced puzzles remain content expansion work.
+- Imported review validation cannot authenticate that a record originally came from Stockfish. Recomputed scores and legal PVs protect consistency, not provenance.
+- Firefox cannot start on this Windows host because of its mozglue side-by-side configuration. Full Firefox checks run on Ubuntu GitHub Actions; exact evidence is in LEARNING_VALIDATION.md.
+- Separate puzzle (~232 KB gzip) and ECO (~167 KB gzip) chunks still trigger Vite's large-chunk advisory. Main JS is ~77 KB gzip. All essential chunks are precached (~5.12 MiB including lite engine/license texts). Initial cache installation must finish; browser storage can still be cleared.
+- SSH authentication fails with Permission denied (publickey). Authenticated HTTPS to the same authorized repository works; SSH origin is retained.

@@ -26,3 +26,7 @@ Validate every instructional FEN, legal demo and correct response; validate obje
 ## Execution
 
 M0 audit → M1 resumable lesson framework → M2 six-stage curriculum → M3 discovery/detail → M4 position explorer → M5 repertoire/practice/review → M6 adaptive evidence → M7 integrity/content/performance → M8 release validation. Each implementation milestone receives checks and an ordinary commit/push to the existing repository.
+
+## Post-implementation findings — 2026-10-15
+
+The audited gaps now have working lesson/explorer/repertoire/recommendation flows. Rated evaluation/coaching leaks are closed and active review is blocked; practice assistance has independent controls. Lesson objectives sit before the board on mobile. Master studies ask for a prediction and compare alternatives rather than marking every different move wrong. Splitting the large bundle exposed a base-CSS ordering regression in the existing six-width frame checks; moving the base stylesheet to the entry point preserves Pion overrides without weakening geometry assertions. Final evidence and honest remaining content/calibration limits are in LEARNING_VALIDATION.md and KNOWN_ISSUES.md.
