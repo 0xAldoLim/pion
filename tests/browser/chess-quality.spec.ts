@@ -23,3 +23,10 @@ test('real Stockfish review verifies a missed mate and preserves legal root evid
   const reviewed=(await games(page))[0]!.review!;const g4=reviewed.moves[2]!,mate=reviewed.moves[3]!;
   expect(g4.scores.pion.classification).toBe('blunder');expect(g4.evidence.some(e=>e.kind==='allowsMate')).toBe(true);expect(g4.after.candidates[0]!.score).toMatchObject({kind:'mate',winner:'b'});expect(g4.before.fen).toBe(g4.after.fen);expect(g4.after.candidates[0]!.move).toBe('g2g4');expect(mate.evidence.some(e=>e.kind==='mate')).toBe(true);expect(mate.sacrificeVerified).toBe(false);expect(mate.scores.pion.loss).toBe(0);
 });
+
+test('requested practice hints remain visible when automatic coaching and evaluation are off',async({page})=>{
+  await page.goto('/#settings');await page.getByLabel('Feedback frequency',{exact:true}).selectOption('off');await page.getByLabel('Show evaluation in practice games',{exact:true}).uncheck();await page.getByLabel('Analysis profile',{exact:true}).selectOption('fast');
+  await page.goto('/#play');await page.getByRole('button',{name:'Start game',exact:true}).click();await page.getByRole('button',{name:'Hint',exact:true}).click();
+  const hint=page.getByLabel('Practice hint',{exact:true});await expect(hint).toContainText('Hint 1/3');await expect(hint.getByRole('status')).not.toBeEmpty();await expect(page.getByLabel('Local chess coach')).toHaveCount(0);await expect(page.locator('.eval-bar')).toHaveCount(0);
+  await page.getByRole('button',{name:'Hint',exact:true}).click();await page.getByRole('button',{name:'Hint',exact:true}).click();await expect(hint).toContainText('Hint 3/3');await expect(hint).toContainText('White: try');await page.getByRole('button',{name:'Resign',exact:true}).click();
+});

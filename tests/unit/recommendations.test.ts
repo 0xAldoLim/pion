@@ -16,8 +16,8 @@ describe('grounded learning recommendations',()=>{
 });
 
 
-it('does not turn the opponent’s geometric back rank into the learner’s king-safety error',()=>{const row=reviewed('context',1).review.moves[0]!;expect(row.evidence.some(e=>e.kind==='backRank')).toBe(true);expect(issueSkill(row)).toBe('opening-fundamentals');});
-it('uses the opponent’s legal searched fork rather than a motif created by the learner',()=>{
+it('does not turn the opponentâ€™s geometric back rank into the learnerâ€™s king-safety error',()=>{const row=reviewed('context',1).review.moves[0]!;expect(row.evidence.some(e=>e.kind==='backRank')).toBe(true);expect(issueSkill(row)).toBe('opening-fundamentals');});
+it('uses the opponentâ€™s legal searched fork rather than a motif created by the learner',()=>{
   const before='7k/8/8/8/5n2/8/P7/2K1Q3 w - - 0 1',board=new Chess(before);playUci(board,'a2a3');const after=board.fen(),base=reviewed('reply',1).review.moves[0]!;
   const row={...base,phase:'middlegame',fenBefore:before,fenAfter:after,uci:'a2a3',evidence:moveFacts(before,'a2a3'),after:{candidates:[{pv:['a2a3','f4d3'],score:{kind:'cp',value:-400}}]}} as ReviewMove;
   expect(moveFacts(after,'f4d3').some(e=>e.kind==='fork')).toBe(true);expect(issueSkill(row)).toBe('threat-recognition');
