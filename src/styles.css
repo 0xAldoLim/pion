@@ -121,3 +121,5 @@ html[data-mode] button{transition:transform .15s}
 @media(max-width:600px){.opening-tier-guide{padding:16px}.opening-reputation{grid-template-columns:minmax(0,1fr);padding:16px}.opening-reputation.compact{padding:14px 0}.opening-masters .source-link{min-height:28px;line-height:1.6}}
 
 .table-scroll:focus-visible,.history-chart:focus-visible{outline:3px solid #a47c31;outline-offset:3px;border-radius:6px}
+.study-board{--study-width:520px}.study-board>.turn-prompt,.study-board>.move-navigation,.study-board .opening-moves{width:min(100%,var(--study-width));max-width:var(--study-width)}
+@media(max-width:760px){.study-board{--study-width:430px}}

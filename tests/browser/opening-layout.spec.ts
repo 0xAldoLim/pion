@@ -14,11 +14,11 @@ test('opening tiers, master examples and paired moves remain readable across scr
     await page.getByRole('button',{name:'Previous move',exact:true}).click();
     await expect(moves.getByRole('button',{name:'After 4... Nf6',exact:true})).toHaveAttribute('aria-current','step');
     const geometry=await page.locator('.study-board').evaluate(el=>{
-      const board=el.querySelector('.board-container')!.getBoundingClientRect(),nav=el.querySelector('.move-navigation')!.getBoundingClientRect(),list=el.querySelector('.opening-moves')!.getBoundingClientRect();
+      const board=el.querySelector('.board-container')!.getBoundingClientRect(),nav=el.querySelector('.move-navigation')!.getBoundingClientRect(),list=el.querySelector('.opening-moves')!.getBoundingClientRect(),prompt=el.querySelector('.turn-prompt')!.getBoundingClientRect();
       const chips=[...el.querySelectorAll('.opening-move-pair')].map(e=>{const r=e.getBoundingClientRect();return [...e.querySelectorAll('button')].every(b=>{const c=b.getBoundingClientRect();return c.left>=r.left&&c.right<=r.right+1;});});
-      return {boardGap:nav.top-board.bottom,movesGap:list.top-nav.bottom,contained:chips.every(Boolean),overflow:document.documentElement.scrollWidth-innerWidth};
+      return {boardGap:nav.top-board.bottom,movesGap:list.top-nav.bottom,contained:chips.every(Boolean),overflow:document.documentElement.scrollWidth-innerWidth,widthDifference:Math.max(Math.abs(prompt.width-board.width),Math.abs(nav.width-board.width),Math.abs(list.width-board.width))};
     });
-    expect(geometry.boardGap).toBeGreaterThanOrEqual(15);expect(geometry.movesGap).toBeGreaterThanOrEqual(15);expect(geometry.contained).toBe(true);expect(geometry.overflow).toBeLessThanOrEqual(2);
+    expect(geometry.boardGap).toBeGreaterThanOrEqual(15);expect(geometry.movesGap).toBeGreaterThanOrEqual(15);expect(geometry.contained).toBe(true);expect(geometry.overflow).toBeLessThanOrEqual(2);expect(geometry.widthDifference).toBeLessThanOrEqual(1);
   }
   await page.goto('/#openings');await expect(page.locator('.opening-library .tier-stamp')).toHaveCount(12);
   await expect(page.locator('.opening-tier-guide li')).toHaveText(['SSS','SS','S','A','B','C','D']);
