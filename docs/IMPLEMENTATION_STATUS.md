@@ -12,7 +12,7 @@ Updated 2026-10-15. This supersedes the earlier nine-lesson / single-line openin
 | M5 Practice/repertoire | Guided/recall/practical bot modes; both colors; multiple replies; studied/book/engine-compared alternatives; position schedules, folders, favorites, notes, PGN, undoable removal and review-derived branches. |
 | M6 Adaptive learning | Daily focus and nine skills from actual review/exercise evidence; matching activities and non-overlapping review trends. Commit 0bd177f passed full Ubuntu CI. |
 | M7 Chess quality | Rated assistance suppression/review gate; configurable practice hints/undo/provisional classifications; structured local coach actions; real-engine classification checks; fourteen licensed modern game studies; calibration harness improvements; route splitting. |
-| M8 Release | Expanded migration, offline, accessibility and layout checks implemented. Final regression/Firefox result and visuals are recorded in LEARNING_VALIDATION.md. |
+| M8 Release | Verified: 110 unit checks and all 123 Chromium/mobile/Firefox scenarios pass; typecheck/lint/build/licenses/real engines/offline/migrations pass. 39 visual/Axe states have zero findings. [Final source run](https://github.com/0xAldoLim/pion/actions/runs/38663926040); details/screenshots in LEARNING_VALIDATION.md. |
 
 Preserved: board/frame, promotion, premoves, clocks, capture racks, seven original monkey characters, seven board themes, four piece sets, 4,070 tactical puzzles plus two Morphy exercises, 3,865 ECO entries, scoring modes, separate local Blitz/Rapid ratings, saved games/reviews, engine installation and backups. No bot difficulty parameters were retuned in this milestone.
 

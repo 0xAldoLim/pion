@@ -15,7 +15,7 @@ M6 full workflow passed source 0bd177f3f0cf214aaec96f542338faeb077099a7: [Ubuntu
 
 M7 targeted rated/practice/classification workflows: six desktop/mobile scenarios passed. Learning/master/offline workflows: eight desktop/mobile scenarios passed, including both-palette master-study WCAG scans. Splitting exposed a base-CSS ordering regression; entry-point ordering is restored and all coordinate/frame/overflow assertions are retained.
 
-The final suite contains 123 scenarios in 11 browser files across Chromium desktop, Pixel 7 Chromium emulation and Firefox. Final source/run, counts and visual evidence will be appended after validation completes.
+The final suite contains 123 scenarios in 11 browser files across Chromium desktop, Pixel 7 Chromium emulation and Firefox. All 123 passed on source 42122f7b3650df1266d936d8ae3740e976e7b45d: [final Ubuntu run 38663926040](https://github.com/0xAldoLim/pion/actions/runs/38663926040).
 
 Automated checks establish legal positions, specified objectives, actual interaction and evidence accounting. They do not prove general skill acquisition. Mirrored diagrams, short lessons, historical decisions and bounded searches have limited scope. No lesson-count mastery, fabricated statistics, exact bot Elo, GM quotations or proprietary scoring parity is claimed. See KNOWN_ISSUES.md.
 
@@ -38,3 +38,17 @@ Final evidence-grounding audit: a general back-rank observation about the next s
 Source ddf9ba20ff1d60bf70a8650483990d240029daeb, Ubuntu run 38661300173: 118/120 browser scenarios passed. The two diagnostics showed an early empty character query during lazy route loading and a Firefox route stuck at the Suspense placeholder because the test froze UI timers before the transition. The character test now waits for all twelve profiles before checking the same seven identities. The premove test finishes route setup before freezing time, still checks every original queue/history/cancellation assertion, and additionally waits for the saved active history after restoring the preference. Route helpers wait for the actual heading. Twelve repeated desktop/mobile runs pass. No scenario, assertion, project or retry policy was removed.
 
 Independent assistance check: with automatic coach reactions and live evaluation off, an explicit practice hint remains visible in its own card through all three hint levels. Both desktop/mobile browser checks pass. The setting now accurately says evaluation in practice games; explicit Analysis/Game Review retain their own analysis displays. Rated policy still suppresses this card. Tracked text files were checked for valid UTF-8; four mixed-encoding documentation/test-description punctuation issues were normalized.
+
+Full baseline gate passed: source bc013552524cdab8eaac6f0d081379be00aff9e2, [Ubuntu run 38663075022](https://github.com/0xAldoLim/pion/actions/runs/38663075022), all 120 browser scenarios across Chromium desktop, mobile Chromium and Firefox, plus 110 unit checks, typecheck, lint, asset integrity, licenses and production build. This verifies the synchronization fixes without relaxed assertions. The final independent-hint revision adds one scenario per browser (123 total).
+
+## Final release gate — passed
+
+Source: `42122f7b3650df1266d936d8ae3740e976e7b45d`. [Ubuntu workflow 38663926040](https://github.com/0xAldoLim/pion/actions/runs/38663926040) completed successfully on 2026-10-15.
+
+- 20 unit files / **110 checks passed**.
+- **123 browser scenarios passed** in 10.4 minutes: 41 each in desktop Chromium, Pixel 7 Chromium emulation and Firefox. No skipped browser scenario or retry was needed.
+- Strict typecheck, ESLint, official engine preparation/integrity, production build and dependency license checks passed. Linux inventory contains 462 platform-resolved packages (Windows local inventory: 464); neither has unknown declarations.
+- Full suite includes real Stockfish classifications, bot replies, optional full-engine corruption rejection/verified installation/offline use, new lazy-route offline learning, master comparison, both-color repertoire, data preservation, accessible dialogs and all retained frame/premove/capture/rating assertions.
+- The independent-hint case passes with automatic coach reactions and evaluation off; rated assistance remains suppressed.
+
+The final handoff commit changes documentation only. The running local preview was verified on the final application bundle `index-BpYPDQQP.js`, with all six guided stages present and no horizontal overflow. Detailed remaining educational/calibration limits are listed in KNOWN_ISSUES.md; this release does not claim comprehensive advanced mastery or measured human Elo.

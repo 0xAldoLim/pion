@@ -43,4 +43,6 @@ See `docs/IMPLEMENTATION_STATUS.md`, `docs/TEST_RESULTS.md`, and `docs/KNOWN_ISS
 
 Open Learn → Guided path for the beginner route, Lesson library for direct access, or Master studies for historical decisions. Openings offers Discover, Opening explorer and My repertoire. Every essential route and the lite engine work offline after initial caching. Full Stockfish remains an optional pack. Learning architecture/content/evidence are documented in `docs/LEARNING_ARCHITECTURE.md`, `docs/OPENING_EXPLORER.md`, `docs/LESSON_CONTENT_STANDARDS.md` and `docs/LEARNING_VALIDATION.md`.
 
+See [Getting started](docs/GETTING_STARTED.md) for a short walkthrough of the new flows.
+
 Licensed GPL-3.0-or-later. Component notices and dataset provenance are documented separately.
