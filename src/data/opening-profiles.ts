@@ -1,4 +1,5 @@
-export type OpeningTier='SSS'|'SS'|'S'|'A'|'B'|'C';
+export const OPENING_TIERS=['SSS','SS','S','A','B','C','D'] as const;
+export type OpeningTier=typeof OPENING_TIERS[number];
 export interface OpeningProfile {family:string;tier:OpeningTier;idea:string;players:string;source:string;load:string}
 /** Editorial learning tiers: plan clarity, development, breadth, and memory burden.
  * These are Pion's recommendations, not engine rankings or a claim of objective superiority.
@@ -22,4 +23,4 @@ export const OPENING_PROFILES:OpeningProfile[]=[
 export function openingProfile(name:string):OpeningProfile|undefined {
   return OPENING_PROFILES.find(p=>name.includes(p.family));
 }
-export const tierDescription='SSS–C ranks learning fit: clear plans, sound development, broad usefulness, and manageable theory. It is an editorial guide, not an objective strength ranking. GM examples apply to the opening family.';
+export const tierDescription='SSS–D is Pion’s editorial learning-fit scale, from the clearest starting plans to more specialist study. It weighs development, practical usefulness and theory load. Master examples refer to the opening family.';

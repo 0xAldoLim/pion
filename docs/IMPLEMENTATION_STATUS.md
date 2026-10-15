@@ -24,3 +24,6 @@ Preserve SSH origin and use authenticated HTTPS pushes to the same Pion reposito
 
 
 Learning UI follow-up: consistently aligned numbered lesson rows; accessible segmented step tracker; defined orange consecutive-day streak including lesson practice; readable event/round/date metadata explaining the two Tata Steel 2024 rounds; simplified versions of all seven original SVG characters. See [LEARNING_POLISH.md](LEARNING_POLISH.md) for validation and semantics.
+
+
+Opening presentation follow-up: restored visible learning tiers and master examples, SSS–D legend, paired move navigation, non-overlapping study layout, scoped ECO-search styles, consistent shared card/disclosure spacing and keyboard-scrollable progress regions. See [OPENING_SPACING.md](OPENING_SPACING.md).

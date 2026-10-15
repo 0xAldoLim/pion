@@ -1,0 +1,431 @@
+{
+  "at": "2026-10-15T06:01:33.911Z",
+  "scans": [
+    {
+      "label": "home-light-320",
+      "violations": []
+    },
+    {
+      "label": "play-light-320",
+      "violations": []
+    },
+    {
+      "label": "review-light-320",
+      "violations": []
+    },
+    {
+      "label": "analysis-light-320",
+      "violations": []
+    },
+    {
+      "label": "puzzles-light-320",
+      "violations": []
+    },
+    {
+      "label": "openings-light-320",
+      "violations": []
+    },
+    {
+      "label": "learn-light-320",
+      "violations": []
+    },
+    {
+      "label": "progress-light-320",
+      "violations": [],
+      "keyboardScroll": true,
+      "recheckedAt": "2026-10-15T06:04:24.958Z"
+    },
+    {
+      "label": "settings-light-320",
+      "violations": []
+    },
+    {
+      "label": "ruy-lopez-light-320",
+      "violations": []
+    },
+    {
+      "label": "italian-light-320",
+      "violations": []
+    },
+    {
+      "label": "explorer-search-light-320",
+      "violations": []
+    },
+    {
+      "label": "home-light-390",
+      "violations": []
+    },
+    {
+      "label": "play-light-390",
+      "violations": []
+    },
+    {
+      "label": "review-light-390",
+      "violations": []
+    },
+    {
+      "label": "analysis-light-390",
+      "violations": []
+    },
+    {
+      "label": "puzzles-light-390",
+      "violations": []
+    },
+    {
+      "label": "openings-light-390",
+      "violations": []
+    },
+    {
+      "label": "learn-light-390",
+      "violations": []
+    },
+    {
+      "label": "progress-light-390",
+      "violations": [],
+      "keyboardScroll": true,
+      "recheckedAt": "2026-10-15T06:04:25.989Z"
+    },
+    {
+      "label": "settings-light-390",
+      "violations": []
+    },
+    {
+      "label": "ruy-lopez-light-390",
+      "violations": []
+    },
+    {
+      "label": "italian-light-390",
+      "violations": []
+    },
+    {
+      "label": "explorer-search-light-390",
+      "violations": []
+    },
+    {
+      "label": "learn/board-vision-light-390",
+      "violations": []
+    },
+    {
+      "label": "learn/masters-light-390",
+      "violations": []
+    },
+    {
+      "label": "home-light-768",
+      "violations": []
+    },
+    {
+      "label": "play-light-768",
+      "violations": []
+    },
+    {
+      "label": "review-light-768",
+      "violations": []
+    },
+    {
+      "label": "analysis-light-768",
+      "violations": []
+    },
+    {
+      "label": "puzzles-light-768",
+      "violations": []
+    },
+    {
+      "label": "openings-light-768",
+      "violations": []
+    },
+    {
+      "label": "learn-light-768",
+      "violations": []
+    },
+    {
+      "label": "progress-light-768",
+      "violations": []
+    },
+    {
+      "label": "settings-light-768",
+      "violations": []
+    },
+    {
+      "label": "ruy-lopez-light-768",
+      "violations": []
+    },
+    {
+      "label": "italian-light-768",
+      "violations": []
+    },
+    {
+      "label": "explorer-search-light-768",
+      "violations": []
+    },
+    {
+      "label": "home-light-1440",
+      "violations": []
+    },
+    {
+      "label": "play-light-1440",
+      "violations": []
+    },
+    {
+      "label": "review-light-1440",
+      "violations": []
+    },
+    {
+      "label": "analysis-light-1440",
+      "violations": []
+    },
+    {
+      "label": "puzzles-light-1440",
+      "violations": []
+    },
+    {
+      "label": "openings-light-1440",
+      "violations": []
+    },
+    {
+      "label": "learn-light-1440",
+      "violations": []
+    },
+    {
+      "label": "progress-light-1440",
+      "violations": []
+    },
+    {
+      "label": "settings-light-1440",
+      "violations": []
+    },
+    {
+      "label": "ruy-lopez-light-1440",
+      "violations": []
+    },
+    {
+      "label": "italian-light-1440",
+      "violations": []
+    },
+    {
+      "label": "explorer-search-light-1440",
+      "violations": []
+    },
+    {
+      "label": "learn/board-vision-light-1440",
+      "violations": []
+    },
+    {
+      "label": "learn/masters-light-1440",
+      "violations": []
+    },
+    {
+      "label": "home-dark-320",
+      "violations": []
+    },
+    {
+      "label": "play-dark-320",
+      "violations": []
+    },
+    {
+      "label": "review-dark-320",
+      "violations": []
+    },
+    {
+      "label": "analysis-dark-320",
+      "violations": []
+    },
+    {
+      "label": "puzzles-dark-320",
+      "violations": []
+    },
+    {
+      "label": "openings-dark-320",
+      "violations": []
+    },
+    {
+      "label": "learn-dark-320",
+      "violations": []
+    },
+    {
+      "label": "progress-dark-320",
+      "violations": [],
+      "keyboardScroll": true,
+      "recheckedAt": "2026-10-15T06:04:26.992Z"
+    },
+    {
+      "label": "settings-dark-320",
+      "violations": []
+    },
+    {
+      "label": "ruy-lopez-dark-320",
+      "violations": []
+    },
+    {
+      "label": "italian-dark-320",
+      "violations": []
+    },
+    {
+      "label": "explorer-search-dark-320",
+      "violations": []
+    },
+    {
+      "label": "home-dark-390",
+      "violations": []
+    },
+    {
+      "label": "play-dark-390",
+      "violations": []
+    },
+    {
+      "label": "review-dark-390",
+      "violations": []
+    },
+    {
+      "label": "analysis-dark-390",
+      "violations": []
+    },
+    {
+      "label": "puzzles-dark-390",
+      "violations": []
+    },
+    {
+      "label": "openings-dark-390",
+      "violations": []
+    },
+    {
+      "label": "learn-dark-390",
+      "violations": []
+    },
+    {
+      "label": "progress-dark-390",
+      "violations": [],
+      "keyboardScroll": true,
+      "recheckedAt": "2026-10-15T06:04:27.946Z"
+    },
+    {
+      "label": "settings-dark-390",
+      "violations": []
+    },
+    {
+      "label": "ruy-lopez-dark-390",
+      "violations": []
+    },
+    {
+      "label": "italian-dark-390",
+      "violations": []
+    },
+    {
+      "label": "explorer-search-dark-390",
+      "violations": []
+    },
+    {
+      "label": "learn/board-vision-dark-390",
+      "violations": []
+    },
+    {
+      "label": "learn/masters-dark-390",
+      "violations": []
+    },
+    {
+      "label": "home-dark-768",
+      "violations": []
+    },
+    {
+      "label": "play-dark-768",
+      "violations": []
+    },
+    {
+      "label": "review-dark-768",
+      "violations": []
+    },
+    {
+      "label": "analysis-dark-768",
+      "violations": []
+    },
+    {
+      "label": "puzzles-dark-768",
+      "violations": []
+    },
+    {
+      "label": "openings-dark-768",
+      "violations": []
+    },
+    {
+      "label": "learn-dark-768",
+      "violations": []
+    },
+    {
+      "label": "progress-dark-768",
+      "violations": []
+    },
+    {
+      "label": "settings-dark-768",
+      "violations": []
+    },
+    {
+      "label": "ruy-lopez-dark-768",
+      "violations": []
+    },
+    {
+      "label": "italian-dark-768",
+      "violations": []
+    },
+    {
+      "label": "explorer-search-dark-768",
+      "violations": []
+    },
+    {
+      "label": "home-dark-1440",
+      "violations": []
+    },
+    {
+      "label": "play-dark-1440",
+      "violations": []
+    },
+    {
+      "label": "review-dark-1440",
+      "violations": []
+    },
+    {
+      "label": "analysis-dark-1440",
+      "violations": []
+    },
+    {
+      "label": "puzzles-dark-1440",
+      "violations": []
+    },
+    {
+      "label": "openings-dark-1440",
+      "violations": []
+    },
+    {
+      "label": "learn-dark-1440",
+      "violations": []
+    },
+    {
+      "label": "progress-dark-1440",
+      "violations": []
+    },
+    {
+      "label": "settings-dark-1440",
+      "violations": []
+    },
+    {
+      "label": "ruy-lopez-dark-1440",
+      "violations": []
+    },
+    {
+      "label": "italian-dark-1440",
+      "violations": []
+    },
+    {
+      "label": "explorer-search-dark-1440",
+      "violations": []
+    },
+    {
+      "label": "learn/board-vision-dark-1440",
+      "violations": []
+    },
+    {
+      "label": "learn/masters-dark-1440",
+      "violations": []
+    }
+  ],
+  "violations": 0,
+  "recheckAt": "2026-10-15T06:04:27.946Z"
+}

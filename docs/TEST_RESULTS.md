@@ -20,3 +20,6 @@ Final validation: 20 unit files / 110 checks; 123 browser scenarios / 41 per pro
 
 
 Learning UI follow-up (2026-10-15): 21 unit files / 115 tests, typecheck, lint and build pass. All 26 affected desktop/mobile browser scenarios pass after an existing dashboard selector was narrowed to the introductory paragraph; the lesson/streak integration was rechecked in both projects. Four widths in both palettes produce 40 passing layout/Axe scans. See [LEARNING_POLISH.md](LEARNING_POLISH.md) and [audit report](LEARNING_POLISH_VISUAL_AUDIT.json).
+
+
+Opening/spacing follow-up: 18 opening/layout workflows plus four updated tier/dashboard browser scenarios pass on desktop/mobile. The 104-view layout/Axe audit passes after targeted rechecks of four progress scroll regions. Previous learning polish commit bb7fd91 also completed the full 123-scenario Ubuntu workflow successfully (38688429101). Details: [OPENING_SPACING.md](OPENING_SPACING.md).
