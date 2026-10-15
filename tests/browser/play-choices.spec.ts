@@ -11,7 +11,7 @@ test('Play now honors White, Black and both random outcomes with the correct boa
     await expect(dialog.getByRole('radio',{name:'Random',exact:true})).toBeChecked();
     await dialog.getByRole('radio',{name:choice.side,exact:true}).check();
     await page.evaluate(value=>{Math.random=()=>value;},choice.random);
-    await dialog.getByRole('button',{name:choice.duration,exact:true}).click();await expect(dialog).toBeHidden();await expect(page.getByLabel('Current opening',{exact:true})).toContainText(`You play ${choice.color==='w'?'White':'Black'}`);
+    await dialog.getByRole('button',{name:choice.duration,exact:true}).click();await expect(dialog).toBeHidden();await expect(page.locator('.playing-side')).toContainText(`You play ${choice.color==='w'?'White':'Black'}`);
     const game=(await games(page)).find(g=>g.status==='active')!;expect(game.playerColor).toBe(choice.color);expect(game.headers?.[choice.color==='w'?'White':'Black']).toBe('You');
     await expect(async()=>{const board=await page.getByTestId('chessboard').boundingBox(),king=await page.getByTestId('chessboard').locator('piece.white.king').boundingBox();expect(!!board&&!!king).toBe(true);expect(king!.y>board!.y+board!.height/2).toBe(choice.color==='w');}).toPass();
     await expect(page.locator('.eval-bar')).toHaveCount(0);await expect(page.getByRole('button',{name:'Hint',exact:true})).toBeDisabled();
@@ -24,10 +24,10 @@ test('live opening names update from moves, persist outside theory, and restore 
   await page.goto('/#play');await page.getByLabel('Mode',{exact:true}).selectOption('hotseat');await page.getByRole('button',{name:'Start game',exact:true}).click();
   const opening=page.getByLabel('Current opening',{exact:true});await expect(opening).toContainText('Starting position');
   for(const uci of ['e2e4','e7e5','g1f3','b8c6','f1c4'])await move(page,uci);
-  await expect(opening).toContainText('Italian');
+  await expect(opening).toContainText('Italian');await expect(page.locator('.game-history').getByLabel('Current opening',{exact:true})).toContainText('Italian');await expect(page.locator('.page-intro')).not.toContainText('Italian');await expect(page.locator('.game-history').getByLabel('Move history')).toBeVisible();
   for(const uci of ['a7a5','a2a4','h7h5','a1a3'])await move(page,uci);
   await expect(opening).toContainText('Italian');await expect.poll(async()=>(await games(page)).find(g=>g.status==='active')!.moves.length).toBe(9);await page.reload();await expect(opening).toContainText('Italian');
   for(let i=0;i<5;i++)await page.getByRole('button',{name:'Undo',exact:true}).click();
   await expect(opening).not.toContainText('Italian');await expect.poll(async()=>(await games(page)).find(g=>g.status==='active')!.moves.length).toBe(4);
-  await page.reload();await expect(opening).not.toContainText('Italian');await move(page,'f1b5');await expect(opening).toContainText('Ruy Lopez');
+  await page.reload();await expect(opening).not.toContainText('Italian');await move(page,'f1b5');await expect(opening).toContainText('Ruy Lopez');await page.getByRole('button',{name:'Agree draw',exact:true}).click();await expect(page.locator('.game-history').getByRole('heading',{name:'Draw agreed locally',exact:true})).toBeVisible();await expect(opening).toContainText('Ruy Lopez');
 });

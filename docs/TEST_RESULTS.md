@@ -26,3 +26,5 @@ Opening/spacing follow-up: 18 opening/layout workflows plus four updated tier/da
 
 
 Rated-side/live-opening follow-up: 22 unit files / 120 checks, typecheck, lint and build pass. All 22 unique desktop/mobile browser cases pass after the side tile tap-target correction and targeted final rechecks. The 18-view responsive/Axe audit passes in both palettes, including 320×480 dialogs. See [PLAY_CHOICES.md](PLAY_CHOICES.md).
+
+Opening-header relocation: typecheck, lint and build pass; all six affected Chromium/mobile cases pass, including the preserved finished-game result. Four additional responsive/Axe scans at 390 and 1440 pixels in both palettes pass with zero overflow or accessibility findings. See the follow-up in [PLAY_CHOICES.md](PLAY_CHOICES.md).
