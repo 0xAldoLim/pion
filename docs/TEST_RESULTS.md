@@ -23,3 +23,6 @@ Learning UI follow-up (2026-10-15): 21 unit files / 115 tests, typecheck, lint a
 
 
 Opening/spacing follow-up: 18 opening/layout workflows plus four updated tier/dashboard browser scenarios pass on desktop/mobile. The 104-view layout/Axe audit passes after targeted rechecks of four progress scroll regions. Previous learning polish commit bb7fd91 also completed the full 123-scenario Ubuntu workflow successfully (38688429101). Details: [OPENING_SPACING.md](OPENING_SPACING.md).
+
+
+Rated-side/live-opening follow-up: 22 unit files / 120 checks, typecheck, lint and build pass. All 22 unique desktop/mobile browser cases pass after the side tile tap-target correction and targeted final rechecks. The 18-view responsive/Axe audit passes in both palettes, including 320×480 dialogs. See [PLAY_CHOICES.md](PLAY_CHOICES.md).

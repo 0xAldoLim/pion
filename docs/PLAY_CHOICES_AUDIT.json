@@ -1,0 +1,78 @@
+{
+  "at": "2026-10-15T07:22:39.388Z",
+  "scans": [
+    {
+      "label": "live-opening-light-320",
+      "violations": []
+    },
+    {
+      "label": "side-dialog-light-320",
+      "violations": []
+    },
+    {
+      "label": "live-opening-light-390",
+      "violations": []
+    },
+    {
+      "label": "side-dialog-light-390",
+      "violations": []
+    },
+    {
+      "label": "live-opening-light-768",
+      "violations": []
+    },
+    {
+      "label": "side-dialog-light-768",
+      "violations": []
+    },
+    {
+      "label": "live-opening-light-1440",
+      "violations": []
+    },
+    {
+      "label": "side-dialog-light-1440",
+      "violations": []
+    },
+    {
+      "label": "side-dialog-light-320x480",
+      "violations": []
+    },
+    {
+      "label": "live-opening-dark-320",
+      "violations": []
+    },
+    {
+      "label": "side-dialog-dark-320",
+      "violations": []
+    },
+    {
+      "label": "live-opening-dark-390",
+      "violations": []
+    },
+    {
+      "label": "side-dialog-dark-390",
+      "violations": []
+    },
+    {
+      "label": "live-opening-dark-768",
+      "violations": []
+    },
+    {
+      "label": "side-dialog-dark-768",
+      "violations": []
+    },
+    {
+      "label": "live-opening-dark-1440",
+      "violations": []
+    },
+    {
+      "label": "side-dialog-dark-1440",
+      "violations": []
+    },
+    {
+      "label": "side-dialog-dark-320x480",
+      "violations": []
+    }
+  ],
+  "violations": 0
+}

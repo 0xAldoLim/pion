@@ -16,6 +16,7 @@ export default function RatedPlayDialog({onClose}:{onClose:()=>void}){
   const ratings=useLiveQuery(()=>db.ratings.toArray(),[],[]);
   const dialog=useRef<HTMLDivElement>(null),launching=useRef(false);
   const [starting,setStarting]=useState<number>(),[error,setError]=useState('');
+  const [side,setSide]=useState<'w'|'b'|'random'>('random');
   const close=()=>{if(!launching.current)onClose();};
   useFocusDialog(dialog,true,close);
 
@@ -26,7 +27,7 @@ export default function RatedPlayDialog({onClose}:{onClose:()=>void}){
       const category=ratingCategory(seconds,0);
       const rating=await db.ratings.get(category)??freshRating(category);
       const opponent=BOTS[Math.floor(Math.random()*BOTS.length)]!.id;
-      const color=Math.random()<0.5?'w':'b';
+      const color=side==='random'?(Math.random()<0.5?'w':'b'):side;
       const game=newGame(opponent,color,'rated',seconds);
       game.rated={category,before:rating.value,opponent:matchRating(rating.value)};
       const name=botById(opponent).name;
@@ -40,7 +41,8 @@ export default function RatedPlayDialog({onClose}:{onClose:()=>void}){
   return <div className="app-dialog rated-dialog" ref={dialog} role="dialog" aria-modal="true" aria-labelledby="rated-title" aria-describedby="rated-description" tabIndex={-1} onClick={event=>{if(event.target===event.currentTarget)close();}}>
     <section className="card">
       <div className="rated-dialog-heading"><Character seed={0} size={56}/><div><span className="eyebrow">PLAY AT YOUR LEVEL</span><h2 id="rated-title">Choose your duration.</h2></div><button className="rated-dialog-close" aria-label="Close time selection" disabled={starting!==undefined} onClick={close}><X size={21}/></button></div>
-      <p id="rated-description">Pick a time to start your match. Your opponent will be within 20 points of that rating.</p>
+      <p id="rated-description">Choose your side, then tap a duration to start. Your opponent will be within 20 points of that rating.</p>
+      <fieldset className="rated-color-choice" disabled={starting!==undefined}><legend>Your side</legend><div>{([{value:'w',label:'White'},{value:'b',label:'Black'},{value:'random',label:'Random'}] as const).map(option=><label key={option.value}><input type="radio" name="rated-side" value={option.value} checked={side===option.value} onChange={()=>setSide(option.value)}/><span>{option.label}</span></label>)}</div><p>Random gives White and Black an equal chance.</p></fieldset>
       {(['blitz','rapid'] as const).map(category=>{
         const rating=ratings.find(value=>value.id===category)??freshRating(category);
         const Icon=category==='blitz'?Zap:Timer;
@@ -51,7 +53,7 @@ export default function RatedPlayDialog({onClose}:{onClose:()=>void}){
       })}
       <p className="rated-dialog-note">Wins and losses update only the selected Blitz or Rapid rating. Practice games leave both ratings unchanged.</p>
       {error&&<div className="error" role="alert">{error}</div>}
-      <div className="rated-dialog-footer"><span>Local rated play · automatic opponent and color</span><button disabled={starting!==undefined} onClick={close}>Cancel</button></div>
+      <div className="rated-dialog-footer"><span>Local rated play · opponent matched to your rating</span><button disabled={starting!==undefined} onClick={close}>Cancel</button></div>
     </section>
   </div>;
 }

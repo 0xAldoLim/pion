@@ -27,3 +27,6 @@ Learning UI follow-up: consistently aligned numbered lesson rows; accessible seg
 
 
 Opening presentation follow-up: restored visible learning tiers and master examples, SSS–D legend, paired move navigation, non-overlapping study layout, scoped ECO-search styles, consistent shared card/disclosure spacing and keyboard-scrollable progress regions. See [OPENING_SPACING.md](OPENING_SPACING.md).
+
+
+Play follow-up: explicit White/Black/Random selection before choosing a rated duration; full-tile phone targets; live ECO/opening name and player side in game headers, with transpositions, out-of-book persistence and undo/reload support. See [PLAY_CHOICES.md](PLAY_CHOICES.md).
