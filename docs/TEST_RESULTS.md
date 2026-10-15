@@ -13,3 +13,5 @@ Updated 2026-10-15. Exact release runs are recorded in [LEARNING_VALIDATION.md](
 - M6 source 0bd177f3f0cf214aaec96f542338faeb077099a7 passed [Ubuntu CI](https://github.com/0xAldoLim/pion/actions/runs/38530648125), including Chromium/mobile/Firefox, real engines, optional full-pack tamper/offline checks, licenses, build and units. New results are recorded separately.
 
 Commands: pnpm typecheck; pnpm lint; pnpm test; pnpm build; pnpm exec playwright test --project=chromium --project=mobile --workers=1; pnpm assets:deep; pnpm audit:licenses. Ubuntu runs pnpm test:e2e on all three projects. Local Firefox remains a host limitation.
+
+Full-matrix diagnostic run 38661300173 passed 118/120 scenarios and exposed two lazy-route test synchronization issues. Artifact review confirmed the Firefox page was still at the loading placeholder with UI timers frozen. Explicit route readiness and freezing after setup preserve all original assertions; twelve desktop/mobile repetitions pass. The final full-matrix run is recorded in LEARNING_VALIDATION.md.

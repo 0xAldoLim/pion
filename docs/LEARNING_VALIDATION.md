@@ -32,3 +32,7 @@ Automated checks establish legal positions, specified objectives, actual interac
 ![Mobile lesson](screenshots/lesson-mobile-dark.png)
 
 Final evidence-grounding audit: a general back-rank observation about the next side to move is no longer treated as the mover’s king-safety error. King-safety recommendations require a concrete mating threat or a verified losing mate score. Tactical-threat recommendations inspect the opponent’s actual legal searched reply instead of a motif created by the learner. Two regression checks replay the relevant board facts and a legal knight fork; reviewed-game workflows are revalidated.
+
+## Full-matrix follow-up
+
+Source ddf9ba20ff1d60bf70a8650483990d240029daeb, Ubuntu run 38661300173: 118/120 browser scenarios passed. The two diagnostics showed an early empty character query during lazy route loading and a Firefox route stuck at the Suspense placeholder because the test froze UI timers before the transition. The character test now waits for all twelve profiles before checking the same seven identities. The premove test finishes route setup before freezing time, still checks every original queue/history/cancellation assertion, and additionally waits for the saved active history after restoring the preference. Route helpers wait for the actual heading. Twelve repeated desktop/mobile runs pass. No scenario, assertion, project or retry policy was removed.
