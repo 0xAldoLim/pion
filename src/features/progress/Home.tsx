@@ -1,6 +1,6 @@
 import {lazy,Suspense} from 'react';
 import {useLiveQuery} from 'dexie-react-hooks';
-import {ArrowRight,BookOpen,ChevronRight,Clock,Flame,Play,Target,TrendingUp} from 'lucide-react';
+import {ArrowRight,BookOpen,ChevronRight,CircleHelp,Clock,Flame,Play,Target,TrendingUp} from 'lucide-react';
 import {useApp} from '../../app/context';
 import {db,saveGame} from '../../storage/db';
 import {newGame} from '../../chess/rules';
@@ -14,11 +14,12 @@ export default function Home(){
   const ratings=useLiveQuery(()=>db.ratings.toArray(),[],[]);
   const {navigate,openRatedPlay,preferences,notify}=useApp();
   const games=useLiveQuery(()=>db.games.orderBy('updatedAt').reverse().toArray(),[],[]);const attempts=useLiveQuery(()=>db.attempts.toArray(),[],[]);const mistakes=useLiveQuery(()=>db.mistakes.toArray(),[],[]);const training=useLiveQuery(()=>db.training.toArray(),[],[]);
-  const summary=stats(games,attempts,mistakes,training);const active=games.find(g=>g.status==='active');const today=new Date().toDateString();
-  const activity=attempts.filter(a=>new Date(a.at).toDateString()===today).length+training.filter(a=>new Date(a.at).toDateString()===today).length;
+  const lessonActivity=useLiveQuery(()=>db.learningEvidence.toArray(),[],[]);
+  const summary=stats(games,attempts,mistakes,training,0,lessonActivity);const active=games.find(g=>g.status==='active');const today=new Date().toDateString();
+  const activity=attempts.filter(a=>new Date(a.at).toDateString()===today).length+training.filter(a=>new Date(a.at).toDateString()===today).length+new Set(lessonActivity.filter(a=>new Date(a.at).toDateString()===today).map(a=>`${a.lessonId}:${a.stepId}`)).size+games.filter(g=>g.status==='finished'&&new Date(g.updatedAt).toDateString()===today).length;
   async function quickPlay(botId:string){try{const game=newGame(botId);game.headers={White:"You",Black:botById(botId).name};await saveGame(game);navigate('play',game.id);}catch(e){notify(String(e));}}
   return <>
-    <div className="page-intro"><div><span className="eyebrow">MAKE ROOM FOR A GOOD MOVE</span><h1>Welcome to your chess journey.</h1><p>A quiet place to play, understand, and get a little better.</p></div><span className="streak"><Flame size={17}/>{summary.days} active day{summary.days===1?'':'s'}</span></div>
+    <div className="page-intro"><div><span className="eyebrow">MAKE ROOM FOR A GOOD MOVE</span><h1>Welcome to your chess journey.</h1><p>A quiet place to play, understand, and get a little better.</p></div><details className="streak"><summary><Flame size={25} aria-hidden="true"/><span><strong>{summary.streak} day streak</strong><span>{summary.activeToday?'Today’s practice recorded':summary.streak?'Keep it going today':'One practice starts your streak'}</span></span><CircleHelp size={17} aria-hidden="true"/></summary><p>Consecutive days of chess practice. Attempt a puzzle, finish or review a game, or complete a lesson or opening exercise to count today. Your streak stays active through today if you practiced yesterday. Days follow your device’s local time.</p></details></div>
     <div className="home-ratings card"><div><span className="eyebrow">YOUR LOCAL RATINGS</span><h2>A challenge at your level.</h2></div><div className="rating-pair">{(["blitz","rapid"] as const).map(category=><div key={category}><span>{category}</span><strong>{ratings.find(r=>r.id===category)?.value??600}</strong><small>{ratings.find(r=>r.id===category)?.games??0} rated games</small></div>)}</div><button className="primary" onClick={openRatedPlay}>Play now <ArrowRight size={18}/></button></div><div className="home-top"><section className="hero"><div className="hero-copy"><span className="mini-tag">YOUR NEXT CHAPTER</span><h2>A little better.<br/><em>Every move.</em></h2><p>Find your rhythm against a friendly opponent. Ponke will be in your corner.</p><button className="primary light" onClick={openRatedPlay}>Play now <ArrowRight size={18}/></button><span className="hero-foot"><span className="dot"/> Local engine. Limitless learning.</span></div><div className="hero-art"><div className="hero-board" aria-hidden="true">{Array.from({length:25},(_,i)=><span className={(i+Math.floor(i/5))%2?'dark':''} key={i}>{i===6?'♞':i===13?'♙':i===17?'♝':i===23?'♜':''}</span>)}</div><Character seed={0} color="#d5e5b5" mood="happy" size={160}/><span className="art-star one">✦</span><span className="art-star two">✧</span></div></section>
     <Suspense fallback={<section className="daily card" role="status">Loading your daily position…</section>}><DailyChallenge/></Suspense></div>
     <LearningFocus/>

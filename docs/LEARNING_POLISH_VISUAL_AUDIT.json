@@ -1,0 +1,208 @@
+{
+  "at": "2026-10-15T05:43:55.888Z",
+  "layouts": [
+    "learn-light-320",
+    "lesson-light-320",
+    "masters-light-320",
+    "home-light-320",
+    "bots-light-320",
+    "learn-light-390",
+    "lesson-light-390",
+    "masters-light-390",
+    "home-light-390",
+    "bots-light-390",
+    "learn-light-768",
+    "lesson-light-768",
+    "masters-light-768",
+    "home-light-768",
+    "bots-light-768",
+    "learn-light-1440",
+    "lesson-light-1440",
+    "masters-light-1440",
+    "home-light-1440",
+    "bots-light-1440",
+    "learn-dark-320",
+    "lesson-dark-320",
+    "masters-dark-320",
+    "home-dark-320",
+    "bots-dark-320",
+    "learn-dark-390",
+    "lesson-dark-390",
+    "masters-dark-390",
+    "home-dark-390",
+    "bots-dark-390",
+    "learn-dark-768",
+    "lesson-dark-768",
+    "masters-dark-768",
+    "home-dark-768",
+    "bots-dark-768",
+    "learn-dark-1440",
+    "lesson-dark-1440",
+    "masters-dark-1440",
+    "home-dark-1440",
+    "bots-dark-1440"
+  ],
+  "scans": [
+    {
+      "label": "learn-light-320",
+      "violations": []
+    },
+    {
+      "label": "lesson-light-320",
+      "violations": []
+    },
+    {
+      "label": "masters-light-320",
+      "violations": []
+    },
+    {
+      "label": "home-light-320",
+      "violations": []
+    },
+    {
+      "label": "bots-light-320",
+      "violations": []
+    },
+    {
+      "label": "learn-light-390",
+      "violations": []
+    },
+    {
+      "label": "lesson-light-390",
+      "violations": []
+    },
+    {
+      "label": "masters-light-390",
+      "violations": []
+    },
+    {
+      "label": "home-light-390",
+      "violations": []
+    },
+    {
+      "label": "bots-light-390",
+      "violations": []
+    },
+    {
+      "label": "learn-light-768",
+      "violations": []
+    },
+    {
+      "label": "lesson-light-768",
+      "violations": []
+    },
+    {
+      "label": "masters-light-768",
+      "violations": []
+    },
+    {
+      "label": "home-light-768",
+      "violations": []
+    },
+    {
+      "label": "bots-light-768",
+      "violations": []
+    },
+    {
+      "label": "learn-light-1440",
+      "violations": []
+    },
+    {
+      "label": "lesson-light-1440",
+      "violations": []
+    },
+    {
+      "label": "masters-light-1440",
+      "violations": []
+    },
+    {
+      "label": "home-light-1440",
+      "violations": []
+    },
+    {
+      "label": "bots-light-1440",
+      "violations": []
+    },
+    {
+      "label": "learn-dark-320",
+      "violations": []
+    },
+    {
+      "label": "lesson-dark-320",
+      "violations": []
+    },
+    {
+      "label": "masters-dark-320",
+      "violations": []
+    },
+    {
+      "label": "home-dark-320",
+      "violations": []
+    },
+    {
+      "label": "bots-dark-320",
+      "violations": []
+    },
+    {
+      "label": "learn-dark-390",
+      "violations": []
+    },
+    {
+      "label": "lesson-dark-390",
+      "violations": []
+    },
+    {
+      "label": "masters-dark-390",
+      "violations": []
+    },
+    {
+      "label": "home-dark-390",
+      "violations": []
+    },
+    {
+      "label": "bots-dark-390",
+      "violations": []
+    },
+    {
+      "label": "learn-dark-768",
+      "violations": []
+    },
+    {
+      "label": "lesson-dark-768",
+      "violations": []
+    },
+    {
+      "label": "masters-dark-768",
+      "violations": []
+    },
+    {
+      "label": "home-dark-768",
+      "violations": []
+    },
+    {
+      "label": "bots-dark-768",
+      "violations": []
+    },
+    {
+      "label": "learn-dark-1440",
+      "violations": []
+    },
+    {
+      "label": "lesson-dark-1440",
+      "violations": []
+    },
+    {
+      "label": "masters-dark-1440",
+      "violations": []
+    },
+    {
+      "label": "home-dark-1440",
+      "violations": []
+    },
+    {
+      "label": "bots-dark-1440",
+      "violations": []
+    }
+  ],
+  "violations": 0
+}
