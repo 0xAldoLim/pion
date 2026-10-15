@@ -5,10 +5,26 @@ import {lessonStatus} from './progress';
 import {SCORING_VERSION} from '../chess/scoring';
 import {positionIdentity,playUci} from '../chess/rules';
 import {Chess} from 'chess.js';
+import {moveFacts} from '../coach/facts';
 import {positionKey,repertoireIndex} from '../openings/position-index';
 export const SKILL_NAMES:Record<Skill,string>={'board-vision':'Board vision','threat-recognition':'Threat recognition',calculation:'Tactical calculation','opening-fundamentals':'Opening fundamentals','opening-recall':'Opening recall','king-safety':'King safety',planning:'Middlegame planning',endgames:'Endgame technique',defense:'Defensive resources'};
 export function reviewedGames(games:Game[]){return games.filter(g=>g.status==='finished'&&g.headers?.PionAssisted!=='true'&&g.review?.completed&&g.review.version===SCORING_VERSION&&g.review.positionId===positionIdentity(g)&&g.review.moves.length===g.moves.length&&g.review.moves.every(r=>r.status==='complete'));}
-export function issueSkill(row:ReviewMove):Skill {const kinds=row.evidence.map(e=>e.kind);return kinds.includes('allowsMate')||kinds.includes('backRank')?'king-safety':kinds.includes('hanging')?'board-vision':kinds.some(k=>['fork','pin','skewer','doubleAttack','discoveredAttack'].includes(k))?'threat-recognition':row.phase==='opening'?'opening-fundamentals':row.phase==='endgame'?'endgames':'calculation';}
+const issueCache=new WeakMap<ReviewMove,Skill>();
+export function issueSkill(row:ReviewMove):Skill {
+  const cached=issueCache.get(row);if(cached)return cached;
+  const kinds=row.evidence.map(e=>e.kind),played=row.after?.candidates[0],score=played?.score;
+  let skill:Skill;
+  // A geometric back-rank observation concerns the next side to move. It is not
+  // evidence that the mover exposed their own king or caused the reviewed loss.
+  if(kinds.includes('allowsMate')||score?.kind==='mate'&&score.winner!==row.color&&row.scores.pion.loss>=0.05)skill='king-safety';
+  else if(kinds.includes('hanging'))skill='board-vision';
+  else {
+    let tacticalReply=false;
+    if(played?.pv[0]===row.uci&&played.pv[1])try{tacticalReply=moveFacts(row.fenAfter,played.pv[1]).some(e=>['fork','pin','skewer','doubleAttack','discoveredAttack'].includes(e.kind));}catch{/* A missing/invalid reply cannot support a tactical recommendation. */}
+    skill=tacticalReply?'threat-recognition':row.phase==='opening'?'opening-fundamentals':row.phase==='endgame'?'endgames':'calculation';
+  }
+  issueCache.set(row,skill);return skill;
+}
 const lessonFor:Record<Skill,string>={'board-vision':'board-vision','threat-recognition':'forks',calculation:'calculation','opening-fundamentals':'development','opening-recall':'development','king-safety':'king-safety',planning:'open-files',endgames:'queen-mate',defense:'defensive-resources'};
 const themeFor:Record<Skill,string>={'board-vision':'hangingPiece','threat-recognition':'fork',calculation:'mateIn2','opening-fundamentals':'opening','opening-recall':'opening','king-safety':'mateIn1',planning:'quietMove',endgames:'endgame',defense:'defensiveMove'};
 export function learningFocus(games:Game[],repertoire:Repertoire[]=[],now=Date.now(),progress:LessonProgress[]=[],evidence:LearningEvidence[]=[]){

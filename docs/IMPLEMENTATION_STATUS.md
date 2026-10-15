@@ -18,6 +18,6 @@ Preserved: board/frame, promotion, premoves, clocks, capture racks, seven origin
 
 Dexie v6 adds learning tables; v7 fills three practice-assistance defaults. Backup v4 accepts v1–v4 with validated defaults. Reading never migrates into mastery. Existing IDs and schedules remain valid.
 
-All essential chunks/data/lessons/studies/lite Stockfish are precached after offline readiness. Full Stockfish stays optional. Main JS is about 76.83 KB gzip; puzzle/ECO data remain larger separate chunks. See KNOWN_ISSUES.md.
+All essential chunks/data/lessons/studies/lite Stockfish are precached after offline readiness. Full Stockfish stays optional. Main JS is about 76.85 KB gzip; puzzle/ECO data remain larger separate chunks. See KNOWN_ISSUES.md.
 
 Preserve SSH origin and use authenticated HTTPS pushes to the same Pion repository. No force push/reset. Generated engines, dist and browser artifacts stay ignored. Resume from actual Git status and validation evidence.

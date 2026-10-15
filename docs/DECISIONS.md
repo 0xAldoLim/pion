@@ -23,3 +23,5 @@
 20. Fourteen official broadcast games and original study annotations retain CC BY-SA 4.0 separately from application GPL and CC0 puzzle/ECO data. Historical predictions are not forced puzzles; no fake evaluations, quotations or date attribution.
 21. Lazy routes/data reduce startup cost but remain fully precached offline. Keep base Chessground CSS before custom styles in the entry point; validate actual coordinates/frame bounds after code splitting.
 22. Calibration tooling preserves historical reports, pairs colors, records actual terminations and leaves unresolved cutoffs unresolved. Four scaled-budget endpoint games validate the harness and do not justify Elo claims or retuning.
+
+23. Final recommendation audit: do not infer a learner’s king-safety error from the opponent’s contextual back-rank geometry or infer a missed enemy tactic from the learner’s own fork. Require a mating threat/score or inspect the actual legal opponent PV reply. Cache categories only by immutable review-row identity.

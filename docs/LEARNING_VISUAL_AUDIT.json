@@ -1,0 +1,203 @@
+{
+  "at": "2026-10-15T00:40:28.158Z",
+  "layouts": [
+    "home-light",
+    "play-light",
+    "review-light",
+    "analysis-light",
+    "puzzles-light",
+    "openings-light",
+    "learn-light",
+    "progress-light",
+    "settings-light",
+    "lesson-demo-light",
+    "italian-light",
+    "master-light",
+    "home-dark",
+    "play-dark",
+    "review-dark",
+    "analysis-dark",
+    "puzzles-dark",
+    "openings-dark",
+    "learn-dark",
+    "progress-dark",
+    "settings-dark",
+    "lesson-demo-dark",
+    "italian-dark",
+    "master-dark",
+    "learn/board-vision-320",
+    "openings/explorer:italian-320",
+    "openings/repertoire-320",
+    "learn/masters-320",
+    "learn/master:tata-2024-10-5-320",
+    "learn/board-vision-390",
+    "openings/explorer:italian-390",
+    "openings/repertoire-390",
+    "learn/masters-390",
+    "learn/master:tata-2024-10-5-390",
+    "learn/board-vision-768",
+    "openings/explorer:italian-768",
+    "openings/repertoire-768",
+    "learn/masters-768",
+    "learn/master:tata-2024-10-5-768"
+  ],
+  "scans": [
+    {
+      "label": "home-light",
+      "violations": []
+    },
+    {
+      "label": "play-light",
+      "violations": []
+    },
+    {
+      "label": "review-light",
+      "violations": []
+    },
+    {
+      "label": "analysis-light",
+      "violations": []
+    },
+    {
+      "label": "puzzles-light",
+      "violations": []
+    },
+    {
+      "label": "openings-light",
+      "violations": []
+    },
+    {
+      "label": "learn-light",
+      "violations": []
+    },
+    {
+      "label": "progress-light",
+      "violations": []
+    },
+    {
+      "label": "settings-light",
+      "violations": []
+    },
+    {
+      "label": "lesson-demo-light",
+      "violations": []
+    },
+    {
+      "label": "italian-light",
+      "violations": []
+    },
+    {
+      "label": "master-light",
+      "violations": []
+    },
+    {
+      "label": "home-dark",
+      "violations": []
+    },
+    {
+      "label": "play-dark",
+      "violations": []
+    },
+    {
+      "label": "review-dark",
+      "violations": []
+    },
+    {
+      "label": "analysis-dark",
+      "violations": []
+    },
+    {
+      "label": "puzzles-dark",
+      "violations": []
+    },
+    {
+      "label": "openings-dark",
+      "violations": []
+    },
+    {
+      "label": "learn-dark",
+      "violations": []
+    },
+    {
+      "label": "progress-dark",
+      "violations": []
+    },
+    {
+      "label": "settings-dark",
+      "violations": []
+    },
+    {
+      "label": "lesson-demo-dark",
+      "violations": []
+    },
+    {
+      "label": "italian-dark",
+      "violations": []
+    },
+    {
+      "label": "master-dark",
+      "violations": []
+    },
+    {
+      "label": "learn/board-vision-320",
+      "violations": []
+    },
+    {
+      "label": "openings/explorer:italian-320",
+      "violations": []
+    },
+    {
+      "label": "openings/repertoire-320",
+      "violations": []
+    },
+    {
+      "label": "learn/masters-320",
+      "violations": []
+    },
+    {
+      "label": "learn/master:tata-2024-10-5-320",
+      "violations": []
+    },
+    {
+      "label": "learn/board-vision-390",
+      "violations": []
+    },
+    {
+      "label": "openings/explorer:italian-390",
+      "violations": []
+    },
+    {
+      "label": "openings/repertoire-390",
+      "violations": []
+    },
+    {
+      "label": "learn/masters-390",
+      "violations": []
+    },
+    {
+      "label": "learn/master:tata-2024-10-5-390",
+      "violations": []
+    },
+    {
+      "label": "learn/board-vision-768",
+      "violations": []
+    },
+    {
+      "label": "openings/explorer:italian-768",
+      "violations": []
+    },
+    {
+      "label": "openings/repertoire-768",
+      "violations": []
+    },
+    {
+      "label": "learn/masters-768",
+      "violations": []
+    },
+    {
+      "label": "learn/master:tata-2024-10-5-768",
+      "violations": []
+    }
+  ],
+  "violations": 0
+}

@@ -1,5 +1,5 @@
 import {describe,it,expect} from 'vitest';
-import {learningFocus,skillProfiles,issueTrend} from '../../src/learning/recommendations';
+import {learningFocus,skillProfiles,issueTrend,issueSkill} from '../../src/learning/recommendations';
 import {CURRICULUM} from '../../src/data/curriculum';
 import {freshLesson} from '../../src/learning/progress';
 import {importPgn,positionIdentity,playUci} from '../../src/chess/rules';
@@ -15,3 +15,11 @@ describe('grounded learning recommendations',()=>{
   it('does not count a boundary game in both trend periods',()=>{const now=10000000000,game=reviewed('boundary',now-7*86400000);const trend=issueTrend([game],'king-safety',now);expect(trend[0]!.games).toBe(0);expect(trend[1]!.games).toBe(1);});
 });
 
+
+it('does not turn the opponent’s geometric back rank into the learner’s king-safety error',()=>{const row=reviewed('context',1).review.moves[0]!;expect(row.evidence.some(e=>e.kind==='backRank')).toBe(true);expect(issueSkill(row)).toBe('opening-fundamentals');});
+it('uses the opponent’s legal searched fork rather than a motif created by the learner',()=>{
+  const before='7k/8/8/8/5n2/8/P7/2K1Q3 w - - 0 1',board=new Chess(before);playUci(board,'a2a3');const after=board.fen(),base=reviewed('reply',1).review.moves[0]!;
+  const row={...base,phase:'middlegame',fenBefore:before,fenAfter:after,uci:'a2a3',evidence:moveFacts(before,'a2a3'),after:{candidates:[{pv:['a2a3','f4d3'],score:{kind:'cp',value:-400}}]}} as ReviewMove;
+  expect(moveFacts(after,'f4d3').some(e=>e.kind==='fork')).toBe(true);expect(issueSkill(row)).toBe('threat-recognition');
+  playUci(board,'f4d3');const own={...row,color:'b',fenBefore:after,fenAfter:board.fen(),uci:'f4d3',evidence:moveFacts(after,'f4d3'),after:undefined} as unknown as ReviewMove;expect(issueSkill(own)).toBe('calculation');
+});
