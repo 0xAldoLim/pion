@@ -1,6 +1,6 @@
 import {useRef,useState} from 'react';
 import {useLiveQuery} from 'dexie-react-hooks';
-import {Timer,Zap,X} from 'lucide-react';
+import {ArrowRight,Timer,Zap,X} from 'lucide-react';
 import {useApp} from '../../app/context';
 import {Character} from '../../components/Character';
 import {useFocusDialog} from '../../components/useFocusDialog';
@@ -51,7 +51,8 @@ export default function RatedPlayDialog({onClose}:{onClose:()=>void}){
           <div className="rated-duration-options">{durations.filter(seconds=>ratingCategory(seconds,0)===category).map(seconds=><button key={seconds} disabled={starting!==undefined} aria-label={`${seconds/60} ${seconds===60?'minute':'minutes'} · ${category==='blitz'?'Blitz':'Rapid'}`} onClick={()=>void start(seconds)}><strong>{seconds/60}</strong><span>{starting===seconds?'Starting…':'min'}</span></button>)}</div>
         </div>;
       })}
-      <p className="rated-dialog-note">Wins and losses update only the selected Blitz or Rapid rating. Practice games leave both ratings unchanged.</p>
+      <p className="rated-dialog-note">Wins and losses update only the selected Blitz or Rapid rating.</p>
+      <div className="rated-practice-option"><div><strong>Practice with a bot</strong><p>Choose your opponent, use hints and undo. Your Blitz and Rapid ratings stay unchanged.</p></div><button disabled={starting!==undefined} onClick={()=>{if(!launching.current){navigate('play','practice');onClose();}}}>Practice <ArrowRight size={17}/></button></div>
       {error&&<div className="error" role="alert">{error}</div>}
       <div className="rated-dialog-footer"><span>Local rated play · opponent matched to your rating</span><button disabled={starting!==undefined} onClick={close}>Cancel</button></div>
     </section>

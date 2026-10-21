@@ -19,7 +19,7 @@ Pion is a free, open-source chess training app that runs in your browser. Play f
 
 Once Pion is running, choose an activity from the navigation:
 
-1. **Play now:** choose your side and a duration to start a local rated game against a bot. For unrated practice, open **Play** and select an opponent.
+1. **Play now:** choose your side and a duration to start a local rated game against a bot. Choose **Practice** in the same dialog to select an opponent and set up an unrated game.
 2. **Learn:** open **Guided path** for a starting point, **Lesson library** to choose a topic, or **Master studies** to explore historical games.
 3. **Openings:** discover an opening, follow the board demonstration, and practice a short line before adding it to **My repertoire**.
 4. **Game review:** finish a game and select **Review this game → Run review** to find useful moments to revisit.

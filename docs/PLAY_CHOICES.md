@@ -18,3 +18,9 @@ Local screenshots: `outputs/play-choices-evidence`, including the side selector 
 ## Move-history header follow-up
 
 Typecheck, lint and production build pass after the relocation (`index-BBbCkvVF.js`; 104 precache entries / 5258.10 KiB). All six affected Chromium/mobile browser checks pass: side selection, opening updates/undo/reload/finished result, and active board frame/premoves/flipping. Four additional layout/Axe scans at 390 and 1440 pixels in both palettes have zero horizontal overflow or accessibility findings. Screenshots and raw audit: `outputs/history-header-evidence`.
+
+## Practice entry
+
+The Play now dialog includes a visible **Practice** button beside an explanation of unrated play. It opens `#play/practice`, where users choose a bot, side and time control before starting. This dedicated route skips automatic game resumption and presents the practice setup without the rated lobby, including after a reload. Opening it does not create a game, replace a saved rated game, or change ratings.
+
+Typecheck, lint and production build pass (`index-DC6UwaQx.js`; 104 precache entries / 5271.24 KiB). All twelve affected desktop/mobile browser scenarios pass, including the new practice route, practice results leaving ratings unchanged, saved-rated-game isolation, rated duration/color selection, opening names, cancellation and focus. Six responsive/Axe views pass in both themes at 1440×1000, 390×844 and 320×480, with the Practice button reachable and no overflow or accessibility findings. Screenshots and raw audit: `outputs/practice-entry-evidence`.

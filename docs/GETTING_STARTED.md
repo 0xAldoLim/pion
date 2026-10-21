@@ -44,4 +44,6 @@ Settings independently controls practice evaluation, provisional classifications
 
 **Play now** opens the duration picker directly. The selected time affects either your local Blitz or Rapid standing. Active rated games hide evaluation, hints, coaching and engine variations; full review becomes available after the result is saved. Selectable practice bots leave both ratings unchanged. Opponent ratings remain strength estimates.
 
+Choose **Practice** in the Play now dialog to open the practice setup. Pick a bot, your side and a time control, then select **Start game**. This opens a fresh setup even if another game is saved; it does not create a game until you start one. Practice results leave both Blitz and Rapid ratings unchanged.
+
 After **Offline ready** appears, essential lessons, repertoire, studies, puzzles and the lite engine work without a connection. Backups remain available in Settings; the full Stockfish pack is an optional installation.
