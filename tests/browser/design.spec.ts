@@ -52,7 +52,7 @@ test('active game frame stays aligned through premoves and board flipping',async
   const after=await surface.boundingBox();expect(after!.width).toBeCloseTo(before!.width,0);expect(after!.height).toBeCloseTo(before!.height,0);
   for(const width of [1440,1024,768,641,390,320]){await page.setViewportSize({width,height:900});await expect(async()=>{await page.clock.runFor(32);await measureFits(page);}).toPass({timeout:5000});}
   await expect(page.locator('.board-footer .player-strip strong')).toHaveText('You');await page.getByRole('button',{name:'Flip',exact:true}).click();await page.clock.runFor(32);await expect(page.locator('.board-column>.player-strip strong')).toHaveText('You');await expect(page.locator('.eval-bar')).toHaveClass(/reversed/);await measureFits(page);
-  await page.setViewportSize({width:1440,height:720});await expect(async()=>{await page.clock.runFor(32);await measureFits(page);}).toPass({timeout:5000});expect(await page.locator('.board-footer').evaluate(el=>el.getBoundingClientRect().bottom)).toBeLessThanOrEqual(722);
+  await page.setViewportSize({width:1440,height:720});await expect(async()=>{await page.clock.runFor(32);await measureFits(page);}).toPass({timeout:5000});expect(await page.locator('.board-footer').evaluate(el=>el.getBoundingClientRect().bottom)).toBeLessThanOrEqual(722);expect((await surface.boundingBox())!.width).toBeGreaterThanOrEqual(450);
 });
 
 

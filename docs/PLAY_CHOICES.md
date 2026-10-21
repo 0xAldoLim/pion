@@ -24,3 +24,15 @@ Typecheck, lint and production build pass after the relocation (`index-BBbCkvVF.
 The Play now dialog includes a visible **Practice** button beside an explanation of unrated play. It opens `#play/practice`, where users choose a bot, side and time control before starting. This dedicated route skips automatic game resumption and presents the practice setup without the rated lobby, including after a reload. Opening it does not create a game, replace a saved rated game, or change ratings.
 
 Typecheck, lint and production build pass (`index-DC6UwaQx.js`; 104 precache entries / 5271.24 KiB). All twelve affected desktop/mobile browser scenarios pass, including the new practice route, practice results leaving ratings unchanged, saved-rated-game isolation, rated duration/color selection, opening names, cancellation and focus. Six responsive/Axe views pass in both themes at 1440×1000, 390×844 and 320×480, with the Practice button reachable and no overflow or accessibility findings. Screenshots and raw audit: `outputs/practice-entry-evidence`.
+
+## Screen-fitting play board
+
+Active desktop games prioritize the board's available height. The page heading, navigation bar and player rows are compact; the move-history panel has a bounded width. Rated metadata appears beside the board so it does not push the playing surface down. Both player rows and clocks remain visible at the tested desktop sizes. Smaller screens retain the full-width stacked layout. Keyboard moves, annotation tools and other controls remain reachable below the board.
+
+| Viewport | Previous board edge | Updated board edge |
+| --- | --- | --- |
+| 1440×720 | 320 px | 464 px |
+| 1536×864 | 464 px | 608 px |
+| 1920×1080 | 640 px | 824 px |
+
+Typecheck, lint and build pass (`index-CTXX38pi.js`; 104 precache entries / 5272.85 KiB). Ten affected desktop/mobile workflows pass, including frame alignment, minimum board size at 1440×720, flipping, premoves, captures, annotations, color choice and rating settlement. Twenty-four responsive/Axe views pass for practice and rated play in both themes across six viewport sizes, with no overflow or accessibility findings. Local measurements and screenshots: `outputs/play-board-evidence`.

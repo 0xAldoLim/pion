@@ -161,3 +161,26 @@ html[data-mode] button{transition:transform .15s}
 .review-progress label{flex-direction:row}.review-progress progress{appearance:none;border:0;border-radius:20px;overflow:hidden;background:var(--border)}.review-progress progress::-webkit-progress-bar{background:var(--border);border-radius:20px}.review-progress progress::-webkit-progress-value{background:var(--forest);border-radius:20px}.review-progress progress::-moz-progress-bar{background:var(--forest);border-radius:20px}
 
 .rated-practice-option{display:flex;align-items:center;flex-wrap:wrap;gap:14px;padding-top:18px;border-top:1px solid var(--border)}.rated-practice-option>div{flex:1 1 230px;min-width:0}.rated-practice-option strong{display:block;font-size:16px;color:var(--ink)}.rated-practice-option p{margin-top:6px;font-size:14px;line-height:1.55;color:var(--muted)}.rated-practice-option>button{min-height:44px;flex:0 0 auto}
+
+/* Give an active game the available screen height before secondary tools. */
+.play-screen .game-side{align-self:start;min-width:0}
+.play-screen .game-side>.rated-status{margin:0}
+@media(min-width:1001px){
+  .main-shell:has(.play-screen)>.topbar{height:60px}
+  .page-content:has(>.play-screen){max-width:1700px;padding:14px 24px 24px}
+  .play-screen .play-intro{min-height:38px;gap:12px;margin-bottom:10px;flex-wrap:nowrap}
+  .play-screen .play-intro>div{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px}
+  .play-screen .play-intro .eyebrow{margin:0;font-size:12px}
+  .play-screen .play-intro h1{font-size:21px;line-height:1.3;letter-spacing:-.3px}
+  .play-screen .play-intro>button{min-height:38px;padding:8px 12px;font-size:13px;flex-shrink:0}
+  .play-screen .game-layout{--play-eval-space:0px;--play-board-edge:max(320px,calc(100dvh - 244px));grid-template-columns:minmax(0,min(calc(var(--play-board-edge) + var(--play-eval-space)),calc(100% - 324px))) minmax(280px,420px);gap:24px;max-width:none;margin:0;justify-content:center;align-items:start}
+  .play-screen .game-layout:has(.has-evaluation){--play-eval-space:44px}
+  .play-screen .board-column{width:100%;max-width:none;margin:0}
+  .play-screen .player-strip{min-height:57px;padding-top:4px;padding-bottom:4px}
+  .play-screen .player-strip>div{display:grid;grid-template-columns:auto minmax(0,1fr);gap:3px 10px;align-items:baseline}
+  .play-screen .player-strip strong{grid-column:1;grid-row:1}
+  .play-screen .player-strip small{grid-column:2;grid-row:1;font-size:13px!important}
+  .play-screen .player-strip .captured-pieces{grid-column:1/-1;grid-row:2}
+  .play-screen .player-strip .clock{padding:6px 10px;font-size:22px}
+  .play-screen .board-footer .player-strip.you{padding-top:6px;padding-bottom:4px}
+}
