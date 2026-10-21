@@ -30,3 +30,5 @@ Opening presentation follow-up: restored visible learning tiers and master examp
 
 
 Play follow-up: explicit White/Black/Random selection before choosing a rated duration; full-tile phone targets; live ECO/opening name above the move log and player side above the board, with transpositions, out-of-book persistence and undo/reload support. See [PLAY_CHOICES.md](PLAY_CHOICES.md).
+
+Review and board tools (2026-10-21): imported and saved games rewind before review, follow completed engine analysis, and offer a separate Deep review action. Conditional capture premoves support friendly-square recaptures. Personal arrows work by right-drag, touch and keyboard, preserve queued moves, and clear on real position changes. Review and personal mistake-bank explanations show legal opponent responses and their consequences, including a board preview. No database migration or bot-strength retuning. Validation: 126 units, 22 affected desktop/mobile scenarios and 16 responsive/Axe views pass. See [REVIEW_BOARD_TOOLS.md](REVIEW_BOARD_TOOLS.md).

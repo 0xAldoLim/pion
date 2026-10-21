@@ -29,10 +29,20 @@ describe('premoves',()=>{
     expect(premoveDestinations('r3k2r/8/8/8/8/8/8/R3KB1R b KQkq - 0 1','w').get('e1')).not.toContain('g1');
     const chess=new Chess('4k3/3p4/8/4P3/8/8/8/4K3 b - - 0 1');playUci(chess,'d7d5');expect(isLegalPremove(chess.fen(),'e5d6','w')).toBe(true);
   });
-  it('rejects enemy moves, own-piece captures and king captures',()=>{
+  it('queues a friendly-square recapture but executes it only after a real enemy capture',()=>{
+    const fen='5r1k/5N2/8/8/8/8/8/KB3RR1 b - - 0 1',chess=new Chess(fen);
+    expect(chess.moves()).toEqual(['Rxf7']);
+    expect(premoveDestinations(fen,'w').get('f1')).toContain('f7');
+    expect(new Chess(projectPremoves(fen,['f1f7'],'w')).get('f7')).toMatchObject({type:'r',color:'w'});
+    expect(new Chess(fen).get('f7')?.type).toBe('n');
+    expect(isLegalPremove(fen,'f1f7','w')).toBe(false);
+    playUci(chess,'f8f7');expect(isLegalPremove(chess.fen(),'f1f7','w')).toBe(true);
+    const quiet=new Chess('4k3/8/8/8/8/8/P7/R3K3 w - - 0 1');expect(isLegalPremove(quiet.fen(),'a1a2','w')).toBe(false);
+  });
+  it('rejects enemy moves, blocked pawn advances and king captures',()=>{
     const chess=new Chess();
     expect(()=>projectPremoves(chess.fen(),['a7a6'],'w')).toThrow();
-    expect(()=>projectPremoves(chess.fen(),['a1a2'],'w')).toThrow();
+    expect(()=>projectPremoves('4k3/8/8/8/8/4N3/4P3/4K3 b - - 0 1',['e2e3'],'w')).toThrow();
     expect(()=>projectPremoves('4k3/8/8/8/8/8/4R3/4K3 b - - 0 1',['e2e8'],'w')).toThrow();
     expect(isLegalPremove(chess.fen(),'e7e5','b')).toBe(false);
   });

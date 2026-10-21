@@ -6,16 +6,18 @@ import {positionFeatures} from './features';
 import {Chess} from 'chess.js';
 import {playUci} from '../chess/rules';
 import {NAMES} from './material';
+import {moveConsequence} from './consequences';
 
 export function explain(row:ReviewMove,depth:'quick'|'educational'|'deep',mode:'inspired'|'pion'):string {
   const score=row.scores[mode];
   const intro=`${row.san} is ${score.classification}.`;
   const facts=row.evidence.filter(e=>e.position===row.fenBefore);
-  const reason=facts.find(e=>['allowsMate','hanging','fork','pin','mate','sacrifice'].includes(e.kind))?.text ?? facts[0]?.text ?? `The engine evaluates the played continuation at ${formatScore(row.after.candidates[0]?.score)} from White’s perspective.`;
+  const reason=score.loss>=0.05?moveConsequence(row).reason:facts.find(e=>['allowsMate','hanging','fork','pin','mate','sacrifice'].includes(e.kind))?.text ?? facts[0]?.text ?? `The engine evaluates the played continuation at ${formatScore(row.after.candidates[0]?.score)} from White’s perspective.`;
   if(depth==='quick')return `${intro} ${reason}`;
   const alternative=row.uci!==row.bestMove?` Compare ${row.bestSan}, the engine’s first choice.`:'';
   const forced=row.forced?' This was the only legal move.':'';
-  const text=`${intro} ${reason}${alternative}${forced}`;
+  const replyLine=score.loss>=0.05?moveConsequence(row).line:[];
+  const text=`${intro} ${reason}${replyLine.length>1?` One engine continuation is ${replyLine.slice(0,6).join(' → ')}.`:''}${alternative}${forced}`;
   return depth==='deep'?`${text} Verified line: ${lineSan(row.fenBefore,row.before.candidates[0]?.pv.slice(0,8)??[]).join(' ')}. Search depth ${row.before.candidates[0]?.depth}; loss ${(score.loss*100).toFixed(1)} percentage points. Practice checking the opponent’s forcing replies.`:text;
 }
 export function reactToMove(fen:string,uci:string):string {return moveFacts(fen,uci)[0]?.text ?? positionAdvice(fen);}

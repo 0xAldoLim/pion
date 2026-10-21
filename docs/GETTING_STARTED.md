@@ -28,6 +28,16 @@ A different legal move can be a known alternative or receive a local-engine comp
 
 Finish a game and choose **Review this game → Run review**. Home's learning focus can then connect actual reviewed losses to lessons, short challenges and related puzzle themes. Small samples are observations rather than proof of general mastery.
 
+Imported PGNs use the same review controls. **Run review** uses your analysis settings; **Deep review** starts a deeper search without changing your saved settings. The board rewinds to the start, then follows each analyzed move. Progress counts completed positions. Uncheck **Follow analyzed moves**, or select a move yourself, to inspect a position while analysis continues. **Stop review** preserves completed analysis. Reduced-motion settings skip the rewind.
+
+For an inaccuracy, mistake, or blunder, **Understand the consequence** explains the opponent's response and shows its legal continuation. **Show White's reply** or **Show Black's reply** puts that response on the board. The same explanation appears in **Puzzles → My mistakes**, with the stronger move revealed after solving or requesting the final hint.
+
+## Plan moves on the board
+
+During an opponent's turn, queue up to five premoves, including captures. You can also queue a recapture onto a square currently occupied by your own piece: the move plays only if it is legal after the opponent's actual reply. An illegal queued move cancels the remaining queue. Each timed premove costs at least 0.1 seconds.
+
+Right-drag between squares to draw a planning arrow. On touchscreens, choose **Draw arrows**, then drag or tap a start and destination. The drawing controls also offer square selectors for keyboard input and a choice of colors. Choose **Done drawing** to return to moving pieces, or **Clear** to erase annotations. Annotations survive a board flip and clear after an actual move; they do not change game history or play a move. Right-click without dragging, press Escape, or use **Cancel premoves** to cancel a queued sequence.
+
 ## Choose your assistance
 
 Settings independently controls practice evaluation, provisional classifications, coach reactions, hints and undo. Explicit practice hints remain visible even with automatic coach reactions off. Short-search classifications can change in a deeper review.
