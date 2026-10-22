@@ -1,6 +1,6 @@
 # Implementation status
 
-Updated 2026-10-15. This supersedes the earlier nine-lesson / single-line opening milestone.
+Updated 2026-10-22. The original learning release is recorded first; the latest educational-depth cycle and release evidence are below.
 
 | Milestone | Delivered behavior |
 |---|---|
@@ -18,7 +18,7 @@ Preserved: board/frame, promotion, premoves, clocks, capture racks, seven origin
 
 Dexie v6 adds learning tables; v7 fills three practice-assistance defaults. Backup v4 accepts v1–v4 with validated defaults. Reading never migrates into mastery. Existing IDs and schedules remain valid.
 
-All essential chunks/data/lessons/studies/lite Stockfish are precached after offline readiness. Full Stockfish stays optional. Main JS is about 76.85 KB gzip; puzzle/ECO data remain larger separate chunks. See KNOWN_ISSUES.md.
+All essential chunks/data/lessons/studies/lite Stockfish are precached after offline readiness. Full Stockfish stays optional. Current main JS is about 123 KB gzip; puzzle/ECO data remain larger separate chunks. The 76.85 KB figure in the original release evidence is historical. See KNOWN_ISSUES.md.
 
 Preserve SSH origin and use authenticated HTTPS pushes to the same Pion repository. No force push/reset. Generated engines, dist and browser artifacts stay ignored. Resume from actual Git status and validation evidence.
 

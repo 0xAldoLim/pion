@@ -30,6 +30,7 @@ export function assessmentFeedback(fen:string,uci:string,goal:Goal,fallback:stri
   const danger=facts.find(f=>f.kind==='allowsMate')??facts.find(f=>f.kind==='hanging'&&f.squares[0]===move.to)??facts.find(f=>f.kind==='hanging');
   if(board.isStalemate())return `${change} ${side} has no legal move and is not in check: this is stalemate, a draw. ${fallback}`;
   if(danger)return `${change} ${danger.text} ${fallback} Check that reply before choosing again.`;
+  if(goal.kind!=='curated'&&goal.piece&&move.piece!==goal.piece)return `${change} This exercise requires a ${NAMES[goal.piece as keyof typeof NAMES]??goal.piece} to carry out the objective. ${fallback}`;
   if(goal.kind==='mate'){
     const reply=board.moves()[0];return `${change} ${board.inCheck()?`It gives check, but ${side} still has a legal response${reply?`: ${reply}`:''}.`:`It does not give check, so it cannot be checkmate.${reply?` ${side} can legally reply ${reply}.`:''}`} ${fallback}`;
   }

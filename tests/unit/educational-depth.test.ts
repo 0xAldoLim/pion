@@ -71,3 +71,11 @@ it('accepts all safe queen retreats while enforcing named capture-promotion and 
  const castle=APPLICATION_TASKS.castling![0]!,promotion=APPLICATION_TASKS.promotion![0]!;if(castle.type!=='move'||promotion.type!=='move')throw new Error();expect(satisfies(castle.fen,'e8g8',castle.goal)).toBe(false);expect(satisfies(castle.fen,'e8c8',castle.goal)).toBe(true);expect(satisfies(promotion.fen,'a7a8q',promotion.goal)).toBe(false);expect(satisfies(promotion.fen,'a7b8q',promotion.goal)).toBe(true);
  const discovery=new Chess(APPLICATION_TASKS['discovered-attacks']![0]!.fen);playUci(discovery,'d5e7');expect(discovery.moves()).not.toContain('Qxe7');expect(discovery.moves()).not.toContain('Qxf6');
 });
+
+
+it('requires a pawn when the defender exercise specifically asks for a pawn',()=>{
+ const step=APPLICATION_TASKS['attacks-defenders']![0]!;if(step.type!=='move')throw new Error();
+ const board=new Chess(step.fen);expect(board.moves()).toContain('Qd7');
+ expect(satisfies(step.fen,'d8d7',step.goal)).toBe(false);expect(satisfies(step.fen,'c7c6',step.goal)).toBe(true);
+ const feedback=assessmentFeedback(step.fen,'d8d7',step.goal,step.failure);expect(feedback).toContain('requires a pawn');expect(feedback).not.toContain('target remains your own piece');
+});

@@ -42,3 +42,10 @@ test('repertoire downloads reimport normal and custom starts while notes, folder
   await page.getByLabel('Custom line name',{exact:true}).fill(`${item.name} reimported`);await page.getByLabel('Legal PGN line',{exact:true}).fill(text);await page.getByLabel('Import side',{exact:true}).selectOption('b');await page.getByRole('button',{name:'Save custom repertoire',exact:true}).click();await expect(page.getByRole('heading',{name:`${item.name} reimported`,exact:true})).toBeVisible();
  }
 });
+
+
+test('a pawn-specific defense rejects a legal queen defense without independent credit',async({page})=>{
+ await application(page,'attacks-defenders');await expect(page.locator('.study-objective')).toContainText('add a pawn defender');
+ await move(page,'d8d7');await expect(page.locator('.study-feedback')).toContainText('requires a pawn');await expect(page.locator('.learning-progress')).toContainText('Independent evidence pending');
+ await move(page,'c7c6');await expect(page.locator('.study-feedback')).toContainText('meets this objective');await expect(page.locator('.learning-progress')).toContainText('Independent evidence pending');
+});

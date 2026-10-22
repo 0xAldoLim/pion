@@ -1,8 +1,8 @@
 # Bot calibration checkpoint
 
-## Current harness — 2026-10-15
+## Harness checkpoint — 2026-10-15
 
-The harness now accepts `--bots` and `--references` for bounded diagnostics, pairs both colors, clears the result cache between games, records production skill/depth/time settings, separates losses/draws/wins from unresolved cutoffs, and writes a new version-2 report instead of overwriting this historical checkpoint. Default output is `docs/BOT_CALIBRATION_CURRENT.json`; `--output docs/NAME.json` chooses another report. The default cutoff is 200 plies. Completed-only scores are explicitly subject to cutoff bias. Seeds control policy randomness; engine limited-skill randomness and machine-dependent search depth are not fully deterministic.
+At this checkpoint, the harness added `--bots` and `--references` for bounded diagnostics, pairs both colors, clears the result cache between games, records production skill/depth/time settings, separates losses/draws/wins from unresolved cutoffs, and writes a new version-2 report instead of overwriting this historical checkpoint. Default output is `docs/BOT_CALIBRATION_CURRENT.json`; `--output docs/NAME.json` chooses another report. The default cutoff is 200 plies. Completed-only scores are explicitly subject to cutoff bias. Seeds control policy randomness; engine limited-skill randomness and machine-dependent search depth are not fully deterministic.
 
 Real-WASM smoke command: `pnpm calibrate --bots pebble,monarch --references 5 --rounds 1 --max-plies 160 --time-scale 0.1 --seed 20261015 --output docs/BOT_CALIBRATION_SMOKE.json`. All four games ended under chess rules: Pebble lost both colors; Monarch won both colors. There were no adjudications or cutoffs. This verifies the harness and the deployed policy at scaled search budgets. It does **not** calibrate intermediate profiles, establish human Elo, prove adjacent ordering, or justify changing difficulty. No bot parameters were retuned in this milestone. Full transcripts and actual termination reasons are in the smoke report.
 

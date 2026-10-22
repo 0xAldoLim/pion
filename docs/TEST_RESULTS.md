@@ -1,6 +1,6 @@
 # Validation evidence
 
-Updated 2026-10-15. Exact release runs are recorded in [LEARNING_VALIDATION.md](LEARNING_VALIDATION.md).
+Updated 2026-10-22. Historical release runs are recorded in [LEARNING_VALIDATION.md](LEARNING_VALIDATION.md); the latest educational-depth release is at the end of this document.
 
 - TypeScript, ESLint, Vitest and production build use the real application. Unit checks cover all 31 lesson FENs/demos/objectives, alternative mates, actual capture profitability, opening annotations/recovery, graph/transpositions, both-color practice/scheduling, recommendations, assistance restrictions, fourteen complete master scores, additive migrations and transactional backups.
 - Browser workflows exercise wrong answers/hints, exact-step reload, independent transfer, Italian branches/recall, Black recall, legal alternatives, custom repertoire PGN, schedules, review-derived branches and repeated actual reviewed losses leading to lessons and puzzles.
@@ -54,3 +54,6 @@ Ubuntu diagnostic run [39733346401](https://github.com/0xAldoLim/pion/actions/ru
 
 
 Corrective local verification: typecheck, lint and production build pass; all eight affected desktop/mobile geometry and opening-layout cases pass. Eight final opening-profile sizing/Axe rechecks at the four requested widths in both themes pass, bringing the recorded audit to **84 checks including rechecks**, zero overflow or accessibility findings. Corrective bundle: `index-CMy2V4nW.js`; 105 precache entries / 5312.39 KiB.
+
+
+Final content-audit correction: the pawn-defender objective now requires the named piece; a legal queen defense receives a factual piece-requirement explanation rather than completion. **145 unit checks**, lint, typecheck and production build pass. All six affected desktop/mobile lesson journeys pass, including queen rejection, correct pawn defense, retained earlier-error exclusion, capture feedback and conversion reload. Final application bundle: `index-Dtz241Ro.js`; 105 precache entries / 5312.54 KiB. Exact-source full browser gate follows.
