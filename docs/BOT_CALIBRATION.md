@@ -23,3 +23,11 @@ For substantial calibration, run multiple seeds at original budgets, longer limi
 Production profiles vary UCI skill, search depth/time, error frequency, probability loss budget, candidate weighting, preferred opening sequence and tactical/positional tendencies. The full-strength profile takes the UCI bestmove. Quick/standard/thoughtful response pace changes the search budget and independently enforces minimum visible delays of 1.5 / 2.8 / 5 seconds. This changes practical strength and is included in the UI’s estimate caveat.
 
 The original identifiers in this checkpoint remain stable, but the UI now uses seven reference-inspired characters across these twelve profiles. This historical run predates that visual rename. Play Now uses continuous estimated strength and separate local Blitz/Rapid player standings; the local Elo formula does not make its opponents statistically calibrated.
+
+## Uncertainty audit — 22 October 2026
+
+Production skill, depth/time, candidate-loss policy, delays and saved Blitz/Rapid standings are unchanged. Existing policy regressions and actual-WASM game workflows remain the behavioral checks. The 48-game historical report predates the skill-choice correction; the four-game current smoke remains a smoke test.
+
+The harness now validates integer/finite bounds and writes version-3 summaries. `scoreRangeIncludingCutoffs` assigns every unresolved game first a loss, then a win: this exposes censoring and is **not** a confidence interval. `decisiveWinWilson95` is a binomial Wilson interval conditional on completed decisive games, excluding draws/cutoffs and assuming independent outcomes; paired openings and engine randomness limit that assumption. Neither statistic is human Elo or proof of adjacent profile ordering.
+
+[BOT_CALIBRATION_UNCERTAINTY.json](BOT_CALIBRATION_UNCERTAINTY.json) derives these summaries from the preserved historical reports. It explicitly records zero new games. No larger benchmark is represented as completed: a meaningful normal-budget multi-seed study with calibrated opposition takes substantially longer than the smoke harness, and is required before retuning. The two endpoint games each have very wide conditional win intervals, reinforcing the existing provisional labels. Unit checks cover zero samples, tiny samples, symmetry and unresolved-result ranges.

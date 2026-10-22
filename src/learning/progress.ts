@@ -9,10 +9,12 @@ export function lessonStatus(lesson:InteractiveLesson,progress?:LessonProgress){
 /** Prefer an unseen authored application, then failed/assisted work, then due recall. */
 export function nextChallenge(lesson:InteractiveLesson,progress:LessonProgress,evidence:LearningEvidence[],now=Date.now()):LessonStep {
   const applications=lesson.steps.filter(s=>s.type==='move'&&s.activity==='application'&&s.id.startsWith('apply-'));
+  const successes=evidence.filter(e=>e.lessonId===lesson.id&&e.success&&!e.hints&&!e.errors&&e.activity!=='recognition').length,maxDifficulty=successes<1?1:successes<2?2:3;
+  const suitable=applications.filter(s=>s.type==='move'&&(s.difficulty??1)<=maxDifficulty);
   const seen=new Set(evidence.map(e=>e.positionId));
-  const unseen=applications.find(s=>!seen.has(s.fen.split(' ').slice(0,4).join(' '))&&!progress.completedExercises.includes(s.id));
-  const weak=applications.find(s=>(progress.stepHints[s.id]??0)>0||(progress.stepErrors[s.id]??0)>0);
-  return unseen??(progress.due<=now?lesson.steps.find(s=>s.id==='recall'):weak)??weak??applications[0]??lesson.steps.find(s=>s.id==='transfer')!;
+  const unseen=suitable.find(s=>!seen.has(s.fen.split(' ').slice(0,4).join(' '))&&!progress.completedExercises.includes(s.id));
+  const weak=suitable.find(s=>(progress.stepHints[s.id]??0)>0||(progress.stepErrors[s.id]??0)>0);
+  return unseen??(progress.due<=now?lesson.steps.find(s=>s.id==='recall'):weak)??weak??suitable[0]??applications[0]??lesson.steps.find(s=>s.id==='transfer')!;
 }
 export function evidenceActivity(e:LearningEvidence):'recognition'|'application' {
   return e.activity??(e.kind==='guided'?'recognition':'application');

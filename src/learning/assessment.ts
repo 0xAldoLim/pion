@@ -14,6 +14,7 @@ export function satisfies(fen:string,uci:string,goal:Goal):boolean {
     case 'promotion':return move.promotion==='q'&&!board.isStalemate();
     case 'check':return board.inCheck();
     case 'escapeCheck':return new Chess(fen).inCheck()&&!board.isAttacked(board.board().flat().find(p=>p?.type==='k'&&p.color===move.color)!.square,board.turn());
+    case 'evadeAttack':return staticExchange(board.fen(),move.to)===0;
     case 'enPassant':return move.isEnPassant();
     case 'defend':return !!goal.target&&board.get(goal.target as Square)?.color===move.color&&board.attackers(goal.target as Square,move.color).includes(move.to);
     case 'fork':return moveFacts(fen,uci).some(f=>f.kind==='fork'&&f.squares[0]===move.to);

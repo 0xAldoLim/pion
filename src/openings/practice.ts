@@ -11,20 +11,23 @@ import {positionKey,openingExplanation} from './teaching';
 import type {OpeningStudyProgress} from '../learning/models';
 export type OpeningPracticeMode='guided'|'recall'|'practical';
 export function practiceGraph(startFen:string,branches:string[][]){const graph=new Map<string,string[]>();for(const line of branches){const board=new Chess(startFen);for(const move of line){const key=positionKey(board.fen());graph.set(key,[...new Set([...(graph.get(key)??[]),move])]);playUci(board,move);}}return graph;}
-export interface AlternativeResult {kind:'studied'|'book'|'sound'|'different';explanation:string;verifiedLoss?:number}
+export interface AlternativeResult {kind:'studied'|'book'|'sound'|'different';classification?:'intended'|'known-alternative'|'engine-supported'|'dubious'|'tactical-error'|'uncertain';explanation:string;verifiedLoss?:number}
 export async function assessOpeningMove(fen:string,uci:string,studied:string[],settings:EngineSettings,signal:AbortSignal,manager:EngineManager=engine):Promise<AlternativeResult>{
   const board=new Chess(fen),color=board.turn(),move=playUci(board,uci);
   if(board.isCheckmate())return {kind:'sound',explanation:`${move.san} is verified checkmate.`};
   if(board.isDraw())return {kind:'different',explanation:`${move.san} ends this diagram in a rule-verified draw. This is a different outcome from continuing the opening study.`};
-  if(studied.includes(uci))return {kind:'studied',explanation:openingExplanation(fen,uci)};
+  if(studied.includes(uci))return {kind:'studied',classification:'intended',explanation:openingExplanation(fen,uci)};
   const warning=moveFacts(fen,uci).find(f=>f.kind==='allowsMate');
-  if(warning)return {kind:'different',explanation:`${move.san} allows a verified mating reply. ${warning.text}`};
-  if(isBookMove(fen,uci))return {kind:'book',explanation:`${move.san} is a known ECO alternative. ${openingExplanation(fen,uci)} Book status does not guarantee move quality.`};
+  if(warning)return {kind:'different',classification:'tactical-error',explanation:`${move.san} allows a verified mating reply. ${warning.text}`};
+  if(isBookMove(fen,uci))return {kind:'book',classification:'known-alternative',explanation:`${move.san} is a known ECO alternative. ${openingExplanation(fen,uci)} Book status does not guarantee move quality.`};
   const pinned={...settings,profile:'custom' as const,pack:'lite' as const,depth:18,timeMs:1200,multiPv:3};
   const before=await manager.analyze(fen,pinned,{signal,priority:2});const after=await manager.analyze(board.fen(),pinned,{signal,priority:2});
   const a=before.candidates[0],b=after.candidates[0];if(!a||!b)throw new Error('No completed comparison is available.');
   const loss=Math.max(0,expectedPoints(a.score,color)-expectedPoints(b.score,color));
-  return {kind:loss<=0.04?'sound':'different',verifiedLoss:loss,explanation:`${move.san}: this limited local comparison changes White’s score from ${formatScore(a.score)} to ${formatScore(b.score)} (depths ${a.depth}/${b.depth}). ${loss<=0.04?'It remains close to the strongest candidate under these search limits.':'The engine finds a stronger continuation; examine its forcing replies.'} ${moveFacts(fen,uci).find(f=>f.kind==='hanging')?.text??''}`};
+  const uncertain=a.depth<10||b.depth<10;
+  const reply=b.pv?.[0];let resource='';if(reply)try{const response=playUci(new Chess(board.fen()),reply);resource=` ${color==='w'?'Black':'White'} can reply ${response.san}${response.captured?` to capture on ${response.to}`:response.san.includes('+')?' with check':''}.`;}catch{/* No fabricated resource from a malformed line. */}
+  return {kind:uncertain?'different':loss<=0.04?'sound':'different',classification:uncertain?'uncertain':loss<=0.04?'engine-supported':'dubious',verifiedLoss:uncertain?undefined:loss,explanation:`${move.san}: this limited local comparison changes White’s score from ${formatScore(a.score)} to ${formatScore(b.score)} (depths ${a.depth}/${b.depth}). ${uncertain?'The completed search is too shallow to grade this alternative reliably.':loss<=0.04?'It remains close to the strongest candidate under these search limits.':'The engine finds a stronger continuation; this is a provisional dubious choice, not proof of a forced tactical loss.'}${resource} ${moveFacts(fen,uci).find(f=>f.kind==='hanging')?.text??''}`};
+
 }
 export async function recordOpeningPosition({openingId,fen,move,color,mode,errors,hints,now=Date.now()}:{openingId:string;fen:string;move:string;color:Color;mode:'guided'|'recall';errors:number;hints:number;now?:number},database:PionDatabase=db){
   const board=new Chess(fen);if(board.turn()!==color)throw new Error('Only the learner’s own moves can record recall.');playUci(board,move);const positionId=positionKey(fen),id=`${openingId}:${color}:${positionId}:${move}`;

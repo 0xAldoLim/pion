@@ -4,6 +4,7 @@ test('opening tiers, master examples and paired moves remain readable across scr
   for(const width of [320,390,641,768,1024,1440]){
     await page.setViewportSize({width,height:844});await page.goto('/#openings/ruy-lopez');
     await expect(page.locator('main h1')).toHaveText('Ruy Lopez');
+    if(await page.locator('details.opening-editorial').getAttribute('open')===null)await page.getByText('Learning tier & master examples',{exact:true}).click();
     await expect(page.getByLabel('Learning tier S',{exact:true})).toBeVisible();
     await expect(page.locator('.opening-masters')).toContainText('Garry Kasparov');
     const moves=page.getByRole('list',{name:'Opening move sequence'});

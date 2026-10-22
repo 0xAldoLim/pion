@@ -1,0 +1,359 @@
+{
+  "at": "2026-10-22T06:02:26.454Z",
+  "analysisOnly": true,
+  "newGamesPlayed": 0,
+  "limits": [
+    "Historical reports are preserved.",
+    "Cutoff score ranges are not confidence intervals.",
+    "Wilson intervals condition on decisive completed games and assume independent outcomes.",
+    "Local reference profiles are not human Elo anchors; no rating or bot policy is changed."
+  ],
+  "reports": [
+    {
+      "source": "docs/BOT_CALIBRATION.json",
+      "originalDate": "2026-10-13T01:32:58.048Z",
+      "options": {
+        "rounds": 1,
+        "maxPlies": 60,
+        "timeScale": 0.2,
+        "seed": 20261013
+      },
+      "summary": [
+        {
+          "bot": "pebble",
+          "games": 4,
+          "colors": {
+            "white": 2,
+            "black": 2
+          },
+          "completed": 2,
+          "unresolved": 2,
+          "wins": 0,
+          "draws": 0,
+          "losses": 2,
+          "completedScore": 0,
+          "scoreRangeIncludingCutoffs": [
+            0,
+            0.5
+          ],
+          "decisiveCompletedGames": 2,
+          "decisiveWinWilson95": [
+            0,
+            0.6576197724933469
+          ],
+          "sufficientForElo": false
+        },
+        {
+          "bot": "sprout",
+          "games": 4,
+          "colors": {
+            "white": 2,
+            "black": 2
+          },
+          "completed": 2,
+          "unresolved": 2,
+          "wins": 0,
+          "draws": 0,
+          "losses": 2,
+          "completedScore": 0,
+          "scoreRangeIncludingCutoffs": [
+            0,
+            0.5
+          ],
+          "decisiveCompletedGames": 2,
+          "decisiveWinWilson95": [
+            0,
+            0.6576197724933469
+          ],
+          "sufficientForElo": false
+        },
+        {
+          "bot": "milo",
+          "games": 4,
+          "colors": {
+            "white": 2,
+            "black": 2
+          },
+          "completed": 0,
+          "unresolved": 4,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "completedScore": null,
+          "scoreRangeIncludingCutoffs": [
+            0,
+            1
+          ],
+          "decisiveCompletedGames": 0,
+          "decisiveWinWilson95": null,
+          "sufficientForElo": false
+        },
+        {
+          "bot": "blitz",
+          "games": 4,
+          "colors": {
+            "white": 2,
+            "black": 2
+          },
+          "completed": 0,
+          "unresolved": 4,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "completedScore": null,
+          "scoreRangeIncludingCutoffs": [
+            0,
+            1
+          ],
+          "decisiveCompletedGames": 0,
+          "decisiveWinWilson95": null,
+          "sufficientForElo": false
+        },
+        {
+          "bot": "ivy",
+          "games": 4,
+          "colors": {
+            "white": 2,
+            "black": 2
+          },
+          "completed": 0,
+          "unresolved": 4,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "completedScore": null,
+          "scoreRangeIncludingCutoffs": [
+            0,
+            1
+          ],
+          "decisiveCompletedGames": 0,
+          "decisiveWinWilson95": null,
+          "sufficientForElo": false
+        },
+        {
+          "bot": "gambit",
+          "games": 4,
+          "colors": {
+            "white": 2,
+            "black": 2
+          },
+          "completed": 1,
+          "unresolved": 3,
+          "wins": 1,
+          "draws": 0,
+          "losses": 0,
+          "completedScore": 1,
+          "scoreRangeIncludingCutoffs": [
+            0.25,
+            1
+          ],
+          "decisiveCompletedGames": 1,
+          "decisiveWinWilson95": [
+            0.20654931437723745,
+            1
+          ],
+          "sufficientForElo": false
+        },
+        {
+          "bot": "rook",
+          "games": 4,
+          "colors": {
+            "white": 2,
+            "black": 2
+          },
+          "completed": 0,
+          "unresolved": 4,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "completedScore": null,
+          "scoreRangeIncludingCutoffs": [
+            0,
+            1
+          ],
+          "decisiveCompletedGames": 0,
+          "decisiveWinWilson95": null,
+          "sufficientForElo": false
+        },
+        {
+          "bot": "sage",
+          "games": 4,
+          "colors": {
+            "white": 2,
+            "black": 2
+          },
+          "completed": 1,
+          "unresolved": 3,
+          "wins": 1,
+          "draws": 0,
+          "losses": 0,
+          "completedScore": 1,
+          "scoreRangeIncludingCutoffs": [
+            0.25,
+            1
+          ],
+          "decisiveCompletedGames": 1,
+          "decisiveWinWilson95": [
+            0.20654931437723745,
+            1
+          ],
+          "sufficientForElo": false
+        },
+        {
+          "bot": "bishop",
+          "games": 4,
+          "colors": {
+            "white": 2,
+            "black": 2
+          },
+          "completed": 0,
+          "unresolved": 4,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "completedScore": null,
+          "scoreRangeIncludingCutoffs": [
+            0,
+            1
+          ],
+          "decisiveCompletedGames": 0,
+          "decisiveWinWilson95": null,
+          "sufficientForElo": false
+        },
+        {
+          "bot": "knightfall",
+          "games": 4,
+          "colors": {
+            "white": 2,
+            "black": 2
+          },
+          "completed": 0,
+          "unresolved": 4,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "completedScore": null,
+          "scoreRangeIncludingCutoffs": [
+            0,
+            1
+          ],
+          "decisiveCompletedGames": 0,
+          "decisiveWinWilson95": null,
+          "sufficientForElo": false
+        },
+        {
+          "bot": "crown",
+          "games": 4,
+          "colors": {
+            "white": 2,
+            "black": 2
+          },
+          "completed": 0,
+          "unresolved": 4,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "completedScore": null,
+          "scoreRangeIncludingCutoffs": [
+            0,
+            1
+          ],
+          "decisiveCompletedGames": 0,
+          "decisiveWinWilson95": null,
+          "sufficientForElo": false
+        },
+        {
+          "bot": "monarch",
+          "games": 4,
+          "colors": {
+            "white": 2,
+            "black": 2
+          },
+          "completed": 2,
+          "unresolved": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "completedScore": 1,
+          "scoreRangeIncludingCutoffs": [
+            0.5,
+            1
+          ],
+          "decisiveCompletedGames": 2,
+          "decisiveWinWilson95": [
+            0.34238022750665303,
+            1
+          ],
+          "sufficientForElo": false
+        }
+      ]
+    },
+    {
+      "source": "docs/BOT_CALIBRATION_SMOKE.json",
+      "originalDate": "2026-10-15T00:23:20.328Z",
+      "options": {
+        "rounds": 1,
+        "maxPlies": 160,
+        "timeScale": 0.1,
+        "seed": 20261015,
+        "bots": [
+          "pebble",
+          "monarch"
+        ],
+        "references": [
+          5
+        ]
+      },
+      "summary": [
+        {
+          "bot": "pebble",
+          "games": 2,
+          "colors": {
+            "white": 1,
+            "black": 1
+          },
+          "completed": 2,
+          "unresolved": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 2,
+          "completedScore": 0,
+          "scoreRangeIncludingCutoffs": [
+            0,
+            0
+          ],
+          "decisiveCompletedGames": 2,
+          "decisiveWinWilson95": [
+            0,
+            0.6576197724933469
+          ],
+          "sufficientForElo": false
+        },
+        {
+          "bot": "monarch",
+          "games": 2,
+          "colors": {
+            "white": 1,
+            "black": 1
+          },
+          "completed": 2,
+          "unresolved": 0,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "completedScore": 1,
+          "scoreRangeIncludingCutoffs": [
+            1,
+            1
+          ],
+          "decisiveCompletedGames": 2,
+          "decisiveWinWilson95": [
+            0.34238022750665303,
+            1
+          ],
+          "sufficientForElo": false
+        }
+      ]
+    }
+  ]
+}

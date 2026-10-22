@@ -1,3 +1,6 @@
+import 'fake-indexeddb/auto';
+import {PionDatabase} from '../../src/storage/db';
+import {createBackup,restoreBackup} from '../../src/storage/backup';
 import {schedule} from '../../src/learning/repetition';
 import {describe,it,expect} from 'vitest';
 import {Chess} from 'chess.js';
@@ -38,8 +41,9 @@ describe('authored application positions',()=>{
 
 it('prefers an unseen application and requires a real day before retention',()=>{
  const lesson=CURRICULUM.find(l=>l.id==='board-vision')!,p=freshLesson(lesson),first=nextChallenge(lesson,p,[]);
- expect(first.id).toBe('apply-exchange');p.completedExercises=[first.id];expect(nextChallenge(lesson,p,[]).id).toBe('apply-pinned-defender');
+ expect(first.id).toBe('apply-exchange');p.completedExercises=[first.id];expect(nextChallenge(lesson,p,[]).id).toBe('apply-save-queen');
  const e={version:1 as const,id:'e',lessonId:lesson.id,stepId:first.id,positionId:first.fen.split(' ').slice(0,4).join(' '),skill:'board-vision' as const,at:1,success:true,hints:0,errors:0,kind:'transfer' as const,firstSeen:true};
+ expect(nextChallenge(lesson,p,[{...e,activity:'application'}]).id).toBe('apply-pinned-defender');
  expect(isSpacedRecall(lesson.id,[],0,100000000)).toBe(false);expect(isSpacedRecall(lesson.id,[e],0,2)).toBe(false);expect(isSpacedRecall(lesson.id,[e],86400000,86400001)).toBe(true);
 });
 it('explains actual captures, target counts and a legal mate escape',()=>{
@@ -52,4 +56,18 @@ it('an early repetition cannot overwrite new lesson completion fields',()=>{
  const record={interval:1,ease:2.5,due:100,successes:1,failures:0,currentStep:'previous',completedExercises:[],masteryEvidence:[]};
  expect(schedule(record,true,0,1)).toEqual({interval:1,ease:2.5,due:100,successes:1,failures:0});
  expect({...record,completedExercises:['new'],masteryEvidence:['e'],...schedule(record,true,0,1)}).toMatchObject({completedExercises:['new'],masteryEvidence:['e']});
+});
+
+it('round trips partial conversion progress and recognition metadata without a migration',async()=>{
+ const a=new PionDatabase(crypto.randomUUID()),b=new PionDatabase(crypto.randomUUID());try{
+  const lesson=CURRICULUM.find(l=>l.id==='queen-mate')!,record={...freshLesson(lesson),currentStep:'apply-queen-conversion',stepLines:{'apply-queen-conversion':['g4h5','h8g8']}};
+  await a.lessonProgress.put(record);const evidence={version:1 as const,id:'recognition',lessonId:lesson.id,stepId:'transfer',positionId:lesson.steps[0]!.fen.split(' ').slice(0,4).join(' '),skill:'endgames' as const,at:1,success:true,hints:0,errors:0,kind:'transfer' as const,firstSeen:true,activity:'recognition' as const};await a.learningEvidence.put(evidence);await restoreBackup(await createBackup(a),b);expect(await b.lessonProgress.get(lesson.id)).toEqual(record);expect(await b.learningEvidence.get('recognition')).toEqual(evidence);
+  const bad=JSON.parse(await createBackup(a));bad.lessonProgress[0].masteryEvidence=['recognition'];await expect(restoreBackup(JSON.stringify(bad),b)).rejects.toThrow('Independent evidence');expect(await b.lessonProgress.get(lesson.id)).toEqual(record);
+ }finally{await a.delete();await b.delete();}
+});
+
+it('accepts all safe queen retreats while enforcing named capture-promotion and queenside castling',()=>{
+ const queen=APPLICATION_TASKS['board-vision']!.find(s=>s.id==='apply-save-queen')!;if(queen.type!=='move')throw new Error();expect(satisfies(queen.fen,'e2d3',queen.goal)).toBe(true);expect(satisfies(queen.fen,'e2c2',queen.goal)).toBe(false);
+ const castle=APPLICATION_TASKS.castling![0]!,promotion=APPLICATION_TASKS.promotion![0]!;if(castle.type!=='move'||promotion.type!=='move')throw new Error();expect(satisfies(castle.fen,'e8g8',castle.goal)).toBe(false);expect(satisfies(castle.fen,'e8c8',castle.goal)).toBe(true);expect(satisfies(promotion.fen,'a7a8q',promotion.goal)).toBe(false);expect(satisfies(promotion.fen,'a7b8q',promotion.goal)).toBe(true);
+ const discovery=new Chess(APPLICATION_TASKS['discovered-attacks']![0]!.fen);playUci(discovery,'d5e7');expect(discovery.moves()).not.toContain('Qxe7');expect(discovery.moves()).not.toContain('Qxf6');
 });

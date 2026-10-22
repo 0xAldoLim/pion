@@ -1,11 +1,11 @@
 import type {Repetition} from '../chess/types';
 
 export type Skill='board-vision'|'threat-recognition'|'calculation'|'opening-fundamentals'|'opening-recall'|'king-safety'|'planning'|'endgames'|'defense';
-export type Goal = {kind:'mate'|'castle'|'promotion'|'fork'|'pin'|'check'|'preventMate'|'safeCapture'|'developAttack'|'defend'|'enPassant'|'escapeCheck';target?:string;piece?:string;minimum?:number} | {kind:'curated';moves:string[];reason:string};
+export type Goal = {kind:'mate'|'castle'|'promotion'|'fork'|'pin'|'check'|'preventMate'|'safeCapture'|'developAttack'|'defend'|'enPassant'|'escapeCheck'|'evadeAttack';target?:string;piece?:string;minimum?:number} | {kind:'curated';moves:string[];reason:string};
 interface StepBase {id:string;objective:string;fen:string;explanation:string;hints:[string,string,string];arrows?:{orig:string;dest:string;brush:string}[]}
 export interface TextStep extends StepBase {type:'explanation'|'summary'}
 export interface DemoStep extends StepBase {type:'demonstration';moves:string[];captions:string[]}
-export interface MoveStep extends StepBase {type:'move';goal:Goal;examples:string[];independent?:boolean;failure:string;activity?:'recognition'|'application';sequence?:string[];sequenceCaptions?:string[]}
+export interface MoveStep extends StepBase {type:'move';goal:Goal;examples:string[];independent?:boolean;failure:string;activity?:'recognition'|'application';difficulty?:1|2|3;sequence?:string[];sequenceCaptions?:string[]}
 export interface ChoiceStep extends StepBase {type:'question';choices:{id:string;text:string;correct:boolean;feedback:string}[];independent?:boolean}
 export type LessonStep=TextStep|DemoStep|MoveStep|ChoiceStep;
 export interface InteractiveLesson {version:1;id:string;title:string;category:string;stage:number;summary:string;skills:Skill[];prerequisites:string[];related:string[];steps:LessonStep[]}

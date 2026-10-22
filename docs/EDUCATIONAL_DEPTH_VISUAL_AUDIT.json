@@ -1,0 +1,583 @@
+{
+  "at": "2026-10-22T06:10:22.198Z",
+  "scans": [
+    {
+      "name": "application",
+      "mode": "light",
+      "width": 320,
+      "pageWidth": 320,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "application",
+      "mode": "light",
+      "width": 390,
+      "pageWidth": 390,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "application",
+      "mode": "light",
+      "width": 768,
+      "pageWidth": 768,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "application",
+      "mode": "light",
+      "width": 1440,
+      "pageWidth": 1440,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "application",
+      "mode": "dark",
+      "width": 320,
+      "pageWidth": 320,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "application",
+      "mode": "dark",
+      "width": 390,
+      "pageWidth": 390,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "application",
+      "mode": "dark",
+      "width": 768,
+      "pageWidth": 768,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "application",
+      "mode": "dark",
+      "width": 1440,
+      "pageWidth": 1440,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "discovery",
+      "mode": "light",
+      "width": 320,
+      "pageWidth": 320,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "discovery",
+      "mode": "light",
+      "width": 390,
+      "pageWidth": 390,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "discovery",
+      "mode": "light",
+      "width": 768,
+      "pageWidth": 768,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "discovery",
+      "mode": "light",
+      "width": 1440,
+      "pageWidth": 1440,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "discovery",
+      "mode": "dark",
+      "width": 320,
+      "pageWidth": 320,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "discovery",
+      "mode": "dark",
+      "width": 390,
+      "pageWidth": 390,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "discovery",
+      "mode": "dark",
+      "width": 768,
+      "pageWidth": 768,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "discovery",
+      "mode": "dark",
+      "width": 1440,
+      "pageWidth": 1440,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "opening-detail",
+      "mode": "light",
+      "width": 320,
+      "pageWidth": 320,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "opening-detail",
+      "mode": "light",
+      "width": 390,
+      "pageWidth": 390,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "opening-detail",
+      "mode": "light",
+      "width": 768,
+      "pageWidth": 768,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "opening-detail",
+      "mode": "light",
+      "width": 1440,
+      "pageWidth": 1440,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "opening-detail",
+      "mode": "dark",
+      "width": 320,
+      "pageWidth": 320,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "opening-detail",
+      "mode": "dark",
+      "width": 390,
+      "pageWidth": 390,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "opening-detail",
+      "mode": "dark",
+      "width": 768,
+      "pageWidth": 768,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "opening-detail",
+      "mode": "dark",
+      "width": 1440,
+      "pageWidth": 1440,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "decision",
+      "mode": "light",
+      "width": 320,
+      "pageWidth": 320,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "decision",
+      "mode": "light",
+      "width": 390,
+      "pageWidth": 390,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "decision",
+      "mode": "light",
+      "width": 768,
+      "pageWidth": 768,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "decision",
+      "mode": "light",
+      "width": 1440,
+      "pageWidth": 1440,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "decision",
+      "mode": "dark",
+      "width": 320,
+      "pageWidth": 320,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "decision",
+      "mode": "dark",
+      "width": 390,
+      "pageWidth": 390,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "decision",
+      "mode": "dark",
+      "width": 768,
+      "pageWidth": 768,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "decision",
+      "mode": "dark",
+      "width": 1440,
+      "pageWidth": 1440,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "explorer",
+      "mode": "light",
+      "width": 320,
+      "pageWidth": 320,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "explorer",
+      "mode": "light",
+      "width": 390,
+      "pageWidth": 390,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "explorer",
+      "mode": "light",
+      "width": 768,
+      "pageWidth": 768,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "explorer",
+      "mode": "light",
+      "width": 1440,
+      "pageWidth": 1440,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "explorer",
+      "mode": "dark",
+      "width": 320,
+      "pageWidth": 320,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "explorer",
+      "mode": "dark",
+      "width": 390,
+      "pageWidth": 390,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "explorer",
+      "mode": "dark",
+      "width": 768,
+      "pageWidth": 768,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "explorer",
+      "mode": "dark",
+      "width": 1440,
+      "pageWidth": 1440,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "repertoire",
+      "mode": "light",
+      "width": 320,
+      "pageWidth": 320,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "repertoire",
+      "mode": "light",
+      "width": 390,
+      "pageWidth": 390,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "repertoire",
+      "mode": "light",
+      "width": 768,
+      "pageWidth": 768,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "repertoire",
+      "mode": "light",
+      "width": 1440,
+      "pageWidth": 1440,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "repertoire",
+      "mode": "dark",
+      "width": 320,
+      "pageWidth": 320,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "repertoire",
+      "mode": "dark",
+      "width": 390,
+      "pageWidth": 390,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "repertoire",
+      "mode": "dark",
+      "width": 768,
+      "pageWidth": 768,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "repertoire",
+      "mode": "dark",
+      "width": 1440,
+      "pageWidth": 1440,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "progress",
+      "mode": "light",
+      "width": 320,
+      "pageWidth": 320,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "progress",
+      "mode": "light",
+      "width": 390,
+      "pageWidth": 390,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "progress",
+      "mode": "light",
+      "width": 768,
+      "pageWidth": 768,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "progress",
+      "mode": "light",
+      "width": 1440,
+      "pageWidth": 1440,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "progress",
+      "mode": "dark",
+      "width": 320,
+      "pageWidth": 320,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "progress",
+      "mode": "dark",
+      "width": 390,
+      "pageWidth": 390,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "progress",
+      "mode": "dark",
+      "width": 768,
+      "pageWidth": 768,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "progress",
+      "mode": "dark",
+      "width": 1440,
+      "pageWidth": 1440,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "review",
+      "mode": "light",
+      "width": 320,
+      "pageWidth": 320,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "review",
+      "mode": "light",
+      "width": 390,
+      "pageWidth": 390,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "review",
+      "mode": "light",
+      "width": 768,
+      "pageWidth": 768,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "review",
+      "mode": "light",
+      "width": 1440,
+      "pageWidth": 1440,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "review",
+      "mode": "dark",
+      "width": 320,
+      "pageWidth": 320,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "review",
+      "mode": "dark",
+      "width": 390,
+      "pageWidth": 390,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "review",
+      "mode": "dark",
+      "width": 768,
+      "pageWidth": 768,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "review",
+      "mode": "dark",
+      "width": 1440,
+      "pageWidth": 1440,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "master",
+      "mode": "light",
+      "width": 320,
+      "pageWidth": 320,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "master",
+      "mode": "light",
+      "width": 390,
+      "pageWidth": 390,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "master",
+      "mode": "light",
+      "width": 768,
+      "pageWidth": 768,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "master",
+      "mode": "light",
+      "width": 1440,
+      "pageWidth": 1440,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "master",
+      "mode": "dark",
+      "width": 320,
+      "pageWidth": 320,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "master",
+      "mode": "dark",
+      "width": 390,
+      "pageWidth": 390,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "master",
+      "mode": "dark",
+      "width": 768,
+      "pageWidth": 768,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "master",
+      "mode": "dark",
+      "width": 1440,
+      "pageWidth": 1440,
+      "overflow": [],
+      "violations": []
+    }
+  ],
+  "violations": 0,
+  "overflow": []
+}

@@ -25,3 +25,9 @@
 22. Calibration tooling preserves historical reports, pairs colors, records actual terminations and leaves unresolved cutoffs unresolved. Four scaled-budget endpoint games validate the harness and do not justify Elo claims or retuning.
 
 23. Final recommendation audit: do not infer a learner’s king-safety error from the opponent’s contextual back-rank geometry or infer a missed enemy tactic from the learner’s own fork. Require a mating threat/score or inspect the actual legal opponent PV reply. Cache categories only by immutable review-row identity.
+
+
+24. 2026-10-22: extend the existing lesson player with authored application and short fixed-response conversion sequences. Require every learner decision; persist optional partial lines. Reflection remains useful recognition, with separate application credit. Early-repeat scheduling must return only repetition fields so it cannot overwrite lesson completion.
+25. Opening tiers/player examples remain optional editorial context. Practical profiles and legal position-specific reply choices come first. Pass validated FEN/root/side/return context across explorer, practice and review; do not reset the board silently.
+26. Count distinct legal game histories conservatively when finding recurring weaknesses. Preserve every saved import, while excluding duplicate IDs/renamed copies from analytical sample inflation. Report completed attempts, hints/errors and retention separately; do not infer mastery or rating gains.
+27. Retain provisional bot strength. Add explicit cutoff ranges and conditional decisive-result uncertainty to benchmarking, without changing policy or standings. Historical study hashes identify their exact scope; new data remains a small, licensed comparison collection rather than relabeled forced puzzles.

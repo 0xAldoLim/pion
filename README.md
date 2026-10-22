@@ -9,9 +9,9 @@ Pion is a free, open-source chess training app that runs in your browser. Play f
 ## Play, learn, and improve
 
 - **Play at your level.** Choose White, Black, or Random in **Play now**, then select a Blitz or Rapid time control. Practice against twelve difficulty profiles featuring Ponke, Lonke, Gonke, Konke, Bonke, Zonke, and Donke, or share a board in local hotseat mode.
-- **Learn by making moves.** Work through 31 interactive lessons across six stages, with board demonstrations, progressive hints, and saved progress. Follow the guided path or jump into any lesson.
+- **Learn by making moves.** Work through 31 interactive lessons across six stages, with board demonstrations, new application positions, progressive hints, multi-move conversion exercises, and saved progress. Follow the guided path or jump into any lesson.
 - **Understand your openings.** Study twelve opening families, explore variations and transpositions, and practice either color. Build a personal repertoire with notes, folders, PGN imports, and scheduled recall. During games, the recognized opening appears above your move history.
-- **Train your tactical vision.** Solve puzzles by theme, revisit mistakes, and practice positions drawn from your reviewed games. Explore fourteen annotated master-game studies and two classic Morphy mating exercises.
+- **Train your tactical vision.** Solve puzzles by theme, revisit mistakes, and practice positions drawn from your reviewed games. Explore sixteen annotated master-game studies and two classic Morphy mating exercises.
 - **Review the decisions that mattered.** Watch the board rewind and follow your game as Stockfish analyzes it locally. Inspect move-quality badges, see what the opponent can do after a mistake, and turn those positions into focused practice. Ponke's local coach connects explanations to the position on the board.
 - **Make the board your own.** Switch between light and dark modes, seven board themes, and four piece sets. Adjust text size, contrast, motion, sounds, bot response pace, and practice assistance. Queue capture premoves and conditional recaptures, draw your own arrows during games, or use keyboard move and annotation controls.
 
