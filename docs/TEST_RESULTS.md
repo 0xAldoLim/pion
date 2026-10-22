@@ -46,3 +46,11 @@ Screen-fitting play board (2026-10-21): typecheck, lint and build pass; ten affe
 - Current bundle: `index-CqTdTkGk.js`; 105 precache entries / 5312.29 KiB. Essential lazy content and lite WASM remain offline; optional full engine is not automatically precached.
 
 The full retained desktop/mobile suite and exact-source Ubuntu/Firefox gate are recorded below when completed. No browser retry/skip or relaxed geometry assertion was introduced. Correctness checks do not establish real-world rating gains.
+
+
+Full local release run: all **116 Chromium/mobile scenarios passed** in 12.7 minutes on application source 772cff0, including real engines, optional full-pack integrity/offline use, rated integrity, premoves/arrows, exports and all new journeys. Four final-source imported-opening views also pass, bringing the visual/Axe audit to **76 views**, zero findings.
+
+Ubuntu diagnostic run [39733346401](https://github.com/0xAldoLim/pion/actions/runs/39733346401) passed 173/174 scenarios and all unit/static/engine/license gates. Firefox exposed a genuine 8-pixel overflow in four opening cards: “Straightforward” was wider than a narrow two-column profile cell under its font metrics. The profile now chooses columns from a 140-pixel readable minimum and wraps safely. A direct value-cell containment assertion covers all six retained widths; no original geometry assertion or tolerance is relaxed. The corrective release gate is recorded below.
+
+
+Corrective local verification: typecheck, lint and production build pass; all eight affected desktop/mobile geometry and opening-layout cases pass. Eight final opening-profile sizing/Axe rechecks at the four requested widths in both themes pass, bringing the recorded audit to **84 checks including rechecks**, zero overflow or accessibility findings. Corrective bundle: `index-CMy2V4nW.js`; 105 precache entries / 5312.39 KiB.

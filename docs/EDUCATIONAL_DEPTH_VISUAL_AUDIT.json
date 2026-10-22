@@ -576,8 +576,114 @@
       "pageWidth": 1440,
       "overflow": [],
       "violations": []
+    },
+    {
+      "name": "imported-course-link",
+      "mode": "light",
+      "width": 320,
+      "pageWidth": 320,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "imported-course-link",
+      "mode": "light",
+      "width": 1440,
+      "pageWidth": 1440,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "imported-course-link",
+      "mode": "dark",
+      "width": 320,
+      "pageWidth": 320,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "imported-course-link",
+      "mode": "dark",
+      "width": 1440,
+      "pageWidth": 1440,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "discovery-profile-sizing",
+      "mode": "light",
+      "width": 320,
+      "pageWidth": 320,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "discovery-profile-sizing",
+      "mode": "light",
+      "width": 390,
+      "pageWidth": 390,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "discovery-profile-sizing",
+      "mode": "light",
+      "width": 768,
+      "pageWidth": 768,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "discovery-profile-sizing",
+      "mode": "light",
+      "width": 1440,
+      "pageWidth": 1440,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "discovery-profile-sizing",
+      "mode": "dark",
+      "width": 320,
+      "pageWidth": 320,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "discovery-profile-sizing",
+      "mode": "dark",
+      "width": 390,
+      "pageWidth": 390,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "discovery-profile-sizing",
+      "mode": "dark",
+      "width": 768,
+      "pageWidth": 768,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "discovery-profile-sizing",
+      "mode": "dark",
+      "width": 1440,
+      "pageWidth": 1440,
+      "overflow": [],
+      "violations": []
     }
   ],
   "violations": 0,
-  "overflow": []
+  "overflow": [],
+  "finalSourceRecheck": {
+    "commit": "772cff013559f4e9239d520d63899763ec72ed1b",
+    "bundle": "index-CqTdTkGk.js",
+    "at": "2026-10-22T06:35:11.011Z"
+  },
+  "profileSizingRecheck": {
+    "bundle": "index-CMy2V4nW.js",
+    "at": "2026-10-22T06:46:09.228Z",
+    "reason": "Firefox long-value column overflow correction"
+  }
 }

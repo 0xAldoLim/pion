@@ -23,6 +23,7 @@ test('opening tiers, master examples and paired moves remain readable across scr
   }
   await page.goto('/#openings');await expect(page.locator('.opening-library .tier-stamp')).toHaveCount(12);
   await expect(page.locator('.opening-tier-guide li')).toHaveText(['SSS','SS','S','A','B','C','D']);
+  for(const width of [320,390,641,768,1024,1440]){await page.setViewportSize({width,height:844});await expect.poll(()=>page.locator('.opening-learning-profile dd').evaluateAll(nodes=>nodes.filter(el=>el.scrollWidth>el.clientWidth+1).map(el=>el.textContent))).toEqual([]);}
   await page.getByRole('button',{name:'Opening explorer',exact:true}).click();await page.getByText('Find a position or named line',{exact:true}).click();await page.getByLabel('Search ECO lines',{exact:true}).fill('Sicilian');
   await expect(page.locator('.study-panel .course-lessons>button').first()).toBeVisible();
   const search=await page.locator('.study-panel .course-lessons>button').first().evaluate(el=>({display:getComputedStyle(el).display,overflow:el.scrollWidth-el.clientWidth}));
