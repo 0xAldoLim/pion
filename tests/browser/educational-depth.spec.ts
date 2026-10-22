@@ -1,0 +1,10 @@
+import {test,expect,type Page} from '@playwright/test';
+async function move(page:Page,uci:string){await page.getByLabel('Legal move',{exact:true}).selectOption(uci);await page.getByRole('button',{name:'Play move',exact:true}).click();}
+async function application(page:Page,id:string){await page.goto(`/#learn/${id}`);for(let i=0;i<5;i++)await page.getByRole('button',{name:i===2||i===3||i===4?'Skip this step · no completion credit':'Continue',exact:true}).click();await page.getByRole('button',{name:'Try a new situation',exact:true}).click();}
+
+test('new application explains a losing capture and preserves hints and errors after retry',async({page})=>{
+ await application(page,'board-vision');await expect(page.locator('.study-objective')).toContainText('compare bishop and queen');await move(page,'d1d5');await expect(page.locator('.study-feedback')).toContainText('exd5');await page.getByRole('button',{name:'Get a hint',exact:true}).click();await page.reload();await expect(page.locator('.study-panel')).toContainText('Hint 1/3');await move(page,'b3d5');await expect(page.locator('.study-feedback')).toContainText('meets this objective');await expect(page.locator('.learning-progress')).toContainText('Independent evidence pending');await page.getByRole('button',{name:'Continue',exact:true}).click();await move(page,'b4d6');await expect(page.locator('.learning-progress')).toContainText('Independent evidence recorded');
+});
+test('conversion requires every decision and resumes mid-sequence without premature credit',async({page})=>{
+ await application(page,'queen-mate');await move(page,'g4h5');await expect(page.locator('.turn-prompt')).toContainText('2/3');await expect(page.locator('.learning-progress')).toContainText('Independent evidence pending');await page.reload();await expect(page.locator('.turn-prompt')).toContainText('2/3');await move(page,'h5g6');await expect(page.locator('.turn-prompt')).toContainText('3/3');await move(page,'g6g7');await expect(page.locator('.study-feedback')).toContainText('Sequence complete');await expect(page.locator('.learning-progress')).toContainText('Independent evidence recorded');
+});

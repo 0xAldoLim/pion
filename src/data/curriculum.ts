@@ -2,6 +2,7 @@ import {Chess} from 'chess.js';
 import {playUci,START_FEN} from '../chess/rules';
 import type {Goal,InteractiveLesson,LearningCourse,Skill} from '../learning/models';
 import {position,oppositePosition,oppositeGoal,oppositeMove} from '../learning/content';
+import {APPLICATION_TASKS} from './application-tasks';
 import {EXTRA_SPECS} from './curriculum-extra';
 export interface LessonSpec {id:string;title:string;stage:number;skill:Skill;summary:string;idea:string;fen:string;demo:string[];captions:string[];goal:Goal;answer:string;task:string;failure:string;question:string;options:[string,string,string];reason:string;transferFen:string;transferGoal?:Goal;transferAnswer:string;transferTask:string;transferReason:string;related?:string[]}
 const stages=['Foundations','Tactical awareness','Opening fundamentals','Middlegame thinking','Endgame technique','Advanced thinking'];
@@ -13,9 +14,10 @@ export function buildLesson(spec:LessonSpec):InteractiveLesson{
     {...base,id:'demo',type:'demonstration',objective:'Watch what changes',explanation:spec.idea,moves:spec.demo,captions:spec.captions},
     {...base,id:'practice',type:'move',objective:spec.task,explanation:'Try the idea on this board. A hint is available if you need one.',goal:spec.goal,examples:[spec.answer],failure:spec.failure},
     {...base,id:'understand',type:'question',objective:spec.question,explanation:'Choose the explanation supported by this position.',choices:spec.options.map((text,i)=>({id:String(i),text,correct:i===0,feedback:i===0?spec.reason:spec.failure}))},
-    {...base,id:'transfer',type:'move',fen:spec.transferFen,objective:spec.transferTask,explanation:'A different position. Try without a hint to record independent evidence.',goal:spec.transferGoal??spec.goal,examples:[spec.transferAnswer],failure:spec.transferReason,independent:true,hints:[spec.idea,spec.transferReason,`Try ${playUci(new Chess(spec.transferFen),spec.transferAnswer).san}. ${spec.transferReason}`]},
+    {...base,id:'transfer',type:'move',fen:spec.transferFen,objective:spec.transferTask,explanation:'A different position. Try without a hint to record independent evidence.',goal:spec.transferGoal??spec.goal,examples:[spec.transferAnswer],failure:spec.transferReason,independent:true,activity:spec.transferFen===oppositePosition(spec.fen)?'recognition':'application',hints:[spec.idea,spec.transferReason,`Try ${playUci(new Chess(spec.transferFen),spec.transferAnswer).san}. ${spec.transferReason}`]},
     {...base,id:'summary',type:'summary',objective:'Use this in your next game',explanation:`${spec.reason} ${spec.transferReason} Practice this again after a day, then check whether you notice it in a game.`},
     {...base,id:'recall',type:'move',fen:oppositePosition(spec.transferFen),objective:'Recall the idea with the colors changed',explanation:'Try to retrieve the concept before asking for a hint. An early repeat is practice, not spaced retention.',goal:oppositeGoal(spec.transferGoal??spec.goal),examples:[oppositeMove(spec.transferAnswer)],failure:'The colors and ranks have changed. Recalculate the attacks, captures and king safety.',independent:true,hints:[spec.idea,'Inspect the corresponding piece and target with their new coordinates.',`Try ${playUci(new Chess(oppositePosition(spec.transferFen)),oppositeMove(spec.transferAnswer)).san}. Check the result on the board.`]},
+    ...(APPLICATION_TASKS[spec.id]??[]),
   ]};
 }
 export const SPECS:LessonSpec[]=[
