@@ -1,6 +1,6 @@
 # Validation evidence
 
-Updated 2026-10-22. Historical release runs are recorded in [LEARNING_VALIDATION.md](LEARNING_VALIDATION.md); the latest educational-depth release is at the end of this document.
+Updated 2026-10-23. The final educational-depth application source passes **145 unit checks and all 177 Chromium/mobile/Firefox scenarios**; 92 responsive/Axe checks including rechecks have zero findings. [Exact-source release run](https://github.com/0xAldoLim/pion/actions/runs/39737346328). Earlier checkpoints are retained below; full final-source details are at the end.
 
 - TypeScript, ESLint, Vitest and production build use the real application. Unit checks cover all 31 lesson FENs/demos/objectives, alternative mates, actual capture profitability, opening annotations/recovery, graph/transpositions, both-color practice/scheduling, recommendations, assistance restrictions, fourteen complete master scores, additive migrations and transactional backups.
 - Browser workflows exercise wrong answers/hints, exact-step reload, independent transfer, Italian branches/recall, Black recall, legal alternatives, custom repertoire PGN, schedules, review-derived branches and repeated actual reviewed losses leading to lessons and puzzles.
@@ -39,11 +39,11 @@ Screen-fitting play board (2026-10-21): typecheck, lint and build pass; ten affe
 ## Educational depth checkpoint — 22 October 2026
 
 - Latest remote baseline was fetched and matched to `78e66e5`. Baseline: 126 unit checks, typecheck/lint and seven existing Learn/Openings Chromium journeys passed.
-- Current source: **144 unit checks in 26 files**, typecheck, lint and production build pass. Every lesson/transfer/sequence, twelve new opening decision nodes and replies, duplicate-game accounting, early-repeat completion, optional backup fields, exact study context, PGN roundtrip and calibration-statistics fixtures are included.
+- At this checkpoint: **144 unit checks in 26 files**, typecheck, lint and production build pass. Every lesson/transfer/sequence, twelve new opening decision nodes and replies, duplicate-game accounting, early-repeat completion, optional backup fields, exact study context, PGN roundtrip and calibration-statistics fixtures are included.
 - Thirty-eight distinct affected desktop/mobile journeys have passed across learning, opening discovery/variations, both-color practice, real-engine review links, duplicate imports, historical studies, fully offline operation and actual repertoire download/reimport/notes/folder/undo. Earlier diagnostic failures identified the early-repeat completion defect and test selectors needing the new disclosure/current-step semantics; original chess/layout assertions remain.
 - **72 responsive/Axe views pass**, zero horizontal overflow and zero WCAG 2 A/AA or 2.1 AA findings: nine representative learning, discovery, annotated opening, decision, contextual explorer, repertoire, progress, reviewed mistake and historical-study screens at 320, 390, 768 and 1440 pixels in both themes. Raw results: [EDUCATIONAL_DEPTH_VISUAL_AUDIT.json](EDUCATIONAL_DEPTH_VISUAL_AUDIT.json). Screenshots are stored in the local `outputs/educational-depth-evidence` artifact folder.
 - Lite/full engine integrity passes; all **7,935** installed puzzle/opening records validate; **464 dependencies**, zero unknown license declarations. No production bot parameter, player rating, review score mode or database migration changed.
-- Current bundle: `index-CqTdTkGk.js`; 105 precache entries / 5312.29 KiB. Essential lazy content and lite WASM remain offline; optional full engine is not automatically precached.
+- Checkpoint bundle: `index-CqTdTkGk.js`; 105 precache entries / 5312.29 KiB. Essential lazy content and lite WASM remain offline; optional full engine is not automatically precached.
 
 The full retained desktop/mobile suite and exact-source Ubuntu/Firefox gate are recorded below when completed. No browser retry/skip or relaxed geometry assertion was introduced. Correctness checks do not establish real-world rating gains.
 
@@ -57,3 +57,22 @@ Corrective local verification: typecheck, lint and production build pass; all ei
 
 
 Final content-audit correction: the pawn-defender objective now requires the named piece; a legal queen defense receives a factual piece-requirement explanation rather than completion. **145 unit checks**, lint, typecheck and production build pass. All six affected desktop/mobile lesson journeys pass, including queen rejection, correct pawn defense, retained earlier-error exclusion, capture feedback and conversion reload. Final application bundle: `index-Dtz241Ro.js`; 105 precache entries / 5312.54 KiB. Exact-source full browser gate follows.
+
+
+Eight final-source wrong-answer feedback layout/Axe checks pass at 320, 390, 768 and 1440 pixels in both themes. The raw visual audit now records **92 checks including rechecks**, zero findings; its final-feedback entry identifies source `a0a2ac73c9a01247616adba912827332fdd382b0` and bundle `index-Dtz241Ro.js`.
+
+
+The layout correction passed the complete Ubuntu matrix on source `c15bdef1f40e0717571aec1b5b30fd3e0de33da9`: **174/174 scenarios**, zero retries/skips, 12.4 minutes, alongside 144 unit checks and all static/build/engine/license gates. [Run 39736511661](https://github.com/0xAldoLim/pion/actions/runs/39736511661). This run precedes the final pawn-objective correction; the final release gate below covers that later source separately.
+
+
+## Final educational-depth release — verified 23 October 2026
+
+Application source: `a0a2ac73c9a01247616adba912827332fdd382b0`. [Ubuntu release run 39737346328](https://github.com/0xAldoLim/pion/actions/runs/39737346328) completed successfully on 22 October 2026 and was verified against its job logs on 23 October.
+
+- **145 unit checks / 26 files pass.** Typecheck, lint, engine integrity, dependency license inventory and production build pass.
+- **177/177 browser scenarios pass**, across Chromium, mobile Chromium and Firefox, in 14.0 minutes with one worker, zero retries and zero skipped scenarios. The complete retained suite includes real Stockfish, optional full-engine integrity/offline use, rated assistance/settlement, review, premoves/arrows, board geometry, exports, persistence/migrations, PWA/offline and the new educational journeys.
+- **92 responsive/Axe checks including rechecks pass**, with no horizontal overflow or WCAG 2 A/AA or 2.1 AA findings. Requested widths: 320, 390, 768 and 1440 pixels; both themes. Raw checks identify their source/bundle checkpoints; the final feedback views use this application source.
+- All **7,935** installed puzzle/opening records passed local validation. Dependencies: 464 on Windows, 462 in Ubuntu CI; both inventories have zero unknown license declarations. The platform difference is dependency resolution, not missing application content.
+- Final bundle: `index-Dtz241Ro.js`; main JavaScript 123.29 KB gzip; 105 precache entries / 5312.54 KiB. Essential content and lite WASM remain offline; optional full engine remains opt-in. Large puzzle/ECO chunks retain the documented build advisory.
+
+Milestones 0–7 are complete. Release documentation follows this tested source in a documentation-only commit; application, tests, dependencies and workflow are unchanged. No real-world rating gain is inferred. Remaining educational and calibration limits are recorded in KNOWN_ISSUES.md and EDUCATIONAL_DEPTH_AUDIT.md.

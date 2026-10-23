@@ -1,6 +1,6 @@
 # Implementation status
 
-Updated 2026-10-22. The original learning release is recorded first; the latest educational-depth cycle and release evidence are below.
+Updated 2026-10-23. The original learning release is recorded first; the latest educational-depth cycle and release evidence are below.
 
 | Milestone | Delivered behavior |
 |---|---|
@@ -39,3 +39,17 @@ Review and board tools (2026-10-21): imported and saved games rewind before revi
 Fetched latest main at 78e66e5 and retained the later board, review and practice improvements. Audit milestone e98b153 and lesson milestone 326355d are pushed. The latter adds 31 authored application/decision tasks, resumable conversion sequences, grounded objective feedback, recognition/application metadata and the early-repeat completion fix.
 
 Subsequent work deepens twelve opening decisions, makes practical profiles primary, carries study/review positions through navigation, distinguishes uncertain grading, deduplicates actual reviewed-game histories, reports learning outcomes and adds two sourced historical studies. Existing engine/game architecture, IDs, record formats, all opening/puzzle data and production bot policies remain intact. No destructive migration, LLM service or rating gate is introduced. Detailed evidence and final release results are tracked in the educational audit and TEST_RESULTS.md.
+
+
+| Educational-depth milestone | Delivered work |
+| --- | --- |
+| 0 — Audit | Fetched the current baseline, reproduced existing checks and classified defects separately from educational limits. |
+| 1 — Lesson quality | 31 authored application/decision tasks, concrete wrong-answer explanations and saved multi-decision conversions; all original lesson IDs retained. |
+| 2 — Opening teaching | Practical discovery profiles, twelve specific decision nodes and 25 legal reply examples; original families, variations and ECO retained. |
+| 3 — Practice and navigation | Distinct guided/recall/practical modes, conservative alternative grading and exact-position study/review links. |
+| 4 — Personalization | Duplicate-history protection, early-repeat completion fix, unseen challenge selection and separate recognition/application/delayed recall observations. |
+| 5 — Content | Two sourced historical comparison studies, with accurate metadata, replay checks, hash scope and licensing. |
+| 6 — Quality and calibration | Real PGN download/reimport and repertoire persistence verified; readable responsive profiles; honest statistical reporting with no production retune. |
+| 7 — Full validation | Complete: 145 unit checks, all 177 Chromium/mobile/Firefox scenarios, 92 layout/Axe checks including rechecks, real-engine/offline and integrity/license gates pass. Exact source and run are in TEST_RESULTS.md. |
+
+Final source `a0a2ac73c9a01247616adba912827332fdd382b0` passed [Ubuntu CI](https://github.com/0xAldoLim/pion/actions/runs/39737346328). Verified 23 October 2026. The release documentation commit changes no application or test code. Milestones 0–7 are complete; remaining scope limits are explicit in KNOWN_ISSUES.md.

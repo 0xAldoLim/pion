@@ -672,6 +672,70 @@
       "pageWidth": 1440,
       "overflow": [],
       "violations": []
+    },
+    {
+      "name": "final-piece-feedback",
+      "mode": "light",
+      "width": 320,
+      "pageWidth": 320,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "final-piece-feedback",
+      "mode": "light",
+      "width": 390,
+      "pageWidth": 390,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "final-piece-feedback",
+      "mode": "light",
+      "width": 768,
+      "pageWidth": 768,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "final-piece-feedback",
+      "mode": "light",
+      "width": 1440,
+      "pageWidth": 1440,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "final-piece-feedback",
+      "mode": "dark",
+      "width": 320,
+      "pageWidth": 320,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "final-piece-feedback",
+      "mode": "dark",
+      "width": 390,
+      "pageWidth": 390,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "final-piece-feedback",
+      "mode": "dark",
+      "width": 768,
+      "pageWidth": 768,
+      "overflow": [],
+      "violations": []
+    },
+    {
+      "name": "final-piece-feedback",
+      "mode": "dark",
+      "width": 1440,
+      "pageWidth": 1440,
+      "overflow": [],
+      "violations": []
     }
   ],
   "violations": 0,
@@ -685,5 +749,20 @@
     "bundle": "index-CMy2V4nW.js",
     "at": "2026-10-22T06:46:09.228Z",
     "reason": "Firefox long-value column overflow correction"
+  },
+  "finalFeedbackRecheck": {
+    "commit": "a0a2ac73c9a01247616adba912827332fdd382b0",
+    "bundle": "index-Dtz241Ro.js",
+    "at": "2026-10-22T07:03:43.490Z"
+  },
+  "releaseGate": {
+    "source": "a0a2ac73c9a01247616adba912827332fdd382b0",
+    "run": "https://github.com/0xAldoLim/pion/actions/runs/39737346328",
+    "conclusion": "success",
+    "unitChecks": 145,
+    "browserScenarios": 177,
+    "browserRetries": 0,
+    "browserSkips": 0,
+    "verifiedOn": "2026-10-23"
   }
 }
