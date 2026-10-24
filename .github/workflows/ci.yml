@@ -7,8 +7,8 @@ permissions:
   contents: read
 jobs:
   validate:
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -25,8 +25,12 @@ jobs:
       - run: pnpm test
       - run: pnpm audit:licenses
       - run: pnpm build
-      - run: pnpm exec playwright install --with-deps chromium firefox
-      - run: pnpm test:e2e
+      - name: Install browser runtime
+        timeout-minutes: 20
+        run: pnpm exec playwright install --with-deps chromium firefox
+      - name: Browser regression suite
+        timeout-minutes: 20
+        run: pnpm test:e2e
       - uses: actions/upload-artifact@v4
         if: always()
         with:

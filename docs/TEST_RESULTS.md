@@ -76,3 +76,10 @@ Application source: `a0a2ac73c9a01247616adba912827332fdd382b0`. [Ubuntu release 
 - Final bundle: `index-Dtz241Ro.js`; main JavaScript 123.29 KB gzip; 105 precache entries / 5312.54 KiB. Essential content and lite WASM remain offline; optional full engine remains opt-in. Large puzzle/ECO chunks retain the documented build advisory.
 
 Milestones 0–7 are complete. Release documentation follows this tested source in a documentation-only commit; application, tests, dependencies and workflow are unchanged. No real-world rating gain is inferred. Remaining educational and calibration limits are recorded in KNOWN_ISSUES.md and EDUCATIONAL_DEPTH_AUDIT.md.
+
+
+## CI timeout correction — 24 October 2026
+
+[Run 39877273765](https://github.com/0xAldoLim/pion/actions/runs/39877273765), on documentation-only source `2aa597c187512f5a543f1cdc4244e7fccaed8566`, was cancelled by the 20-minute job limit. GitHub's annotation confirms the timeout. Ubuntu package downloads fetched 53.7 MB in 14 minutes 40 seconds at about 61 kB/s; browser installation took 15 minutes 8 seconds. The browser suite therefore started with only about three minutes remaining. Unit/static/build/engine/license steps had passed; the complete 177-scenario suite could not finish.
+
+The workflow now pins `ubuntu-24.04`, matching the validated release host, and allows a 45-minute job with separate 20-minute browser-setup and browser-suite limits. Normal full-suite duration is about 14 minutes. Per-test timeouts, one worker, zero retries, all three projects, all 177 scenarios and artifact retention remain unchanged. This corrects orchestration capacity without changing application behavior or suppressing assertions. The replacement run is the validation gate for this workflow change.
