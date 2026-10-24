@@ -20,7 +20,7 @@ export function LessonPlayer({lesson,onExit}:{lesson:InteractiveLesson;onExit:()
   const [result,setResult]=useState(''),[played,setPlayed]=useState(''),[reset,setReset]=useState(0),[busy,setBusy]=useState(false);
   const [demoPly,setDemoPly]=useState(0),[running,setRunning]=useState(false);const saving=useRef(Promise.resolve());
   useEffect(()=>{let alive=true;void db.lessonProgress.get(lesson.id).then(p=>{if(alive){const current=p??freshLesson(lesson);latest.current=current;setProgress(current);}});return()=>{alive=false;};},[lesson]);
-  function persist(next:LessonProgress){latest.current=next;saving.current=saving.current.then(()=>db.lessonProgress.put(next)).then(()=>{if(latest.current===next)setProgress(next);}).catch(e=>notify(`Lesson save failed: ${String(e)}`));}
+  function persist(next:LessonProgress){latest.current=next;const write=saving.current.then(()=>db.lessonProgress.put(next)).then(()=>{if(latest.current===next)setProgress(next);return true;}).catch(e=>{notify(`Lesson save failed: ${String(e)}`);return false;});saving.current=write.then(()=>{});return write;}
   const index=progress?Math.max(0,lesson.steps.findIndex(s=>s.id===progress.currentStep)):0,step=lesson.steps[index]!;
   useEffect(()=>{const current=latest.current;if(!current||current.currentStep!==step.id||current.viewedSteps.includes(step.id))return;persist({...current,viewedSteps:[...current.viewedSteps,step.id],lastVisited:Date.now()});},[progress,step.id]);
   useEffect(()=>{setResult('');setPlayed('');setDemoPly(0);setRunning(false);setReset(n=>n+1);},[step.id]);
@@ -34,7 +34,7 @@ export function LessonPlayer({lesson,onExit}:{lesson:InteractiveLesson;onExit:()
   const facts=played?moveFacts(step.fen,played):[];
   const fork=facts.find(f=>f.kind==='fork');
   const shapes=fork?fork.squares.slice(1).map(dest=>({orig:fork.squares[0]!,dest,brush:'green'})):last?[{orig:last.slice(0,2),dest:last.slice(2,4),brush:'green'}]:step.arrows??[];
-  function hint(){const p=latest.current!;const level=Math.min(3,(p.stepHints[step.id]??0)+1);persist({...p,hintCount:p.hintCount+1,stepHints:{...p.stepHints,[step.id]:level}});setResult(sequence&&sequence[working.length]?progressiveHint(board.fen(),[sequence[working.length]!],level):step.hints[level-1]!);}
+  async function hint(){if(busy||completed)return;setBusy(true);const p=latest.current!,level=Math.min(3,(p.stepHints[step.id]??0)+1);try{const saved=await persist({...p,hintCount:p.hintCount+1,stepHints:{...p.stepHints,[step.id]:level}});if(saved&&latest.current?.currentStep===step.id)setResult(sequence&&sequence[working.length]?progressiveHint(board.fen(),[sequence[working.length]!],level):step.hints[level-1]!);}finally{setBusy(false);}}
   async function assess(success:boolean,feedback:string,move=''){
     if(busy||completed)return;setBusy(true);
     try{
