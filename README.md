@@ -13,7 +13,7 @@ Pion is a free, open-source chess training app that runs in your browser. Play f
 - **Understand your openings.** Study twelve opening families, explore variations and transpositions, and practice either color. Build a personal repertoire with notes, folders, PGN imports, and scheduled recall. During games, the recognized opening appears above your move history.
 - **Train your tactical vision.** Solve puzzles by theme, revisit mistakes, and practice positions drawn from your reviewed games. Explore sixteen annotated master-game studies and two classic Morphy mating exercises.
 - **Review the decisions that mattered.** Watch the board rewind and follow your game as Stockfish analyzes it locally. Inspect move-quality badges, see what the opponent can do after a mistake, and turn those positions into focused practice. Ponke's local coach connects explanations to the position on the board.
-- **Make the board your own.** Switch between light and dark modes, seven board themes, and four piece sets. Adjust text size, contrast, motion, sounds, bot response pace, and practice assistance. Queue capture premoves and conditional recaptures, draw your own arrows during games, or use keyboard move and annotation controls.
+- **Make the board your own.** The play board fits your available laptop space. On a laptop, choose **Focus board** beside the game title for a larger view; use **Exit focus board** or Escape to return. Switch between light and dark modes, seven board themes, and four piece sets. Adjust text size, contrast, motion, sounds, bot response pace, and practice assistance. Queue capture premoves and conditional recaptures, draw your own arrows during games, or use keyboard move and annotation controls.
 
 ## Start your first session
 

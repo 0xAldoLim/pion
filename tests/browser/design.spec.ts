@@ -52,9 +52,29 @@ test('active game frame stays aligned through premoves and board flipping',async
   const after=await surface.boundingBox();expect(after!.width).toBeCloseTo(before!.width,0);expect(after!.height).toBeCloseTo(before!.height,0);
   for(const width of [1440,1024,768,641,390,320]){await page.setViewportSize({width,height:900});await expect(async()=>{await page.clock.runFor(32);await measureFits(page);}).toPass({timeout:5000});}
   await expect(page.locator('.board-footer .player-strip strong')).toHaveText('You');await page.getByRole('button',{name:'Flip',exact:true}).click();await page.clock.runFor(32);await expect(page.locator('.board-column>.player-strip strong')).toHaveText('You');await expect(page.locator('.eval-bar')).toHaveClass(/reversed/);await measureFits(page);
-  await page.setViewportSize({width:1440,height:720});await expect(async()=>{await page.clock.runFor(32);await measureFits(page);}).toPass({timeout:5000});expect(await page.locator('.board-footer').evaluate(el=>el.getBoundingClientRect().bottom)).toBeLessThanOrEqual(722);expect((await surface.boundingBox())!.width).toBeGreaterThanOrEqual(450);
+  await page.setViewportSize({width:1440,height:720});await expect(async()=>{await page.clock.runFor(32);await measureFits(page);}).toPass({timeout:5000});expect(await page.locator('.board-footer').evaluate(el=>el.getBoundingClientRect().bottom)).toBeLessThanOrEqual(722);expect((await surface.boundingBox())!.width).toBeGreaterThanOrEqual(520);
 });
 
 
 
 
+
+
+test('laptop boards use the viewport and focus view preserves the active game',async({page})=>{
+ await route(page,'play/practice');await page.getByLabel('Mode',{exact:true}).selectOption('hotseat');await page.getByRole('button',{name:'Start game',exact:true}).click();await expect(page.locator('.play-screen')).toBeVisible();await expect(page).toHaveURL(/#play\/(?!practice)/);
+ const gameUrl=page.url(),surface=page.getByTestId('chessboard').locator('cg-board');
+ for(const [width,height,minimum] of [[1024,600,400],[1280,600,408],[1366,625,432],[1440,720,528]] as const){
+  await page.setViewportSize({width,height});await fits(page);const normal=(await surface.boundingBox())!;
+  expect(normal.width).toBeGreaterThanOrEqual(minimum);expect(normal.y).toBeGreaterThanOrEqual(0);expect(await page.locator('.board-footer').evaluate(el=>el.getBoundingClientRect().bottom)).toBeLessThanOrEqual(height+1);
+  await expect(page.getByLabel('White clock',{exact:true})).toBeInViewport();await expect(page.getByLabel('Black clock',{exact:true})).toBeInViewport();
+  await page.getByRole('button',{name:'Focus board',exact:true}).click();await expect(page.getByRole('button',{name:'Exit focus board',exact:true})).toHaveAttribute('aria-pressed','true');await expect(page.locator('.topbar')).toBeHidden();await expect(page.locator('.sidebar')).toBeHidden();
+  await expect.poll(async()=>{await fits(page);return (await surface.boundingBox())!.width;}).toBeGreaterThanOrEqual(normal.width+40);expect(page.url()).toBe(gameUrl);expect(await page.locator('.board-footer').evaluate(el=>el.getBoundingClientRect().bottom)).toBeLessThanOrEqual(height+1);
+  await page.keyboard.press('Escape');await expect(page.getByRole('button',{name:'Focus board',exact:true})).toHaveAttribute('aria-pressed','false');await expect(page.locator('.topbar')).toBeVisible();
+ }
+ await page.getByRole('button',{name:'Focus board',exact:true}).click();
+ for(const uci of ['e2e4','d7d5','e4d5','d8d5','b1c3']){await page.getByLabel('Legal move',{exact:true}).selectOption(uci);await page.getByRole('button',{name:'Play move',exact:true}).click();}
+ await expect(page.locator('.move-list')).toContainText('Nc3');await expect(page.getByRole('img',{name:/Captured by White: 1 black pawn/})).toBeVisible();
+ await page.getByRole('button',{name:'Flip',exact:true}).click();await page.evaluate(()=>window.scrollTo(0,0));await fits(page);expect(await page.locator('.board-footer').evaluate(el=>el.getBoundingClientRect().bottom)).toBeLessThanOrEqual(721);
+ await page.getByRole('button',{name:'Exit focus board',exact:true}).click();await expect(page.locator('.topbar')).toBeVisible();await page.reload();await expect(page.locator('.move-list')).toContainText('Nc3');await expect(page.getByRole('button',{name:'Focus board',exact:true})).toHaveAttribute('aria-pressed','false');
+ await page.setViewportSize({width:390,height:844});await expect(page.getByRole('button',{name:'Focus board',exact:true})).toBeHidden();await expect(page.locator('.topbar')).toBeVisible();await fits(page);
+});

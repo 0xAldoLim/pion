@@ -36,3 +36,23 @@ Active desktop games prioritize the board's available height. The page heading, 
 | 1920×1080 | 640 px | 824 px |
 
 Typecheck, lint and build pass (`index-CTXX38pi.js`; 104 precache entries / 5272.85 KiB). Ten affected desktop/mobile workflows pass, including frame alignment, minimum board size at 1440×720, flipping, premoves, captures, annotations, color choice and rating settlement. Twenty-four responsive/Axe views pass for practice and rated play in both themes across six viewport sizes, with no overflow or accessibility findings. Local measurements and screenshots: `outputs/play-board-evidence`.
+
+
+## Laptop-first board — 26 October 2026
+
+The play board now gets available space before the move panel. On laptop-sized windows, the game title and view controls sit beside the board, player rows are compact, and the board fits the actual space above the bottom clock. Resizing the window, changing text size or growing a capture rack recalculates the fit. Piece geometry, coordinates and evaluation-bar alignment still belong to the shared Board component.
+
+**Focus board**, beside the game title on desktop, temporarily hides navigation and the top bar for a larger playing surface. **Exit focus board** or Escape restores the normal view. Escape first respects an open dialog or a board action that consumes it. The game, clocks, moves and assistance policy continue normally. This view choice is temporary; no new preference or database migration is required. Phone layouts retain the full-width stacked board. Extra keyboard/annotation controls stay reachable below it.
+
+| Browser viewport | Previous board edge | Normal board | Focus board |
+| --- | --- | --- | --- |
+| 1024×600 | 288 px | 424 px | 480 px |
+| 1280×600 | 344 px | 424 px | 480 px |
+| 1366×625 | 368 px | 448 px | 504 px |
+| 1366×768 | 512 px | 592 px | 648 px |
+| 1440×720 | 464 px | 544 px | 600 px |
+| 1536×864 | 608 px | 688 px | 744 px |
+
+These are measured CSS pixels, excluding browser chrome. Both clocks and player rows fit inside every tested laptop viewport, with an eight-pixel lower margin. The default board is larger without entering Focus view. The compact board-first approach and optional enlarged view follow the interaction described in [Chess.com’s board-size guide](https://support.chess.com/en/articles/8609533-how-do-i-change-my-board-size); Pion retains its own visual identity.
+
+Regression checks retain all existing border, square, coordinate, flip, premove and capture assertions. The short-screen board minimum is strengthened from 450 to 520 pixels. A new laptop journey checks four viewport sizes, both clock positions, Focus/Exit/Escape, move/capture/flip persistence, reload and the mobile return layout. Validation details are in TEST_RESULTS.md and LAPTOP_BOARD_AUDIT.json; local images and before/after measurements are in `outputs/laptop-board-evidence`.
